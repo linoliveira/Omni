@@ -322,6 +322,95 @@ enyo.kind({
 					]
 			},
 			
+			{name: "checkoutscreen", kind: "FittableRows", classes: "moon enyo-unselectable enyo-fit full",
+				components:
+					[
+					 {content: "Expenditures", style: "font-size: 60px;"},
+					 {kind: "FittableColumns", fit: true,
+						 components:[
+						            {kind: "FittableRows", style: "padding: 10px;",
+						            	components:
+						            		[
+						            		 {kind: "FittableColumns",
+						            			 components:
+						            				 [
+						            				  {kind: "enyo.Image", style: "padding: 20px;", src: "http://placehold.it/150x150"},
+						            				  {content: "Accommodation", style: "padding-top: 90px;"},
+						            				  ]
+						            		 },
+						            	 			{kind: "FittableColumns", fit: true,
+					            					  components: [
+					            			      
+					            			                 {content: "Date", style:"padding:4px; border: 2px solid grey;"},
+					            			                 {content: "Description",fit:true, style:"padding:4px; border: 2px solid grey;"},
+					            			                 {content: "Total", style:"padding:4px; border: 2px solid grey;"}
+					            				 
+						            		 ]
+						            	 			},
+						            	 					{content: "XXX.XX", style:"text-align:right;"}
+						            		 ]
+						            		 
+						            },
+						            {kind: "FittableRows", style: "padding: 10px;",
+					 			 		components:
+					 			 			[
+					 			 			 	{kind: "FittableColumns",
+					 			 			 		components:
+					 			 			 		[
+					 			 			 		 	{kind: "enyo.Image", style: "padding: 20px;", src: "http://placehold.it/150x150"},
+					 			 			 		 	{content: "Hotel Services", style: "padding-top: 90px;"}
+					 			 			 		]
+					 			 			 	},
+					 			 			 	{kind: "FittableColumns", fit: true,
+					            					  components: [
+					            			      
+					            			                 {content: "Date", style:" border: 1px solid grey;"},
+					            			                 {content: "Description",fit:true, style:" border: 1px solid grey;"},
+					            			                 {content: "Total", style:"border: 1px solid grey;"}
+					            				 
+						            		 ]
+						            	 			},
+					 			 			 		            {content: "XXX.XX", style:"text-align:right;"}
+					 			 			 		            
+					 			 			 	]
+						            },
+						            {kind: "FittableRows", style: "padding: 10px;",
+					 			 		components:
+					 			 			[
+					 			 			 	{kind: "FittableColumns",
+					 			 			 		components:
+					 			 			 		[
+					 			 			 		 {kind: "enyo.Image", style: "padding: 20px;", src: "http://placehold.it/150x150"},
+					 			 			 		 {content: "Activities", style: "padding-top: 90px;"},
+					 			 			 	    ]
+					 			 			 	},
+					 			 			 	{kind: "FittableColumns", fit: true,
+					            					  components: [
+					            			      
+					            			                 {content: "Date", style:" border: 1px solid grey;"},
+					            			                 {content: "Description",fit:true, style:"border: 1px solid grey;"},
+					            			                 {content: "Total", style:"border: 1px solid grey;"}
+					            				 
+						            		 ]
+						            	 			},
+						            	 			{content: "XXX.XX", style:"text-align:right;"}
+						            	 			]
+						            	},
+							            
+							            
+						            ]
+					 },
+					 {content: "Total Expenditures:", style:"text-align:right;"},
+			            {content: "XXX.XX", style:"font-size:50px;text-align:right;"},
+			            {kind:"FittableColumns",components:[
+			                                                {kind: "moon.Button", content: "Cancel", style: "margin: 50px;", ontap: "onExpenditureCancelTapped"},
+			                                                {name: "expenditurePopUp", kind: "moon.Popup", content: "Checkout Proceeded!", showCloseButton: true},
+			                                                
+
+			                                                ]}
+			            ]
+					 },
+			
 			// Placeholder Panel
 			{title: "Second", classes: "enyo-fit full", components: [
 				{kind: "moon.Item", content: "Item One", ontap: "previous"},
@@ -393,6 +482,7 @@ enyo.kind({
 			case 4: // Events
 				break;
 			case 5: // Checkout
+				this.$.panels.setIndex(4);
 				break;
 			
 		}
@@ -536,6 +626,12 @@ enyo.kind({
 	onFoodInfoOrderCompleted: function()
 	{
 		this.$.panels.setIndex(2);
+	},
+	
+	// Expenditure Cancel
+	onExpenditureCancelTapped: function()
+	{
+		this.$.panels.setIndex(0);
 	},
 	
 	// Image Carousel initialization
