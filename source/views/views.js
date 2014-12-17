@@ -418,7 +418,16 @@ enyo.kind({
 				{kind: "moon.Item", content: "Item Three", ontap: "previous"},
 				{kind: "moon.Item", content: "Item Four", ontap: "previous"},
 				{kind: "moon.Item", content: "Item Five", ontap: "previous"}
-			]}
+			]},
+			
+ 			{title: "Web Services Test",
+ 				components:
+ 				[
+ 				 	{kind: "moon.Button", content: "Debug:", ontap: "debugTap"},
+ 				 	{name: "debugArea", kind: "moon.BodyText", content: "Nothing yet..."}
+ 				]
+ 				
+ 			}
 		]}
 	],
 	handlers: {
@@ -658,6 +667,101 @@ enyo.kind({
 	{
 		this.$.menucarousel.setIndex(oEvent.index);
 	},
+	
+	
+	//	Web Services
+	//	Section
+	
+	debugTap: function(inSender, inEvent)
+	{
+		var obj = null;
+		
+		try
+		{
+			var client = {
+				birth_date	: "1990-01-01",
+				name		: "Rir",
+				phone		: "963825024",
+				type		: "new",
+				address		: null,
+				email		: null
+			};
+			obj = this.webService("client/add/", client);
+			console.log(obj);
+		}
+		catch(e)
+		{
+			console.log(e);
+		}
+	},
+	
+	/*
+	 * Example Usage
+	 * 
+	 * url	: client/ (selects all) | client/?pk=id (single select) | client/add/ | client/update/?pk=id | client/delete/?pk=id
+	 * data	: var client = {
+				birth_date	: "1990-01-01",
+				name		: "Rir",
+				phone		: "963825024",
+				type		: "new",
+				address		: null,
+				email		: null
+			};
+		Only provide data when client/add/ or client/update/
+	 */
+	jQuery: null,
+	jQuerySuccess: false,
+	
+	webService: function(url, data)
+	{
+		if(typeof data === "undefined")
+		{
+			type = "get";
+			data = {};
+		}
+		else
+		{
+			type = "post";
+		}
+
+		var response = null;
+		
+		this.jQuery.ajax({
+			async	: false,
+			type	: type,
+			url		: "http://89.109.87.69/" + url,
+			dataType: "json",
+			data	: data,
+			success	: function(data)
+			{
+				response = data;
+			},
+			error: function(jqXHR, textStatus, errorThrown)
+			{
+				response = null;
+			}
+		});
+
+		this.jQuerySuccess = response !== null;
+		
+		if(this.jQuerySuccess === false)
+		{
+			throw "Server Offline";
+		}
+		
+		if(response.code === 0)
+		{	// sucesso => script
+			if(response.e === null)
+			{	// sucesso => database
+				return response.obj;
+			} else
+			{	// erro => database // excepção
+				throw "Database Exception" + response.e;
+			}
+		} else {						// erro => script // code === 1
+			throw "Bad Script: Execution Error";
+		}
+	}
 	
 	// jQuery
 	/*buttonTap: function()
