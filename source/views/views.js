@@ -326,9 +326,9 @@ enyo.kind({
 				components:
 					[
 					 {content: "Expenditures", style: "font-size: 60px;"},
-					 {kind: "FittableColumns", fit: true,
+					 {kind: "FittableColumns", fit:true,
 						 components:[
-						            {kind: "FittableRows", style: "padding: 10px;",
+						            {kind: "FittableRows", style: "width:33%; padding: 10px;", fit:true,
 						            	components:
 						            		[
 						            		 {kind: "FittableColumns",
@@ -338,10 +338,10 @@ enyo.kind({
 						            				  {content: "Accommodation", style: "padding-top: 90px;"},
 						            				  ]
 						            		 },
-						            	 			{kind: "FittableColumns", fit: true,
+						            	 			{kind: "FittableColumns", fit:true,
 					            					  components: [
 					            			      
-					            			                 {content: "Date", style:"padding:4px; border: 2px solid grey;"},
+					            			                 {content: "Date", style:"padding:4px; border: 1px solid grey;"},
 					            			                 {content: "Description",fit:true, style:"padding:4px; border: 2px solid grey;"},
 					            			                 {content: "Total", style:"padding:4px; border: 2px solid grey;"}
 					            				 
@@ -351,7 +351,7 @@ enyo.kind({
 						            		 ]
 						            		 
 						            },
-						            {kind: "FittableRows", style: "padding: 10px;",
+						            {kind: "FittableRows", style: "width:33%;padding: 10px;",
 					 			 		components:
 					 			 			[
 					 			 			 	{kind: "FittableColumns",
@@ -361,10 +361,10 @@ enyo.kind({
 					 			 			 		 	{content: "Hotel Services", style: "padding-top: 90px;"}
 					 			 			 		]
 					 			 			 	},
-					 			 			 	{kind: "FittableColumns", fit: true,
+					 			 			 	{kind: "FittableColumns", fit:true,
 					            					  components: [
 					            			      
-					            			                 {content: "Date", style:" border: 1px solid grey;"},
+					            			                 {content: "Date", style:" padding:4px; border: 1px solid grey;"},
 					            			                 {content: "Description",fit:true, style:" border: 1px solid grey;"},
 					            			                 {content: "Total", style:"border: 1px solid grey;"}
 					            				 
@@ -374,7 +374,7 @@ enyo.kind({
 					 			 			 		            
 					 			 			 	]
 						            },
-						            {kind: "FittableRows", style: "padding: 10px;",
+						            {kind: "FittableRows", style: "width:33%;padding: 10px;",
 					 			 		components:
 					 			 			[
 					 			 			 	{kind: "FittableColumns",
@@ -384,10 +384,10 @@ enyo.kind({
 					 			 			 		 {content: "Activities", style: "padding-top: 90px;"},
 					 			 			 	    ]
 					 			 			 	},
-					 			 			 	{kind: "FittableColumns", fit: true,
+					 			 			 	{kind: "FittableColumns", fit:true,
 					            					  components: [
 					            			      
-					            			                 {content: "Date", style:" border: 1px solid grey;"},
+					            			                 {content: "Date", style:" padding:4px;border: 1px solid grey;"},
 					            			                 {content: "Description",fit:true, style:"border: 1px solid grey;"},
 					            			                 {content: "Total", style:"border: 1px solid grey;"}
 					            				 
