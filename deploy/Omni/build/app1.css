@@ -1,0 +1,24 @@
+
+/* source\style\main.less */
+
+/*
++    App-specific LESS/CSS would go here, but to make your
++    application easier to maintain, you should try to
++    minimize the use of custom CSS.
++*/
+.outer-box {
+  border: 2px solid orange;
+  padding: 4px;
+  white-space: nowrap;
+  overflow: hidden;
+  margin-top: 3px;
+  margin-bottom: 3px;
+}
+.inner-box {
+  border: 2px solid lightblue;
+  padding: 4px;
+  white-space: nowrap;
+  overflow: hidden;
+  margin: 2px;
+}
+
