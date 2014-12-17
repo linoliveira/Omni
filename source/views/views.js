@@ -643,24 +643,37 @@ enyo.kind({
 		this.$.panels.setIndex(0);
 	},
 	
-	// Image Carousel initialization
-	create: enyo.inherit(function(sup) {
-		return function() {
+	// App Initialization
+	create: enyo.inherit(function(sup)
+	{
+		return function()
+		{
 			sup.apply(this, arguments);
 			
-			this.urls = [
-				'http://placehold.it/1920x1080/3498db/ffffff&text=Room',
-				'http://placehold.it/1920x1080/9b59b6/ffffff&text=Restaurant',
-				'http://placehold.it/1920x1080/e67e22/ffffff&text=Entertainment',
-				'http://placehold.it/1920x1080/16a085/ffffff&text=Activities',
-				'http://placehold.it/1920x1080/e74c3c/ffffff&text=Events',
-				'http://placehold.it/1920x1080/27ae60/ffffff&text=Checkout'
-			];
-
-			this.$.menucarousel.setImages(this.urls);
-			//this.$.foodcarousel.setImages(this.urls);
+			this.setMainScreenImages();
+			this.buildRoomScreen();
 		};
 	}),
+	
+	buildRoomScreen: function()
+	{
+		console.log(this.$.roomscreen.name);
+	},
+	
+	setMainScreenImages: function()
+	{
+		this.urls =
+		[
+			'http://placehold.it/1920x1080/3498db/ffffff&text=Room',
+			'http://placehold.it/1920x1080/9b59b6/ffffff&text=Restaurant',
+			'http://placehold.it/1920x1080/e67e22/ffffff&text=Entertainment',
+			'http://placehold.it/1920x1080/16a085/ffffff&text=Activities',
+			'http://placehold.it/1920x1080/e74c3c/ffffff&text=Events',
+			'http://placehold.it/1920x1080/27ae60/ffffff&text=Checkout'
+		];
+
+		this.$.menucarousel.setImages(this.urls);
+	},
 	
 	// Main Screen Bar Option Focused
 	onOptionFocused: function(oSender, oEvent)
