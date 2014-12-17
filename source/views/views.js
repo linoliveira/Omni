@@ -414,9 +414,24 @@ enyo.kind({
 			     	  		"Lorem ipsum dolor sit amet, sapien etiam, nunc amet dolor ac odio mauris justo. Luctus arcu, urna praesent at id quisque ac. Arcu massa vestibulum malesuada, integer vivamus elit eu mauris eu, cum eros quis aliquam nisl wisi.Nulla wisi laoreet suspendisse hendrerit facilisi, mi mattis pariatur adipiscing aliquam pharetra eget. Aenean urna ipsum donec tellus tincidunt, quam curabitur metus, pretium purus facilisis enim id, integer eleifend vitae volutpat consequat per leo. Lorem ipsum dolor sit amet, sapien etiam, nunc amet dolor ac odio mauris justo. Luctus arcu, urna praesent at id quisque ac. Arcu massa vestibulum malesuada, integer vivamus elit eu mauris eu, cum eros quis aliquam nisl wisi."},
 			     	  		{content:"Please Select you preferable payment method:"},
 			     	  		{kind:"FittableColumns",components:[
-			     	  		                                    {kind: "enyo.Image", style: "padding: 20px;", src: "http://placehold.it/150x150"},
-			     	  		                                    {kind: "enyo.Image", style: "padding: 20px;", src: "http://placehold.it/150x150"},
-			     	  		                                    {kind: "enyo.Image", style: "padding: 20px;", src: "http://placehold.it/150x150"},
+																	{kind: "moon.Item", style:"display: inline-block; padding-bottom: 2px; border-radius: 7px;",
+																			components:
+																			[
+																			 	{kind: "enyo.Image", src: "http://placehold.it/150x150"},
+																			]
+																	},
+																	{kind: "moon.Item", style:"display: inline-block; padding-bottom: 2px; border-radius: 7px;",
+																		components:
+																		[
+																		 	{kind: "enyo.Image", src: "http://placehold.it/150x150"},
+																		]
+																	},
+																	{kind: "moon.Item", style:"display: inline-block; padding-bottom: 2px; border-radius: 7px;",
+																		components:
+																		[
+																		 	{kind: "enyo.Image", src: "http://placehold.it/150x150"},
+																		]
+																	},
 			     	  		                                    ]},
 			     	  		 //{kind: "moon.Button", content: "Cancel", style: "margin: 50px;", ontap: "onExpenditureCancelTapped"},
 			                 
