@@ -39,65 +39,24 @@ enyo.kind({
 					 			 			 	{kind: "FittableColumns",
 					 			 			 		components:
 					 			 			 		[
-					 			 			 		 	{kind: "enyo.Image", style: "padding: 20px;", src: "http://placehold.it/150x150/505050/ffffff&text=Request"},
-					 			 			 		 	{content: "Request Aditional", style: "padding-top: 90px;"}
+					 			 			 		 	{kind: "moon.Item", style:"padding-bottom: 10px; border-radius: 7px; margin: 20px;", ontap: "requestExtraHeaderTapped",
+				 			 			 			 		components:
+				 			 			 			 		[
+						 			 			 			 	{kind: "FittableColumns",
+						 			 			 			 		components:
+						 			 			 			 		[
+																		{kind: "enyo.Image", style: "margin-right: 20px;", src: "http://placehold.it/150x150/505050/ffffff&text=Request"},
+																		{content: "Request Aditional", style: "padding-top: 70px;"}
+						 			 			 			 		]
+						 			 			 			 	}
+				 			 			 			 		]
+				 			 			 			 	}
 					 			 			 		]
 					 			 			 	},
-					 			 			 	{kind: "FittableRows",
+					 			 			 	{name: "requestExtraContainer", kind: "FittableRows",
 					 			 			 		components:
 					 			 			 			[
-					 			 			 			 	{kind: "moon.Item", style:"padding-bottom: 10px; border-radius: 7px; margin: 20px;", ontap: "requestExtraTapped", popup: "requestExtraPopup",
-					 			 			 			 		components:
-					 			 			 			 		[
-
-							 			 			 			 	{kind: "FittableColumns",
-							 			 			 			 		components:
-							 			 			 			 		[
-																			{kind: "enyo.Image", src: "http://placehold.it/100x100/505050/ffffff&text=Pillow"},
-																			{content: "Pillow", style: "padding-top: 35px; padding-left: 20px;"}
-							 			 			 			 		]
-							 			 			 			 	}
-					 			 			 			 		]
-					 			 			 			 	},
-					 			 			 			 {kind: "moon.Item", style:"padding-bottom: 10px; border-radius: 7px; margin: 20px;", ontap: "requestExtraTapped", popup: "requestExtraPopup",
-					 			 			 			 		components:
-					 			 			 			 		[
-
-							 			 			 			 	{kind: "FittableColumns",
-							 			 			 			 		components:
-							 			 			 			 		[
-																			{kind: "enyo.Image", src: "http://placehold.it/100x100/505050/ffffff&text=Blanket"},
-																			{content: "Blanket", style: "padding-top: 35px; padding-left: 20px;"}
-							 			 			 			 		]
-							 			 			 			 	}
-					 			 			 			 		]
-					 			 			 			 },
-					 			 			 			 {kind: "moon.Item", style:"padding-bottom: 10px; border-radius: 7px; margin: 20px;", ontap: "requestExtraTapped", popup: "requestExtraPopup",
-					 			 			 			 		components:
-					 			 			 			 		[
-
-							 			 			 			 	{kind: "FittableColumns",
-							 			 			 			 		components:
-							 			 			 			 		[
-																			{kind: "enyo.Image", src: "http://placehold.it/100x100/505050/ffffff&text=Towel"},
-																			{content: "Towel", style: "padding-top: 35px; padding-left: 20px;"}
-							 			 			 			 		]
-							 			 			 			 	}
-					 			 			 			 		]
-					 			 			 			 	},
-					 			 			 			 {kind: "moon.Item", style:"padding-bottom: 10px; border-radius: 7px; margin: 20px;", ontap: "requestExtraTapped", popup: "requestExtraPopup",
-					 			 			 			 		components:
-					 			 			 			 		[
-
-							 			 			 			 	{kind: "FittableColumns",
-							 			 			 			 		components:
-							 			 			 			 		[
-																			{kind: "enyo.Image", src: "http://placehold.it/100x100/505050/ffffff&text=Extra"},
-																			{content: "Extra", style: "padding-top: 35px; padding-left: 20px;"}
-							 			 			 			 		]
-							 			 			 			 	}
-					 			 			 			 		]
-					 			 			 			 	}
+					 			 			 			 	// requestExtraComponents
 					 			 			 			]
 					 			 			 	},
 					 			 			 	{name: "requestExtraPopup", kind: "moon.Popup", content: "Ordered!", showCloseButton: true},
@@ -109,18 +68,24 @@ enyo.kind({
 					 			 			 	{kind: "FittableColumns",
 					 			 			 		components:
 					 			 			 		[
-					 			 			 		 	{kind: "enyo.Image", style: "padding: 20px;", src: "http://placehold.it/150x150/505050/ffffff&text=Cleaning"},
-					 			 			 		 	{content: "Cleaning", style: "padding-top: 90px;"}
+					 			 			 		 	{kind: "moon.Item", style:"padding-bottom: 10px; border-radius: 7px; margin: 20px;", ontap: "cleaningHeaderTapped",
+															components:
+															[
+															 	{kind: "FittableColumns",
+															 		components:
+															 		[
+																 		 {kind: "enyo.Image", style: "margin-right: 20px;", src: "http://placehold.it/150x150/505050/ffffff&text=Cleaning"},
+																 		 {content: "Cleaning", style: "padding-top: 70px;"}
+															 		]
+															 	}
+															]
+														}
 					 			 			 		]
 					 			 			 	},
-					 			 			 	{kind: "FittableRows",
+					 			 			 	{name: "cleaningContainer", kind: "FittableRows",
 					 			 			 		components:
 					 			 			 			[
-					 			 			 			 	{content: "Request Extra Room Cleaning"},
-					 			 			 			 	{kind: "moon.DatePicker", name:"picker", noneText: "Pick a Date", content: "Date"},
-					 			 			 			 	{kind: "moon.TimePicker", name: "pickerTime", noneText: "Pick a Time", content: "Time", meridiemEnable: false},
-					 			 							{kind: "moon.IconButton", icon: "check", small: true, ontap: "onRoomCleanTapped", popup: "cleaningPopUp"},
-					 			 							{name: "cleaningPopUp", kind: "moon.Popup", content: "Cleaning Scheduled!", showCloseButton: true},
+					 			 			 			 	// cleaningComponents
 					 			 			 			]
 					 			 			 	}
 					 			 			]
@@ -562,6 +527,32 @@ enyo.kind({
 		return true;
 	},
 	
+	//Room Services Request Extra Header Tapped
+	requestExtraHeaderTapped: function(inSender, inEvent)
+	{
+		this.createNewRequestExtra("Pillow");
+		this.createNewRequestExtra("Towel");
+		this.createNewRequestExtra("Blanket");
+	},
+	
+	createNewRequestExtra: function(name)
+	{
+		this.$.requestExtraContainer.createComponent(
+				{kind: "moon.Item", style:"padding-bottom: 10px; border-radius: 7px; margin: 20px;", ontap: "requestExtraTapped", popup: "requestExtraPopup",
+					components:
+	 			 		[
+			 			 	{kind: "FittableColumns",
+			 			 		components:
+			 			 		[
+								{kind: "enyo.Image", src: "http://placehold.it/100x100/505050/ffffff&text=" + name},
+								{content: name, style: "padding-top: 35px; padding-left: 20px;"}
+			 			 		]
+			 			 	}
+	 			 		]
+		 		}
+			).render();
+	},
+	
 	//Room Services Request Extra Tapped
 	requestExtraTapped: function(inSender)
 	{
@@ -574,6 +565,20 @@ enyo.kind({
 			{
 				popUp.show();
 			}
+	},
+	
+	// Room Services Cleaning Tapped
+	cleaningHeaderTapped: function()
+	{
+		/*this.$.cleaningContainer.createComponent(
+			[
+			 	{content: "Request Extra Room Cleaning"},
+			 	{kind: "moon.DatePicker", name:"picker", noneText: "Pick a Date", content: "Date"},
+			 	{kind: "moon.TimePicker", name: "pickerTime", noneText: "Pick a Time", content: "Time", meridiemEnable: false},
+			 	{kind: "moon.IconButton", icon: "check", small: true, ontap: "onRoomCleanTapped", popup: "cleaningPopUp"},
+			 	{name: "cleaningPopUp", kind: "moon.Popup", content: "Cleaning Scheduled!", showCloseButton: true}
+		 	]
+		);*/
 	},
 	
 	// Room Services button tap to Restaurant Services
@@ -730,6 +735,8 @@ enyo.kind({
 			
 			this.setMainScreenImages();
 			this.buildRoomScreen();
+			
+			this.jQuery = $.noConflict(true);
 		};
 	}),
 	
@@ -763,15 +770,29 @@ enyo.kind({
 	//	Web Services
 	//	Section
 	
+//	Web Services
+	//	Section
 	debugTap: function(inSender, inEvent)
 	{
 		var obj = null;
 		
 		try
 		{
+			obj = this.webService("client/");
+			console.log(obj);
+		}
+		catch(e)
+		{
+			console.log(e);
+		}
+		
+		console.log(obj[0].name);
+		/*
+		try
+		{
 			var client = {
 				birth_date	: "1990-01-01",
-				name		: "Rir",
+				name		: "Moon",
 				phone		: "963825024",
 				type		: "new",
 				address		: null,
@@ -783,7 +804,7 @@ enyo.kind({
 		catch(e)
 		{
 			console.log(e);
-		}
+		}*/
 	},
 	
 	/*
