@@ -36,27 +36,68 @@ enyo.kind({
 					 			 	{kind: "FittableRows", style: "padding: 10px;",
 					 			 		components:
 					 			 			[
-					 			 			 	{kind: "FittableColumns", spotlight: "container",
+					 			 			 	{kind: "FittableColumns",
 					 			 			 		components:
 					 			 			 		[
-					 			 			 		 	{kind: "moon.Item", style:"padding-bottom: 10px; border-radius: 7px; margin: 20px;", ontap: "requestExtraHeaderTapped",
-				 			 			 			 		components:
-				 			 			 			 		[
-						 			 			 			 	{kind: "FittableColumns",
-						 			 			 			 		components:
-						 			 			 			 		[
-																		{kind: "enyo.Image", style: "margin-right: 20px;", src: "http://placehold.it/150x150/505050/ffffff&text=Request"},
-																		{content: "Request Aditional", style: "padding-top: 70px;"}
-						 			 			 			 		]
-						 			 			 			 	}
-				 			 			 			 		]
-				 			 			 			 	}
+					 			 			 		 	{kind: "enyo.Image", style: "padding: 20px;", src: "http://placehold.it/150x150/505050/ffffff&text=Request"},
+					 			 			 		 	{content: "Request Aditional", style: "padding-top: 90px;"}
 					 			 			 		]
 					 			 			 	},
-					 			 			 	{name: "requestExtraContainer", kind: "FittableRows",
+					 			 			 	{kind: "FittableRows",
 					 			 			 		components:
 					 			 			 			[
-					 			 			 			 	// requestExtraComponents
+					 			 			 			 	{kind: "moon.Item", style:"padding-bottom: 10px; border-radius: 7px; margin: 20px;", ontap: "requestExtraTapped", popup: "requestExtraPopup",
+					 			 			 			 		components:
+					 			 			 			 		[
+
+							 			 			 			 	{kind: "FittableColumns",
+							 			 			 			 		components:
+							 			 			 			 		[
+																			{kind: "enyo.Image", src: "http://placehold.it/100x100/505050/ffffff&text=Pillow"},
+																			{content: "Pillow", style: "padding-top: 35px; padding-left: 20px;"}
+							 			 			 			 		]
+							 			 			 			 	}
+					 			 			 			 		]
+					 			 			 			 	},
+					 			 			 			 {kind: "moon.Item", style:"padding-bottom: 10px; border-radius: 7px; margin: 20px;", ontap: "requestExtraTapped", popup: "requestExtraPopup",
+					 			 			 			 		components:
+					 			 			 			 		[
+
+							 			 			 			 	{kind: "FittableColumns",
+							 			 			 			 		components:
+							 			 			 			 		[
+																			{kind: "enyo.Image", src: "http://placehold.it/100x100/505050/ffffff&text=Blanket"},
+																			{content: "Blanket", style: "padding-top: 35px; padding-left: 20px;"}
+							 			 			 			 		]
+							 			 			 			 	}
+					 			 			 			 		]
+					 			 			 			 },
+					 			 			 			 {kind: "moon.Item", style:"padding-bottom: 10px; border-radius: 7px; margin: 20px;", ontap: "requestExtraTapped", popup: "requestExtraPopup",
+					 			 			 			 		components:
+					 			 			 			 		[
+
+							 			 			 			 	{kind: "FittableColumns",
+							 			 			 			 		components:
+							 			 			 			 		[
+																			{kind: "enyo.Image", src: "http://placehold.it/100x100/505050/ffffff&text=Towel"},
+																			{content: "Towel", style: "padding-top: 35px; padding-left: 20px;"}
+							 			 			 			 		]
+							 			 			 			 	}
+					 			 			 			 		]
+					 			 			 			 	},
+					 			 			 			 {kind: "moon.Item", style:"padding-bottom: 10px; border-radius: 7px; margin: 20px;", ontap: "requestExtraTapped", popup: "requestExtraPopup",
+					 			 			 			 		components:
+					 			 			 			 		[
+
+							 			 			 			 	{kind: "FittableColumns",
+							 			 			 			 		components:
+							 			 			 			 		[
+																			{kind: "enyo.Image", src: "http://placehold.it/100x100/505050/ffffff&text=Extra"},
+																			{content: "Extra", style: "padding-top: 35px; padding-left: 20px;"}
+							 			 			 			 		]
+							 			 			 			 	}
+					 			 			 			 		]
+					 			 			 			 	}
 					 			 			 			]
 					 			 			 	},
 					 			 			 	{name: "requestExtraPopup", kind: "moon.Popup", content: "Ordered!", showCloseButton: true},
@@ -68,24 +109,18 @@ enyo.kind({
 					 			 			 	{kind: "FittableColumns",
 					 			 			 		components:
 					 			 			 		[
-														{kind: "moon.Item", style:"padding-bottom: 10px; border-radius: 7px; margin: 20px;", ontap: "cleaningHeaderTapped",
-															components:
-															[
-															 	{kind: "FittableColumns",
-															 		components:
-															 		[
-																 		 {kind: "enyo.Image", style: "margin-right: 20px;", src: "http://placehold.it/150x150/505050/ffffff&text=Cleaning"},
-																 		 {content: "Cleaning", style: "padding-top: 70px;"}
-															 		]
-															 	}
-															]
-														}
+					 			 			 		 	{kind: "enyo.Image", style: "padding: 20px;", src: "http://placehold.it/150x150/505050/ffffff&text=Cleaning"},
+					 			 			 		 	{content: "Cleaning", style: "padding-top: 90px;"}
 					 			 			 		]
 					 			 			 	},
-					 			 			 	{name: "cleaningContainer", kind: "FittableRows",
+					 			 			 	{kind: "FittableRows",
 					 			 			 		components:
 					 			 			 			[
-					 			 			 			 	// cleaningComponents
+					 			 			 			 	{content: "Request Extra Room Cleaning"},
+					 			 			 			 	{kind: "moon.DatePicker", name:"picker", noneText: "Pick a Date", content: "Date"},
+					 			 			 			 	{kind: "moon.TimePicker", name: "pickerTime", noneText: "Pick a Time", content: "Time", meridiemEnable: false},
+					 			 							{kind: "moon.IconButton", icon: "check", small: true, ontap: "onRoomCleanTapped", popup: "cleaningPopUp"},
+					 			 							{name: "cleaningPopUp", kind: "moon.Popup", content: "Cleaning Scheduled!", showCloseButton: true},
 					 			 			 			]
 					 			 			 	}
 					 			 			]
@@ -133,11 +168,11 @@ enyo.kind({
 					]
 			},
 			
-			{name: "restaurantscreen", kind: "FittableRows", classes: "moon enyo-unselectable enyo-fit full",
+			{name: "restaurantscreen", kind: "FittableRows", classes: "moon enyo-unselectable enyo-fit full", fit:true,
 				components:
 					[
 					 	{content: "Restaurant Services", style: "font-size: 40px;"},
-					 	{kind: "FittableColumns", style: "padding-left: 50px;", fit: true,
+					 	{kind: "FittableColumns", style: "padding-left: 50px;", fit:true,
 					 		components:
 					 			[
 					 			 	{
@@ -146,13 +181,13 @@ enyo.kind({
 												{content: "Starters"},
 												{kind: "moon.Scroller", style: "padding: 10px;", spotlight: "container", components:
 													[
-														{kind: "enyo.Repeater", count:"2", //onSetupItem: "setImageSource",
+														{kind: "enyo.Repeater", count:"4", //onSetupItem: "setImageSource",
 																components:
 																[
 																	{kind: "moon.Item", style:"padding-bottom: 2px; border-radius: 7px;", ontap: "onStarterTapped",
 																			components:
 																			[
-																		 		 	{kind: "enyo.Image", src: "http://placehold.it/400x225/505050/ffffff&text=Starter+Option"}
+																		 		 	{kind: "enyo.Image", src: "http://placehold.it/400x100/505050/ffffff&text=Starter"}
 																			]
 																	},
 																]
@@ -167,13 +202,13 @@ enyo.kind({
 												{content: "Main Course"},
 												{kind: "moon.Scroller", style: "padding: 10px;", spotlight: "container", components:
 													[
-														{kind: "enyo.Repeater", count:"2", //onSetupItem: "setImageSource",
+														{kind: "enyo.Repeater", count:"3", //onSetupItem: "setImageSource",
 																components:
 																[
 																	{kind: "moon.Item", style:"padding-bottom: 2px; border-radius: 7px;", ontap: "onCourseTapped",
 																			components:
 																			[
-																		 		 	{kind: "enyo.Image", src: "http://placehold.it/400x225/505050/ffffff&text=Course+Option"}
+																		 		 	{kind: "enyo.Image", src: "http://placehold.it/400x120/505050/ffffff&text=Course"}
 																			]
 																	},
 																]
@@ -194,7 +229,7 @@ enyo.kind({
 																	{kind: "moon.Item", style:"padding-bottom: 2px; border-radius: 7px;", ontap: "onDesertTapped",
 																			components:
 																			[
-																		 		 	{kind: "enyo.Image", src: "http://placehold.it/400x225/505050/ffffff&text=Desert+Option"}
+																		 		 	{kind: "enyo.Image", src: "http://placehold.it/400x225/505050/ffffff&text=Desert"}
 																			]
 																	},
 																]
@@ -209,13 +244,13 @@ enyo.kind({
 												{content: "Drinks"},
 												{kind: "moon.Scroller", style: "padding: 10px;", spotlight: "container", components:
 													[
-														{kind: "enyo.Repeater", count:"2", //onSetupItem: "setImageSource",
+														{kind: "enyo.Repeater", count:"1", //onSetupItem: "setImageSource",
 																components:
 																[
 																	{kind: "moon.Item", style:"padding-bottom: 2px; border-radius: 7px;", ontap: "onDrinkTapped",
 																			components:
 																			[
-																		 		 	{kind: "enyo.Image", src: "http://placehold.it/400x225/505050/ffffff&text=Drink+Option"}
+																		 		 	{kind: "enyo.Image", src: "http://placehold.it/400x225/505050/ffffff&text=Drink"}
 																			]
 																	},
 																]
@@ -306,13 +341,21 @@ enyo.kind({
 						            	 			{kind: "FittableColumns", fit:true,
 					            					  components: [
 					            			      
-					            			                 {content: "Date", style:"padding:4px; border: 1px solid grey;"},
-					            			                 {content: "Description",fit:true, style:"padding:4px; border: 2px solid grey;"},
-					            			                 {content: "Total", style:"padding:4px; border: 2px solid grey;"}
-					            				 
-						            		 ]
+{kind:"FittableRows",style:" padding:4px;border: 1px solid grey;",components:
+	  [{content: "Date" },
+	   {content: "02.12.14",style:"font-size:small;"},
+	   ]},
+	   {kind:"FittableRows",style:" padding:4px;border: 1px solid grey;",components:
+	    	  [{content: "Description" },
+	    	   {content: "Garden Dream Palace: 5 nights in the Junior Suite. All inclusive.",style:"font-size:small;"},
+	    	   ]},
+	    {kind:"FittableRows",style:" padding:4px;border: 1px solid grey;",components:
+			    	  [{content: "Price" },
+			    	   {content: "300", style:"font-size:small;"},
+			    	   ]},      
+]
 						            	 			},
-						            	 					{content: "XXX.XX", style:"text-align:right;"}
+						            	 					{content: "300.00", style:"text-align:right;"}
 						            		 ]
 						            		 
 						            },
@@ -329,17 +372,27 @@ enyo.kind({
 					 			 			 	{kind: "FittableColumns", fit:true,
 					            					  components: [
 					            			      
-					            			                 {content: "Date", style:" padding:4px; border: 1px solid grey;"},
-					            			                 {content: "Description",fit:true, style:" border: 1px solid grey;"},
-					            			                 {content: "Total", style:"border: 1px solid grey;"}
-					            				 
-						            		 ]
-						            	 			},
-					 			 			 		            {content: "XXX.XX", style:"text-align:right;"}
+					            					               {kind:"FittableRows",style:" padding:4px;border: 1px solid grey;",components:
+	  [{content: "Date" },
+	   {content: "03.12.14",style:"font-size:small;"},
+	   {content: "05.12.14",style:"font-size:small;"},
+	   ]},
+	   {kind:"FittableRows",style:" padding:4px;border: 1px solid grey;",components:
+	    	  [{content: "Description" },
+	    	   {content: "Extra Cleaning.",style:"font-size:small;"},
+	    	   {content: "Hot Stone Massage for 30min + bathing in rosé water and candels.",style:"font-size:small;"},
+	    	   ]},
+	    {kind:"FittableRows",style:" padding:4px;border: 1px solid grey;",components:
+			    	  [{content: "Price" },
+			    	   {content: "20", style:"font-size:small;"},
+			    	   {content: "90", style:"font-size:small;"},
+			    	   ]}]},      
+
+					 			 			 		            {content: "110.00", style:"text-align:right;"}
 					 			 			 		            
 					 			 			 	]
 						            },
-						            {kind: "FittableRows", style: "width:33%;padding: 10px;",
+						            {kind: "FittableRows", style: "padding: 10px;",
 					 			 		components:
 					 			 			[
 					 			 			 	{kind: "FittableColumns",
@@ -351,14 +404,28 @@ enyo.kind({
 					 			 			 	},
 					 			 			 	{kind: "FittableColumns", fit:true,
 					            					  components: [
-					            			      
-					            			                 {content: "Date", style:" padding:4px;border: 1px solid grey;"},
-					            			                 {content: "Description",fit:true, style:"border: 1px solid grey;"},
-					            			                 {content: "Total", style:"border: 1px solid grey;"}
+					            			      {kind:"FittableRows",style:" padding:4px;border: 1px solid grey;",components:
+					            			    	  [{content: "Date" },
+					            			    	   {content: "02.12.14",style:"font-size:small;"},
+					            			    	   {content: "04.12.14",style:"font-size:small;"},
+					            			    	   {content: "04.12.14",style:"font-size:small;"}
+					            			    	   ]},
+					            			    	   {kind:"FittableRows",style:" padding:4px;border: 1px solid grey;",components:
+							            			    	  [{content: "Description" },
+							            			    	   {content: "Fitnesscenter: Zumba lesson for 50min.",style:"font-size:small;"},
+							            			    	   {content: "Snorkeling at the Bay Cliff.",style:"font-size:small;"},
+							            			    	   {content: "Boattour with the Santa Marina in Bay Harbour. Dolfin watching and lunch included.",style:"font-size:small;"}
+							            			    	   ]},
+							            			    {kind:"FittableRows",style:" padding:4px;border: 1px solid grey;",components:
+									            			    	  [{content: "Price" },
+									            			    	   {content: "30", style:"font-size:small;"},
+									            			    	   {content: "20", style:"font-size:small;"},
+									            			    	   {content: "70", style:"font-size:small;"}
+									            			    	   ]},      
 					            				 
 						            		 ]
 						            	 			},
-						            	 			{content: "XXX.XX", style:"text-align:right;"}
+						            	 			{content: "120.00", style:"text-align:right;"}
 						            	 			]
 						            	},
 							            
@@ -366,7 +433,7 @@ enyo.kind({
 						            ]
 					 },
 					 {content: "Total Expenditures:", style:"text-align:right;"},
-			            {content: "XXX.XX", style:"font-size:50px;text-align:right;"},
+			            {content: "530.00 Euro", style:"font-size:50px;text-align:right;"},
 			            {kind:"FittableColumns",components:[
 			                                                {kind: "moon.Button", content: "Cancel", style: "margin: 50px;", ontap: "onExpenditureCancelTapped"},
 			                                                {kind: "moon.Button", content: "Proceed", style: "margin: 50px;", ontap: "onExpenditureTapped", popup:"expenditurePopUp"},
@@ -379,11 +446,25 @@ enyo.kind({
 			     	  		"Lorem ipsum dolor sit amet, sapien etiam, nunc amet dolor ac odio mauris justo. Luctus arcu, urna praesent at id quisque ac. Arcu massa vestibulum malesuada, integer vivamus elit eu mauris eu, cum eros quis aliquam nisl wisi.Nulla wisi laoreet suspendisse hendrerit facilisi, mi mattis pariatur adipiscing aliquam pharetra eget. Aenean urna ipsum donec tellus tincidunt, quam curabitur metus, pretium purus facilisis enim id, integer eleifend vitae volutpat consequat per leo. Lorem ipsum dolor sit amet, sapien etiam, nunc amet dolor ac odio mauris justo. Luctus arcu, urna praesent at id quisque ac. Arcu massa vestibulum malesuada, integer vivamus elit eu mauris eu, cum eros quis aliquam nisl wisi."},
 			     	  		{content:"Please Select you preferable payment method:"},
 			     	  		{kind:"FittableColumns",components:[
-			     	  		                                    {kind:"moon.Item", components:[
-			     	  		                                    {kind: "enyo.Image", style: "padding: 20px;", src: "http://placehold.it/150x150"},
-			     	  		                                    {kind: "enyo.Image", style: "padding: 20px;", src: "http://placehold.it/150x150"},
-			     	  		                                    {kind: "enyo.Image", style: "padding: 20px;", src: "http://placehold.it/150x150"},
-			     	  		                                    ]}]},
+																	{kind: "moon.Item", style:"display: inline-block; padding-bottom: 2px; border-radius: 7px;",
+																			components:
+																			[
+																			 	{kind: "enyo.Image", src: "http://placehold.it/150x150"},
+																			]
+																	},
+																	{kind: "moon.Item", style:"display: inline-block; padding-bottom: 2px; border-radius: 7px;",
+																		components:
+																		[
+																		 	{kind: "enyo.Image", src: "http://placehold.it/150x150"},
+																		]
+																	},
+																	{kind: "moon.Item", style:"display: inline-block; padding-bottom: 2px; border-radius: 7px;",
+																		components:
+																		[
+																		 	{kind: "enyo.Image", src: "http://placehold.it/150x150"},
+																		]
+																	},
+			     	  		                                    ]},
 			                 
 			                 ]}
 			                                                
@@ -481,32 +562,6 @@ enyo.kind({
 		return true;
 	},
 	
-	//Room Services Request Extra Header Tapped
-	requestExtraHeaderTapped: function(inSender, inEvent)
-	{
-		this.createNewRequestExtra("Pillow");
-		this.createNewRequestExtra("Towel");
-		this.createNewRequestExtra("Blanket");
-	},
-	
-	createNewRequestExtra: function(name)
-	{
-		this.$.requestExtraContainer.createComponent(
-				{kind: "moon.Item", style:"padding-bottom: 10px; border-radius: 7px; margin: 20px;", ontap: "requestExtraTapped", popup: "requestExtraPopup",
-					components:
-	 			 		[
-			 			 	{kind: "FittableColumns",
-			 			 		components:
-			 			 		[
-								{kind: "enyo.Image", src: "http://placehold.it/100x100/505050/ffffff&text=" + name},
-								{content: name, style: "padding-top: 35px; padding-left: 20px;"}
-			 			 		]
-			 			 	}
-	 			 		]
-		 		}
-			).render();
-	},
-	
 	//Room Services Request Extra Tapped
 	requestExtraTapped: function(inSender)
 	{
@@ -519,17 +574,6 @@ enyo.kind({
 			{
 				popUp.show();
 			}
-	},
-	
-	// Room Services Cleaning Tapped
-	cleaningHeaderTapped: function()
-	{
-		/*{content: "Request Extra Room Cleaning"},
-		 	{kind: "moon.DatePicker", name:"picker", noneText: "Pick a Date", content: "Date"},
-		 	{kind: "moon.TimePicker", name: "pickerTime", noneText: "Pick a Time", content: "Time", meridiemEnable: false},
-			{kind: "moon.IconButton", icon: "check", small: true, ontap: "onRoomCleanTapped", popup: "cleaningPopUp"},
-			{name: "cleaningPopUp", kind: "moon.Popup", content: "Cleaning Scheduled!", showCloseButton: true},
-		*/
 	},
 	
 	// Room Services button tap to Restaurant Services
@@ -686,8 +730,6 @@ enyo.kind({
 			
 			this.setMainScreenImages();
 			this.buildRoomScreen();
-			
-			this.jQuery = $.noConflict(true);
 		};
 	}),
 	
@@ -720,27 +762,16 @@ enyo.kind({
 	
 	//	Web Services
 	//	Section
+	
 	debugTap: function(inSender, inEvent)
 	{
 		var obj = null;
 		
 		try
 		{
-			obj = this.webService("client/");
-			console.log(obj);
-		}
-		catch(e)
-		{
-			console.log(e);
-		}
-		
-		console.log(obj[0].name);
-		/*
-		try
-		{
 			var client = {
 				birth_date	: "1990-01-01",
-				name		: "Moon",
+				name		: "Rir",
 				phone		: "963825024",
 				type		: "new",
 				address		: null,
@@ -752,7 +783,7 @@ enyo.kind({
 		catch(e)
 		{
 			console.log(e);
-		}*/
+		}
 	},
 	
 	/*
