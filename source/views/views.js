@@ -119,6 +119,7 @@ enyo.kind({
 	 */
 	jQuery: null,
 	jQuerySuccess: false,
+	roomID: 1, // TODO: Fazer com código do cliente (ask undead)
 	
 	webService: function(url, data)
 	{
