@@ -242,7 +242,7 @@ enyo.kind(
 		cleaningHeaderTapped: function()
 		{
 			this.$.cleaningContainer.createComponent(
-				{style: "margin-left: 20px; background-image: url(\"assets/room_services/panels/cleaning_panel.png\"); background-repeat: no-repeat; background-size: auto;",
+				{style: "margin-left: 20px; background-image: url(\"assets/room_services/panels/cleaning_panel.png\"); background-repeat: no-repeat; background-size: auto; margin-right: 20px;",
 					components:
 					[
 						{name: "cleaningPicker", kind: "moon.ExpandablePicker", noneText: "No Date Selected", content: "Cleaning Date",
