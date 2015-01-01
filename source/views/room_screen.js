@@ -5,28 +5,17 @@ enyo.kind(
 		[
 		 	{content: "Room Services", style: "font-size: 60px; margin-left: 35px; color: white;"},
 		 	{kind: "FittableColumns", fit: true,
+		 		style: "padding: 0px; margin: 0px;",
 		 		components:
 		 			[
 		 			 	{kind: "FittableRows", style: "padding: 10px;",
 		 			 		components:
 		 			 			[
-		 			 			 	{kind: "FittableColumns", style:"padding-bottom: 10px; margin: 20px; margin-left: 30px;",
+		 			 			 	{kind: "FittableColumns", style:"background-color:rgba(0, 0, 0, 0.4); margin: 20px; margin-left: 10px; margin-bottom: 30px; padding-right: 15px;",
 		 			 			 		components:
 		 			 			 		[
-		 			 			 		 	/*{kind: "moon.Item", style:"padding-bottom: 10px; border-radius: 7px; margin: 20px;", ontap: "requestExtraHeaderTapped",
-	 			 			 			 		components:
-	 			 			 			 		[
-			 			 			 			 	{kind: "FittableColumns", style:"padding-bottom: 10px; margin: 20px; width: 400px;",
-			 			 			 			 		components:
-			 			 			 			 		[
-															{kind: "enyo.Image", style: "margin-right: 20px;", src: "assets/room_services/images/request_aditional_image.png"},
-															{content: "Request Aditional", style: "padding-top: 70px; color: white;"}
-			 			 			 			 		]
-			 			 			 			 	}
-	 			 			 			 		/*]
-	 			 			 			 	}*/
-		 			 			 		 	{kind: "enyo.Image", style: "margin-right: 20px;", src: "assets/room_services/images/request_aditional_image.png"},
-											{content: "Request Aditional", style: "padding-top: 70px; color: white;"}
+		 			 			 		 	{kind: "enyo.Image", style: "margin-right: 10px;", src: "assets/room_services/images/request_aditional_image.png"},
+											{content: "Request Aditional", style: "padding-top: 60px; color: white;"}
 		 			 			 		]
 		 			 			 	},
 		 			 			 	{name: "requestExtraContainer", kind: "FittableRows",
@@ -54,23 +43,11 @@ enyo.kind(
 		 			 	{kind: "FittableRows", style: "padding: 10px;",
 		 			 		components:
 		 			 			[
-		 			 			 	{kind: "FittableColumns", style:"padding-bottom: 10px; margin: 20px;",
+		 			 			 	{kind: "FittableColumns", style:"background-color:rgba(0, 0, 0, 0.4); margin: 20px; margin-bottom: 30px; padding-right: 50px;",
 		 			 			 		components:
 		 			 			 		[
-		 			 			 		 	/*{kind: "moon.Item", style:"padding-bottom: 10px; border-radius: 7px; margin: 20px;", ontap: "cleaningHeaderTapped",
-												components:
-												[
-												 	{kind: "FittableColumns",
-												 		components:
-												 		[
-													 		 {kind: "enyo.Image", style: "margin-right: 20px;", src: "assets/room_services/images/cleaning_image.png"},
-													 		 {content: "Cleaning", style: "padding-top: 70px; color: white;"}
-												 		]
-												 	}
-												]
-											}*/
-		 			 			 		 	 {kind: "enyo.Image", style: "margin-right: 20px;", src: "assets/room_services/images/cleaning_image.png"},
-									 		 {content: "Cleaning", style: "padding-top: 70px; color: white;"}
+		 			 			 		 	 {kind: "enyo.Image", style: "margin-right: 10px;", src: "assets/room_services/images/cleaning_image.png"},
+									 		 {content: "Cleaning", style: "padding-top: 60px; color: white;"}
 		 			 			 		]
 		 			 			 	},
 		 			 			 	{name: "cleaningContainer", kind: "FittableRows",
@@ -81,20 +58,22 @@ enyo.kind(
 		 			 			 	}
 		 			 			]
 		 			 	},
-		 			 	{kind: "FittableRows", style:"padding-bottom: 10px; margin: 20px;",
+		 			 	{kind: "FittableRows", style:"padding-bottom: 10px;",
 		 			 		components:
 		 			 			[
-		 			 			 	{kind: "FittableColumns", style:"padding-bottom: 10px; margin: 20px;",
+		 			 			 	{kind: "FittableColumns", style:"background-color:rgba(0, 0, 0, 0.4); margin: 30px; padding-right: 10px;",
 		 			 			 		components:
 		 			 			 		[
-		 			 			 		 	{kind: "enyo.Image", style: "padding: 10px;", src: "assets/room_services/images/restaurant_image.png"},
-		 			 			 		 	{content: "Restaurant Services", style: "padding-top: 90px; color: white;"}
+		 			 			 		 	{kind: "enyo.Image", style: "margin-right: 10px;", src: "assets/room_services/images/restaurant_image.png"},
+		 			 			 		 	{content: "Restaurant Services", style: "padding-top: 60px; color: white;"}
 		 			 			 		]
 		 			 			 	},
 		 			 			 	{kind: "FittableRows",
 		 			 			 		components:
 		 			 			 			[
-		 			 			 			 	{kind: "moon.Button", content: "Go", ontap: "onRoomRestaurantTapped"}
+		 			 			 			 	{kind: "moon.Item", content: "Go", ontap: "onRoomRestaurantTapped",
+		 			 			 			 		style: "color: white; margin-left: 30px; height: 70px; width: 295px; padding-top: 18px; padding-left: 30px; background-image: url('assets/room_services/panels/restaurant_panel.png'); background-repeat: no-repeat; background-size: auto;"
+		 			 			 			 	}
 		 			 			 			]
 		 			 			 	}
 		 			 			]
@@ -102,18 +81,21 @@ enyo.kind(
 		 			 	{kind: "FittableRows", style:"padding-bottom: 10px; margin: 20px;",
 		 			 		components:
 		 			 			[
-		 			 			 	{kind: "FittableColumns", style:"padding-bottom: 10px; margin: 20px;",
+		 			 			 	{kind: "FittableColumns", style:"background-color:rgba(0, 0, 0, 0.4); margin-bottom: 30px; margin-top: 30px; margin-left: 10px; padding-right: 10px",
 		 			 			 		components:
 		 			 			 		[
-		 			 			 		 	{kind: "enyo.Image", style: "padding: 10px;", src: "assets/room_services/images/tech_assistance_image.png"},
-		 			 			 		 	{content: "Technical Assistance", style: "padding-top: 90px; color: white;"}
+		 			 			 		 	{kind: "enyo.Image", style: "", src: "assets/room_services/images/tech_assistance_image.png"},
+		 			 			 		 	{content: "Technical Assistance", style: "margin-left: 10px; padding-top: 60px; color: white;"}
 		 			 			 		]
 		 			 			 	},
 		 			 			 	{kind: "FittableRows",
 		 			 			 		components:
 		 			 			 			[
-		 			 			 			 	{kind: "moon.Button", content: "Call to Room Phone", style: "display: block; margin-bottom: 50px;", ontap: "onRoomCallTapped", popup: "callPopUp"},
-		 			 			 			 	{kind: "moon.Button", content: "Call to my iPhone", ontap: "onRoomCallTapped", popup: "callPopUp"},
+												{kind: "moon.Item", content: "Call Me", ontap: "onRoomCallTapped", popup: "callPopUp",
+													style: "color: white; margin-left: 10px; height: 70px; width: 295px; padding-top: 18px; padding-left: 30px; background-image: url('assets/room_services/panels/tech_assistance_panel.png'); background-repeat: no-repeat; background-size: auto;"
+												},
+		 			 			 			 	//{kind: "moon.Button", content: "Call to Room Phone", style: "display: block; margin-bottom: 50px;", ontap: "onRoomCallTapped", popup: "callPopUp"},
+		 			 			 			 	//{kind: "moon.Button", content: "Call to my iPhone", ontap: "onRoomCallTapped", popup: "callPopUp"},
 		 			 			 			 	{name: "callPopUp", kind: "moon.Popup", showCloseButton: true,
 		 			 								components:
 		 			 								[
@@ -189,7 +171,7 @@ enyo.kind(
 			this.$.requestExtraContainer.createComponent(
 					{kind: "moon.Item", /*style:"padding-bottom: 10px; border-radius: 7px; margin: 20px;",*/ ontap: "requestExtraTapped", popup: "requestExtraPopup",
 						serviceID: id, serviceName: name,
-	 			 		style: "margin-left: 30px; padding: 0px; margin-top: 20px; width: 424px; height: 100px; background-image: url(\"assets/room_services/panels/request_aditional_panel.png\"); background-repeat: no-repeat; background-size: auto;",
+	 			 		style: "margin-left: 10px; padding: 0px; margin-top: 20px; width: 424px; height: 100px; background-image: url(\"assets/room_services/panels/request_aditional_panel.png\"); background-repeat: no-repeat; background-size: auto;",
 						components:
 		 			 		[
 				 			 	{kind: "FittableColumns", style: "padding: 0px; margin: 0px;",
@@ -260,19 +242,22 @@ enyo.kind(
 		cleaningHeaderTapped: function()
 		{
 			this.$.cleaningContainer.createComponent(
-				{components:
+				{style: "margin-left: 20px; background-image: url(\"assets/room_services/panels/cleaning_panel.png\"); background-repeat: no-repeat; background-size: auto;",
+					components:
 					[
-						{name: "cleaningPicker", kind: "moon.ExpandablePicker", noneText: "Nothing Selected", content: "Cleaning Date",
+						{name: "cleaningPicker", kind: "moon.ExpandablePicker", noneText: "No Date Selected", content: "Cleaning Date",
 							components:
 							[
-	     						{content: "Now"},
-	     						{content: "In 1 Hour"},
-	     						{content: "In 2 Hours"},
-	     						{content: "In 4 Hours"},
-	     						{content: "In 8 Hours"},
+	     						{content: "Now", style: "color: white"},
+	     						{content: "In 1 Hour", style: "color: white"},
+	     						{content: "In 2 Hours", style: "color: white"},
+	     						{content: "In 4 Hours", style: "color: white"},
+	     						{content: "In 8 Hours", style: "color: white"},
      						]
 						},
-						{kind: "moon.IconButton", icon: "check", small: true, ontap: "onRoomCleanTapped", popup: "cleaningPopUp"},
+						{kind: "moon.IconButton", icon: "check", small: true, ontap: "onRoomCleanTapped", popup: "cleaningPopUp",
+							style: "color: #e5e5e5; margin: 20px; margin-left: 130px;" // #44B7E2
+						},
 						{name: "cleaningPopUp", kind: "moon.Popup", showCloseButton: true,
 							components:
 							[
@@ -290,6 +275,13 @@ enyo.kind(
 					]
 				}, {owner: this}
 			).render();
+			
+			// Color of the picker title
+			this.$.cleaningPicker.children[0].controls[0].children[0].setStyle("color: white;");
+			// Color of the picker text
+			this.$.cleaningPicker.children[0].controls[1].setStyle("color: white;")
+			
+			//console.log(this.$.cleaningPicker.children[0].controls[1].setStyle("color: white;"));
 		},
 		
 		// Room Services Confirm Cleaning Tapped
