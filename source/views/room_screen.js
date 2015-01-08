@@ -24,12 +24,15 @@ enyo.kind(
 		 			 			 			 	// requestExtraComponents
 		 			 			 			]
 		 			 			 	},
-		 			 			 	{name: "requestExtraPopup", kind: "moon.Popup", showCloseButton: true,
+		 			 			 	{name: "requestExtraPopup", kind: "moon.Popup", showCloseButton: true, style: "background-color: #44B7E2; padding-top: 75px; padding-bottom: 50px;",
 		 			 			 		components:
 		 			 			 			[
-		 			 			 			 	{name: "extraPopupTitle", kind: "moon.Divider", content: "title"},
-					                        	{name: "acceptExtraButton", kind: "moon.Button", serviceID: null, serviceName: null, content: "Yes", ontap: "onAcceptExtraTapped"},
-					                        	{kind: "moon.Button", content: "No", ontap: "onCancelExtraTapped"}
+		 			 			 			 	{name: "extraPopupTitle", kind: "moon.BodyText", content: "title", style: "display: inline; font-size: 150%; margin-left: 400px; font-weight: bold;"},
+		 			 			 			 	{kind: "moon.IconButton", icon: "arrowsmallup", style: "margin-left: 40px;", ontap: "extraArrowUpTapped"},
+			 			 			 		 	{name: "extraQuantity", kind: "moon.BodyText", content: "1", style: "margin: 0px; display: inline;"},
+			 			 			 		 	{kind: "moon.IconButton", icon: "arrowsmalldown", ontap: "extraArrowDownTapped"},
+					                        	{name: "acceptExtraButton", kind: "moon.IconButton", style: "margin-left: 100px;", serviceID: null, serviceName: null, icon: "check", ontap: "onAcceptExtraTapped"},
+					                        	{kind: "moon.IconButton", icon: "closex", ontap: "onCancelExtraTapped"}
 		 			 			 			]
 		 			 			 	},
 		 			 			 	{name: "confirmExtraPopup", kind: "moon.Popup", showCloseButton: true,
@@ -145,7 +148,7 @@ enyo.kind(
 			
 			try
 			{
-				obj = this.webService("serviceitem/");
+				obj = this.webService("serviceitem/?type=other");
 			}
 			catch(e)
 			{
@@ -193,7 +196,7 @@ enyo.kind(
 			var serviceName = inSender.components[0].components[1].content;
 			var serviceID = inSender.serviceID;
 			
-			this.$.extraPopupTitle.setContent("Order " + serviceName + "?");
+			this.$.extraPopupTitle.setContent("How many " + serviceName + "?");
 			this.$.acceptExtraButton.serviceID = serviceID;
 			this.$.acceptExtraButton.serviceName = serviceName;
 			
@@ -207,30 +210,70 @@ enyo.kind(
 			}
 		},
 		
+		extraArrowUpTapped: function(inSender, inEvent)
+		{
+			var quantity = parseInt(this.$.extraQuantity.content);
+
+			console.log(quantity);
+			if(quantity < 10)
+			{
+				this.$.extraQuantity.setContent(++quantity);
+			}
+			
+			console.log(quantity);
+		},
+		
+		extraArrowDownTapped: function(inSender, inEvent)
+		{
+			var quantity = parseInt(this.$.extraQuantity.content);
+
+			console.log(quantity);
+			if(quantity > 0)
+			{
+				this.$.extraQuantity.setContent(--quantity);
+			}
+			
+			console.log(quantity);
+		},
+		
 		onAcceptExtraTapped: function(inSender, inEvent)
 		{
-			inSender.parent.parent.hide();
+			var numberOfItems = parseInt(this.$.extraQuantity.content);
+			console.log(numberOfItems);
 			
-			var date = new Date().toJSON().substring(0, 19).replace("T", " ");
-			
-			var extra = {
-					room_id: this.getRoomID(),
-		            extra_room_service_id: inSender.serviceID,
-		            request_date: date
-			};
-			
-			try
+			if(numberOfItems > 0)
 			{
-				this.webService("extraroomservice/add/", extra);
-				this.$.confirmExtraTitle.setContent(inSender.serviceName + " ordered!");
+				inSender.parent.parent.hide();
+				
+				for(var i = 0; i < numberOfItems; i++)
+				{
+					var date = new Date().toJSON().substring(0, 19).replace("T", " ");
+					
+					var extra = {
+							room_id: this.getRoomID(),
+				            extra_room_service_id: inSender.serviceID,
+				            description: null,
+				            request_date: date
+					};
+					
+					console.log(extra);
+					
+					try
+					{
+						this.webService("extraroomservice/add/", extra);
+						this.$.confirmExtraTitle.setContent(inSender.serviceName + " ordered!");
+					}
+					catch(e)
+					{
+						console.log(e);
+						this.$.confirmExtraTitle.setContent("Error!");
+					}
+				}
+				
+				this.$.extraQuantity.setContent("1");
+				
+				this.$.confirmExtraPopup.show();
 			}
-			catch(e)
-			{
-				console.log(e);
-				this.$.confirmExtraTitle.setContent("Error!");
-			}
-			
-			this.$.confirmExtraPopup.show();
 		},
 		
 		onCancelExtraTapped: function(inSender, inEvent)
@@ -348,6 +391,7 @@ enyo.kind(
 			
 			var cleaning = {
 					room_id: this.getRoomID(),
+		            description: null,
 		            request_date: dateString
 			};
 			
@@ -399,6 +443,7 @@ enyo.kind(
 			
 			var assistance = {
 					room_id: this.getRoomID(),
+		            description: null,
 		            request_date: date
 			};
 			
