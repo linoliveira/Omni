@@ -67,6 +67,7 @@ enyo.kind(
 				this.owner.loadRestaurantScreen();
 				break;
 			case 2: // Entertainment
+				this.owner.loadMediaBrowserScreen();
 				break;
 			case 3: // Activities
 				break;
