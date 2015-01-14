@@ -282,7 +282,14 @@ enyo.kind(
 	
 	webService: function(URL, data)
 	{
-		return this.owner.owner.webService(URL, data);
+		try
+		{
+			return this.owner.owner.webService(URL, data);
+		}
+		catch(e)
+		{
+			console.log(e);
+		}
 	}
 }
 );
