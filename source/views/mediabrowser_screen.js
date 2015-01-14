@@ -17,22 +17,12 @@ enyo.kind(
 	
 	loadPhotoScreen: function(photosUrls, index)
 	{
-		var urls =
-		[
-			'http://placehold.it/1920x1080/3498db/ffffff&text=Photo+1',
-			'http://placehold.it/1920x1080/9b59b6/ffffff&text=Photo+2',
-			'http://placehold.it/1920x1080/e67e22/ffffff&text=Photo+3',
-			'http://placehold.it/1920x1080/16a085/ffffff&text=Photo+4',
-			'http://placehold.it/1920x1080/e74c3c/ffffff&text=Photo+5'
-		];
-		//var index = 3;
 		this.$.photos.setPhotos(photosUrls, index);
 		this.setIndex(1);
 	},
 	
 	loadMovieScreen: function(source)
 	{
-		//var source = "http://media.w3.org/2010/05/bunny/movie.mp4";
 		this.$.movie.load(source);
 		this.setIndex(2);
 	}
@@ -164,6 +154,7 @@ enyo.kind(
 	
 	generateRecords: function (category)
 	{
+		this.photoUrls = [];
 		var records = [];
 		var serverRecords = null;
 		
@@ -214,8 +205,15 @@ enyo.kind(
 							"http://89.109.87.69/" + serverRecords.thumbnail
 						)
 				);
+				
+				if(category == "photo")
+				{
+					this.photoUrls.push("http://89.109.87.69/" + serverRecords.filename);
+				}
 			}
 		}
+		
+		console.log(this.photoUrls);
 		
 		return records;
 	},
