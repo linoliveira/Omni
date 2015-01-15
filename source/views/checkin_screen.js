@@ -8,18 +8,17 @@ enyo.kind({
 	
 	periodicValidateCheckin: null,
 	
-	test: function()
-	{
-		console.log("YE!");
-	},
-	
 	rendered: function ()
 	{
 		this.inherited(arguments);
 		
 		this.validateCheckin();
-		//this.periodicValidateCheckin = setInterval(this.validateCheckin, 10000);
+		
+		this.periodicValidateCheckin = setInterval(function(self) {self.validateCheckin();}, 30000, this);
 	},
+	
+	// ACABAR ESTA MERDA
+	lastState: "",
 	
 	validateCheckin: function()
 	{
@@ -27,10 +26,16 @@ enyo.kind({
 		
 		try
 		{
-			if(client != null && this.getRoomID() == client.room_id)
+			if((client != null && this.getRoomID() == client.room_id) && this.lastState == "")
 			{
+				this.lastState = "checkedIn";
 				this.owner.clientID = client.client_id;
 				this.owner.loadMainScreen();
+			}
+			else if(client == null || this.getRoomID() != client.room_id)
+			{
+				this.lastState = "";
+				loadCheckinScreen();
 			}
 		}
 		catch(e)

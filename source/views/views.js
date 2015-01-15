@@ -53,6 +53,11 @@ enyo.kind({
 		};
 	}),
 	
+	loadCheckinScreen: function()
+	{
+		this.$.panels.setIndex(0);
+	},
+	
 	loadMainScreen: function()
 	{
 		this.$.panels.setIndex(1);

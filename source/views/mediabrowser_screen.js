@@ -172,39 +172,20 @@ enyo.kind(
 		
 		if(serverRecords != null)
 		{
-			if(serverRecords.length != undefined)
-			{
-				for (var i = 0; records.length < serverRecords.length; ++i)
-				{
-					records.push(
-							this.createRecord(
-								category == "music" ? serverRecords[i].artist : serverRecords[i].name,
-								category == "music" ? serverRecords[i].name : "",
-								"http://89.109.87.69/" + serverRecords[i].filename,
-								"http://89.109.87.69/" + serverRecords[i].thumbnail
-							)
-					);
-					
-					if(category == "photo")
-					{
-						this.photoUrls.push("http://89.109.87.69/" + serverRecords[i].filename);
-					}
-				}
-			}
-			else
+			for (var i = 0; i < serverRecords.length; ++i)
 			{
 				records.push(
 						this.createRecord(
-							category == "music" ? serverRecords.artist : serverRecords.name,
-							category == "music" ? serverRecords.name : "",
-							"http://89.109.87.69/" + serverRecords.filename,
-							"http://89.109.87.69/" + serverRecords.thumbnail
+							category == "music" ? serverRecords[i].artist : serverRecords[i].name,
+							category == "music" ? serverRecords[i].name : "",
+							"http://89.109.87.69/" + serverRecords[i].filename,
+							"http://89.109.87.69/" + serverRecords[i].thumbnail
 						)
 				);
 				
 				if(category == "photo")
 				{
-					this.photoUrls.push("http://89.109.87.69/" + serverRecords.filename);
+					this.photoUrls.push("http://89.109.87.69/" + serverRecords[i].filename);
 				}
 			}
 		}
