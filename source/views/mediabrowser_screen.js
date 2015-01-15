@@ -88,7 +88,7 @@ enyo.kind(
 	create: function ()
 	{
 		this.inherited(arguments);
-		// we set the collection that will fire the binding and add it to the list
+		// set the collection that will fire the binding and add it to the list
 		this.set("collection", new enyo.Collection());
 	},
 	
@@ -141,11 +141,10 @@ enyo.kind(
 	
 	refreshItems: function (inSender, inEvent)
 	{
-		// we fetch our collection reference
+		// fetch the collection reference
 		var collection = this.get("collection");
-		// we now remove all of the current records from the collection
 		collection.remove(collection.records);
-		// and we insert all new records that will update the list
+		// insert all new records that will update the list
 		collection.add(this.generateRecords(this.$.mediaType.active.getContent()));
 	},
 	
@@ -161,17 +160,14 @@ enyo.kind(
 		if(category == "music")
 		{
 			serverRecords = this.webService("music/?" + "genre_id=" + this.$.category.active.categoryID);
-			//console.log("music", this.$.category.active.categoryID);
 		}
 		else if(category == "photo")
 		{
 			serverRecords = this.webService("photo/?" + "album_id=" + this.$.category.active.categoryID);
-			//console.log("photo", this.$.category.active.categoryID);
 		}
 		else
 		{
 			serverRecords = this.webService("movie/?" + "category_id=" + this.$.category.active.categoryID);
-			//console.log("movie", this.$.category.active.categoryID);
 		}
 		
 		if(serverRecords != null)
@@ -212,8 +208,6 @@ enyo.kind(
 				}
 			}
 		}
-		
-		console.log(this.photoUrls);
 		
 		return records;
 	},

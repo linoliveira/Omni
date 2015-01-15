@@ -5,5 +5,6 @@ enyo.depends(
 	"foodinfo_screen.js",
 	"checkout_screen.js",
 	"main_screen.js",
-	"mediabrowser_screen.js"
+	"mediabrowser_screen.js",
+	"checkin_screen.js"
 );
