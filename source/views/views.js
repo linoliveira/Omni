@@ -19,6 +19,8 @@ enyo.kind({
 				
 				{name: "mediabrowserscreen", kind: "mediabrowser_screen"},
 				
+				{name: "explorescreen", kind: "explore_screen"},
+				
 	 			{title: "Web Services Test",
 	 				components:
 	 				[
@@ -86,6 +88,11 @@ enyo.kind({
 	loadMediaBrowserScreen: function()
 	{
 		this.$.panels.setIndex(6);
+	},
+	
+	loadExploreScreen: function()
+	{
+		this.$.panels.setIndex(7);
 	},
 	
 	//	Web Services

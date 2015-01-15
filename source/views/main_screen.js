@@ -9,7 +9,7 @@ enyo.kind(
 	            	 style:"white-space: nowrap; height: 160px;",
 	 				 components:
 	 					[
-	              			{kind: "enyo.Repeater", style: "margin-left: 225px", count:"6", onSetupItem: "setImageSource",
+	              			{kind: "enyo.Repeater", style: "margin-left: 120px", count:"7", onSetupItem: "setImageSource",
 	              				components:
 	              					[
 		                  				{kind: "moon.Item", style:"display: inline-block; padding-bottom: 2px; border-radius: 7px;",
@@ -48,6 +48,9 @@ enyo.kind(
 	    		src = "http://placehold.it/215x121/505050/ffffff&text=Events";
 	    		break;
 	    	case 5:
+	    		src = "http://placehold.it/215x121/505050/ffffff&text=Explore";
+	    		break;
+	    	case 6:
 	    		src = "http://placehold.it/215x121/505050/ffffff&text=Checkout";
 	    		break;
 	    }
@@ -74,6 +77,9 @@ enyo.kind(
 			case 4: // Events
 				break;
 			case 5: // Checkout
+				this.owner.loadExploreScreen();
+				break;
+			case 6: // Checkout
 				this.owner.loadCheckoutScreen();
 				break;
 			
@@ -101,6 +107,7 @@ enyo.kind(
 			'http://placehold.it/1920x1080/e67e22/ffffff&text=Entertainment',
 			'http://placehold.it/1920x1080/16a085/ffffff&text=Activities',
 			'http://placehold.it/1920x1080/e74c3c/ffffff&text=Events',
+			'http://placehold.it/1920x1080/95a5a6/ffffff&text=Explore+Hotel',
 			'http://placehold.it/1920x1080/27ae60/ffffff&text=Checkout'
 		];
 
