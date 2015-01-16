@@ -43,24 +43,6 @@ enyo.kind({
 				}
 		 	]
 		}
-
-		/*{kind: 'moon.Scroller', vertical: "hidden", spotlight: "container", style:"white-space: nowrap;",
-			components:
-			[
-				{kind: "enyo.Repeater", count:"5", //onSetupItem: "setImageSource",
-					components:
-					[
-						{kind: "moon.Item", classes:"moon-scroller-sample-item enyo", style:"display:inline-block;",
-							components:
-							[
-							 	{kind: "enyo.Image", src:"$lib/moonstone/images/enyo-icon.png"}
-							]
-						}
-					]
-				}
-			]
-		}*/
-	 	//{content: "no shiet sir!", style: "height: 300px; background-color: purple;"}
 	],
 	
 	serviceName: [],
