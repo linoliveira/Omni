@@ -14,9 +14,8 @@ enyo.kind(
 															components:[
 															            {kind:"FittableRows", style:"width:50%",
 															            	components:[
-															            	            	//{content:" ",style:"padding:10px; color:white"},
 															            	            	{content:"Activities", style:"padding:10px;margin-top:50px; color:white"},               
-															                               // {content:""}             
+															                                           
 															            	            ]}
 															            ],
 														},
@@ -25,9 +24,8 @@ enyo.kind(
 															components:[
 															            {kind:"FittableRows", style:"width:50%",
 															            	components:[
-															            	            	//{content:" ",style:"padding:10px; color:white"},
 															            	            	{content:"Hotel Services", style:" padding:10px;margin-top:50px; color:white"},               
-															                               // {content:""}             
+															                                           
 															            	            ]}
 															            ],
 														},
@@ -36,9 +34,8 @@ enyo.kind(
 															components:[
 															            {kind:"FittableRows", style:"width:50%",
 															            	components:[
-															            	            	//{content:" ",style:"padding:10px; color:white"},
 															            	            	{content:"Accomodation", style:"padding:10px; margin-top:50px; color:white"},               
-															                               // {content:""}             
+															                                           
 															            	            ]}
 															            ],
 														},
@@ -147,34 +144,48 @@ enyo.kind(
 			components:[
 			            {kind:"FittableRows",components:[
          		                {content: "Check Out", style: "font-size: 60px;"},
-         		                {kind: "moon.BodyText", content: "Click on your payment method in order to checkout." +"Hope to see you again "},
+         		                //{kind: "moon.BodyText", content: "Click on your payment method in order to checkout."},
+         		                {kind: "moon.BodyText", content: "We hope to see you again! "},
          		     	  		{content:"Please Select you preferable payment method:"},
+         		     	  		
 	         		     	  	{kind:"FittableColumns",
          		     	  			components:[
-												{kind: "moon.Item", style:"display: inline-block; padding-bottom: 2px; border-radius: 7px;",
+												{kind: "moon.Item", style:"display: inline-block; padding-bottom: 2px; border-radius: 7px;", ontap:"onPaymentTapped", popup:"paymentConfirmation", 
 														components:
 														[
-														 	{kind: "enyo.Image", src: "assets/expenditures/apple_pay.png"},
+														 	{kind: "enyo.Image", src: "assets/expenditures/apple_pay.png", },
 														]
 												},
-												{kind: "moon.Item", style:"display: inline-block; padding-bottom: 2px; border-radius: 7px;",
+												{kind: "moon.Item", style:"display: inline-block; padding-bottom: 2px; border-radius: 7px;",ontap:"onPaymentTapped", popup:"paymentConfirmation",
 													components:
 													[
 													 	{kind: "enyo.Image", src: "assets/expenditures/google_wallet.png"},
 													]
 												},
-												{kind: "moon.Item", style:"display: inline-block; padding-bottom: 2px; border-radius: 7px;",
+												{kind: "moon.Item", style:"display: inline-block; padding-bottom: 2px; border-radius: 7px;",ontap:"onPaymentTapped", popup:"paymentConfirmation",
 													components:
 													[
 													 	{kind: "enyo.Image", src: "assets/expenditures/paypal.png"},
 													]
 												},
+												
 	 		     	  		     ]},
  		                 
          		                 ]}
 			            
 			            
-	  ]}
+	  ]},
+	  
+		{name:"paymentConfirmation", kind:"moon.Popup", style:"background-image: url(\assets/expenditures/background_popup.png);" , 
+		  components:[
+		              {kind:"FittableRows", style:"text-align:center",
+		            	  components:[
+									{kind:"moon.BodyText",content:"Payment was successfull! Hope to see you again.",centered: true},
+									{kind:"moon.Button", content:"Close", ontap:"closePaymentConfirmationPopup"},
+		                             ]}
+		              
+		]},
+		 
 				
 				 
 				 ],
@@ -186,6 +197,7 @@ enyo.kind(
 			    this.inherited(arguments);
 			    //this.getClientId();
 			    this.requestExpenditure();
+			    console.log(this.owner.clientID);
 			    
 			   
 			},
@@ -193,51 +205,79 @@ enyo.kind(
 			getClientId: function()
 			{
 				//var id=6;
-				return 1;
-				//return this.owner.ClientID;
+				//return 1;
+				return this.owner.clientID;
 			},
 			
 		//expenditure Tapped
     	onExpenditureTapped: function(inSender)
     	{
     		var popUp = this.$[inSender.popup];
+    
     		if(popUp.showing)
-    			{
-    				popUp.hide();
-    			}
-    		else
-    			{
-    				popUp.show();
-    			}
+			{
+				popUp.hide();
+			}
+			else
+			{
+				popUp.show();
+			}
+ 
     	},
-		 
+    	
+		 //payment feedback
+    	closePaymentConfirmationPopup: function(inSender)
+    	{
+    		inSender.parent.parent.parent.hide();
+    	},
+    	
+    	
+    	//payment tapped
+    	onPaymentTapped: function(inSender)
+    	{
+    		inSender.parent.parent.parent.parent.hide();
+    		    		
+    		//var b = this.payServices();
+    		
+    		this.owner.loadCheckinScreen();
+    		
+    		var popUp = this.$[inSender.popup];
+    		if(popUp.showing)
+			{
+				popUp.hide();
+			}
+			else
+			{
+				popUp.show();
+			}
+    	
+    	},
 				
     	
     	//Expenditure load
 		requestExpenditure: function(inSender, inEvent)
 		{
 			//console.log(getClientID());
-			//console.log(this.owner.jQuery);
 			var dis = this;
 			var total=0;
 			var a = this.getCheckoutData();
 			a.forEach(function(entry) {
 			    //console.log(this);
-				dis.createNewRequestDate(/*entry.id,*/ entry.date);
-				dis.createNewRequestName(/*entry.id,*/ entry.name);
-				dis.createNewRequestPrice(/*entry.id, */entry.price);
+				dis.createNewRequestDate(entry.date);
+				dis.createNewRequestName(entry.name);
+				dis.createNewRequestPrice(entry.price);
 				
 				total+=entry.price;
 				
 			}
 			);
 			
-			dis.createNewRequestTotalSum (/*entry.id, */parseFloat(total).toFixed(2));
+			dis.createNewRequestTotalSum (parseFloat(total).toFixed(2));
 
 			
 		},
 		
-		getCheckoutData: function(/*id*/)
+		getCheckoutData: function()
 		{
 			var obj = null;
 			var id = this.getClientId();
@@ -255,72 +295,77 @@ enyo.kind(
 		},
 		
 		
+		payServices: function()
+		{
+			//var payRestaurant = null;
+			//var payServices = null;
+			
+			var id = this.getClientId();
+			try
+			{
+				//payRestaurant = this.webService("payday/restaurant/?client_id=" +id);
+				//payServices = this.webService("payday/service/?client_id=" +id);
+				//checkout = this.webService("checkout/?client_id=" +id);
+				
+			}
+			catch(e)
+			{
+				console.log(e);
+			}
+			
+		},
 		
-		createNewRequestDate: function(/*id,*/ date)
+		
+		createNewRequestDate: function(date)
 		{
 			
 			this.$.dateContainer.createComponent(
-					{style:"margin-left: 30px;margin-top: 15px;", /*ontap: "requestExtraTapped",*/ 
-						//serviceID: id, serviceDate: date,
-	 			 		/*style: "margin-left: 10px; padding: 0px; margin-top: 20px; width: 424px; height: 100px; background-image: url(\"assets/room_services/panels/request_aditional_panel.png\"); background-repeat: no-repeat; background-size: auto;",*/
+					{style:"margin-left: 30px;margin-top: 15px;",
 						components:
 		 			 		[
-		 			 		 	{content: date,/*style: "padding-top: 35px; padding-left: 20px; color: white;"*/},
-		 			 		 	
-		 			 		 	
+		 			 		 	{content: date, style:"font-size:25px"},
 		 			 		]
 			 		}, {owner: this}
 				).render();
 		},
 		
-		createNewRequestName: function(/*id,*/ name)
+		createNewRequestName: function(name)
 		{
 			//var serviceName = inSender.components[0].content;
 			this.$.descricaoContainer.createComponent(
-					{style:" margin-left: 50px; margin-top: 15px;", /*serviceName: name, ontap: "teste",*/
-						//serviceID: id, serviceDate: date,
+					{style:" margin-left: 50px; margin-top: 15px;",
 	 			 		//style: "margin-left: 50px; padding: 0px; margin-top: 10px;",
 						components:
 		 			 		[
-		 			 		 	{content: name },
-		 			 		 
-	
+		 			 		 	{content: name, style:"font-size:25px"},
 		 			 		]
 			 		}, {owner: this}
 				).render();
 		},
 		
 		
-		createNewRequestPrice: function(/*id,*/ price)
+		createNewRequestPrice: function(price)
 		{
 			
 			
 			this.$.precoContainer.createComponent(
-					{style:"margin-top: 15px", /*ontap: "requestExtraTapped",*/ 
-						//serviceID: id, serviceDate: date,
-						//style:"text-align:right; margin-right:60px",
-	 			 		/*style: "margin-left: 10px; padding: 0px; margin-top: 20px; width: 424px; height: 100px; background-image: url(\"assets/room_services/panels/request_aditional_panel.png\"); background-repeat: no-repeat; background-size: auto;",*/
+					{style:"margin-top: 15px", 						
 						components:
 		 			 		[
-		 			 		 	{content: price + ' \u20AC'},
-	
+		 			 		 	{content: price + ' \u20AC', style:"font-size:25px"},
 		 			 		]
 			 		}, {owner: this}
 				).render();
 		},
 		
-		createNewRequestTotalSum: function(/*id,*/ total)
+		createNewRequestTotalSum: function(total)
 		{
-			/*var total=0;
-			total = total+price;
-			*/
+		
 			this.$.totalPriceContainer.createComponent(
-					//{style:"padding-bottom: 10px; border-radius: 7px; margin: 20px;", /*ontap: "requestExtraTapped",*/ 
-						//serviceID: id, serviceDate: date,
 	 			 		{style: "text-align:right;  padding: 10px; margin-left:70px",
 						components:
 		 			 		[
-		 			 		 	{content: total + ' \u20AC'},
+		 			 		 	{content: total + ' \u20AC', style:"font-size:25px"},
 		 			 		 
 
 		 			 		]

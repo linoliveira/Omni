@@ -2,35 +2,47 @@ enyo.kind({
 	name: "myapp.MainView",
 	classes: "moon enyo-fit",
 	components: [
-		{name: "panels", kind: "moon.Panels", arrangerKind: "CardSlideInArranger", classes: "enyo-fit", components: [
-			
-            {name: "maincreen", kind: "main_screen"},
-			
-			{name: "roomscreen", kind: "room_screen"},
-			
-			{name: "restaurantscreen", kind: "restaurant_screen"},
-			
-			{name: "foodinfoscreen", kind: "foodinfo_screen"},
-			
-			{name: "checkoutscreen", kind: "checkout_screen"},
-			
-			{name: "mediabrowserscreen", kind: "mediabrowser_screen"},
-			
- 			{title: "Web Services Test",
- 				components:
- 				[
- 				 	{kind: "moon.Button", content: "Debug:", ontap: "debugTap"},
- 				 	{name: "debugArea", kind: "moon.BodyText", content: "Nothing yet..."}
- 				]
- 				
- 			}
-		]}
+		{name: "panels", kind: "moon.Panels", arrangerKind: "CardSlideInArranger", classes: "enyo-fit",
+			components:
+			[
+	            {name: "checkinscreen", kind: "checkin_screen"},
+	
+	            {name: "maincreen", kind: "main_screen"},
+				
+				{name: "roomscreen", kind: "room_screen"},
+				
+				{name: "restaurantscreen", kind: "restaurant_screen"},
+				
+				{name: "foodinfoscreen", kind: "foodinfo_screen"},
+				
+				{name: "checkoutscreen", kind: "checkout_screen"},
+				
+				{name: "mediabrowserscreen", kind: "mediabrowser_screen"},
+				
+				{name: "explorescreen", kind: "explore_screen"},
+				
+	 			{title: "Web Services Test",
+	 				components:
+	 				[
+	 				 	{kind: "moon.Button", content: "Debug:", ontap: "debugTap"},
+	 				 	{name: "debugArea", kind: "moon.BodyText", content: "Nothing yet..."}
+	 				]
+	 				
+	 			}
+			]
+		}
 	],
 	handlers: {
 		ontap: "closeModal" ,
 		ontap: "next",
 		ontap:"previous"
 	},
+	
+	// PROPERTIES
+	jQuery: null,
+	jQuerySuccess: false,
+	roomID: 1, 				// TODO: Fazer com código do cliente (ask undead)
+	clientID: null,
 	
 	// App Initialization
 	create: enyo.inherit(function(sup)
@@ -43,34 +55,44 @@ enyo.kind({
 		};
 	}),
 	
-	loadMainScreen: function()
+	loadCheckinScreen: function()
 	{
 		this.$.panels.setIndex(0);
 	},
 	
-	loadRoomScreen: function()
+	loadMainScreen: function()
 	{
 		this.$.panels.setIndex(1);
 	},
 	
-	loadRestaurantScreen: function()
+	loadRoomScreen: function()
 	{
 		this.$.panels.setIndex(2);
 	},
 	
-	loadFoodInfoScreen: function()
+	loadRestaurantScreen: function()
 	{
 		this.$.panels.setIndex(3);
 	},
 	
-	loadCheckoutScreen: function()
+	loadFoodInfoScreen: function()
 	{
 		this.$.panels.setIndex(4);
 	},
 	
-	loadMediaBrowserScreen: function()
+	loadCheckoutScreen: function()
 	{
 		this.$.panels.setIndex(5);
+	},
+	
+	loadMediaBrowserScreen: function()
+	{
+		this.$.panels.setIndex(6);
+	},
+	
+	loadExploreScreen: function()
+	{
+		this.$.panels.setIndex(7);
 	},
 	
 	//	Web Services
@@ -124,9 +146,6 @@ enyo.kind({
 			};
 		Only provide data when client/add/ or client/update/
 	 */
-	jQuery: null,
-	jQuerySuccess: false,
-	roomID: 1, // TODO: Fazer com código do cliente (ask undead)
 	
 	webService: function(url, data)
 	{
