@@ -118,7 +118,8 @@ enyo.kind(
 		 			 			]
 		 			 	}
 		 			]
-		 	}
+		 	},
+		 	{kind: "moon.Button", content: "back", ontap: "backTapped"}
 		],
 		
 		// Screen Initialization
@@ -127,6 +128,11 @@ enyo.kind(
 		    this.inherited(arguments);
 		    this.requestExtraHeaderTapped();
 		    this.cleaningHeaderTapped();
+		},
+		
+		backTapped: function(inSender, inEvent)
+		{
+			this.owner.loadMainScreen();
 		},
 		
 		//Room Services Request Extra Header Tapped
@@ -322,7 +328,7 @@ enyo.kind(
 			// Color of the picker title
 			this.$.cleaningPicker.children[0].controls[0].children[0].setStyle("color: white;");
 			// Color of the picker text
-			this.$.cleaningPicker.children[0].controls[1].setStyle("color: white;")
+			this.$.cleaningPicker.children[0].controls[1].setStyle("color: white;");
 			
 			//console.log(this.$.cleaningPicker.children[0].controls[1].setStyle("color: white;"));
 		},
@@ -337,7 +343,7 @@ enyo.kind(
 				case -1:
 					return;
 				case 0:	// Now
-					break
+					break;
 				case 1: // In 1 hour
 					hours = 1;
 					break;

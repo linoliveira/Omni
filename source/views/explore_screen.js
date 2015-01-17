@@ -19,30 +19,44 @@ enyo.kind({
 						{kind: "moon.Scroller",
 							components:
 							[
-								{name: "text", style: "color: white;", content: "TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! TEXT ! ", fit: true}
+								{name: "text", style: "color: white;", content: "TEXT !", fit: true}
 							]
 						}
 					]
 				},
 	 		]
 	 	},
-	 	{kind: 'moon.Scroller', vertical: "hidden", spotlight: "container", style:"white-space: nowrap; height: 250px;",
-			components:
-			[
-			 	{name: "slider", kind: "enyo.Repeater", count: "7", onSetupItem: "setImageSource",
+	 	{
+	 		kind: "FittableColumns",
+	 		style: "",
+	 		components:
+	 		[
+	 		 	{
+	 		 		components:
+	 		 		[
+	 		 		 	{kind: "moon.Button", content: "back", ontap: "backTapped", style: "height: 170px;"}
+	 		 		]
+	 		 	},
+		 	 	{kind: "moon.Scroller", vertical: "hidden", spotlight: "container", fit: true,
+	 		 		style:"white-space: nowrap; height: 250px; margin-left: 20px;",
 					components:
 					[
-		  				{kind: "moon.Item", style:"display: inline-block; padding: 0px;",
-		  					onSpotlightFocused: "onOptionFocused", ontap: "onOptionMenuTapped",
-		  					components:
-		  						[
-		  						 	{kind: "enyo.Image"}
-		  						]
-		  				}
-					]
+					 	{name: "slider", kind: "enyo.Repeater", count: "7", onSetupItem: "setImageSource",
+							components:
+							[
+				  				{kind: "moon.Item", style:"display: inline-block; padding: 0px;",
+				  					onSpotlightFocused: "onOptionFocused", ontap: "onOptionMenuTapped",
+				  					components:
+				  						[
+				  						 	{kind: "enyo.Image"}
+				  						]
+				  				}
+							]
+						}
+				 	]
 				}
-		 	]
-		}
+	 		]
+	 	}
 	],
 	
 	serviceName: [],
@@ -64,6 +78,13 @@ enyo.kind({
 		this.loadInfo();
 		this.setImages();
 		this.$.slider.setCount(this.serviceThumbnail.length);
+		this.initialize();
+	},
+	
+	initialize: function()
+	{
+		this.$.serviceName.setContent(this.serviceName[0]);
+		this.$.text.setContent(this.serviceDescription[0]);
 	},
 	
 	loadInfo: function()
@@ -90,7 +111,7 @@ enyo.kind({
 		if(this.serviceThumbnail != null)
 		{
 		    var index = inEvent.index;
-		    var item = inEvent.item;
+		    var item = inEvent.item;		    
 		   
 		    item.$.image.setSrc(this.serviceThumbnail[index]);
 		    return true;
@@ -103,6 +124,11 @@ enyo.kind({
 		this.$.image.setIndex(oEvent.index);
 		this.$.serviceName.setContent(this.serviceName[oEvent.index]);
 		this.$.text.setContent(this.serviceDescription[oEvent.index]);
+	},
+	
+	backTapped: function(inSender, inEvent)
+	{
+		this.owner.loadMainScreen();
 	},
 	
 	webService: function(URL, data)

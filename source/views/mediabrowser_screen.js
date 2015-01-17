@@ -37,14 +37,23 @@ enyo.kind(
 	style: "background-image: url('assets/media_browser/background.png');",
 	components:
 	[
-	 	{name: "mediaType", kind: "enyo.Group", style: "margin-top: 250px; margin-left: 1200px;",
-			components: [
-				{kind: "moon.ToggleButton", content: "music", onContent: "", offContent: "", labelSeparator: "", active: true},
-				{kind: "moon.ToggleButton",  content: "photo", onContent: "", offContent: "", labelSeparator: ""},
-				{kind: "moon.ToggleButton",  content: "movie", onContent: "", offContent: "", labelSeparator: ""}
-			],
-			onActivate: "changeMediaType"
-		},
+	 	{
+	 		kind: "FittableColumns",
+	 		style: "margin-top: 250px;",
+	 		components:
+	 		[
+	 		 	{fit: true},
+	 		 	{kind: "moon.Button", content: "back", ontap: "backTapped"},
+		 	 	{name: "mediaType", kind: "enyo.Group", style: "",
+		 			components: [
+		 				{kind: "moon.ToggleButton", content: "music", onContent: "", offContent: "", labelSeparator: "", active: true},
+		 				{kind: "moon.ToggleButton",  content: "photo", onContent: "", offContent: "", labelSeparator: ""},
+		 				{kind: "moon.ToggleButton",  content: "movie", onContent: "", offContent: "", labelSeparator: ""}
+		 			],
+		 			onActivate: "changeMediaType"
+		 		},
+	 		]
+	 	},
 
 		{name: "audio", kind: "enyo.Audio"},
 		
@@ -90,6 +99,11 @@ enyo.kind(
 		this.inherited(arguments);
 		// set the collection that will fire the binding and add it to the list
 		this.set("collection", new enyo.Collection());
+	},
+	
+	backTapped: function(inSender, inEvent)
+	{
+		this.owner.owner.loadMainScreen();
 	},
 	
 	changeMediaType: function(inSender, inEvent)
