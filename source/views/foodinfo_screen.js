@@ -1,39 +1,34 @@
 enyo.kind(
-{name: "foodinfo_screen", kind: "FittableRows", classes: "moon enyo-unselectable enyo-fit full",
+{name: "foodinfo_screen",  kind: "FittableRows", classes: "moon enyo-unselectable enyo-fit full",
 	components:
 		[
-		 	{content: "Food Title", style: "font-size: 60px;"},
+		 	{name:"FoodInfoTitle", content: "Food", style: "font-size: 60px;"},
 		 	{kind: "FittableColumns", fit: true,
 		 		components:
 		 		[
 		 		 	{kind: "FittableRows", components:
 		 		 		[
-		 		 		 	{kind: "enyo.Image", style:"padding: 20px;",
-		 		 		 		src: "http://placehold.it/800x450/505050/ffffff&text=Food+Image"
-		 		 		 	},
-		 		 		 	{kind: "FittableColumns", style:"padding: 20px;",
-		 		 		 		components:
-		 		 		 			[
-		 		 		 			 	{kind: "moon.Button", content:"+"},
-		 		 		 			 	{content: "1", style: "font-size: 40px; padding: 20px;"},
-		 		 		 			 	{kind: "moon.Button", content: "-"},
-		 		 		 			]
-		 		 		 	}
-		 		 		]
-		 		 	},
-		 		 	{kind: "moon.Scroller", style:"padding: 20px;", fit: true,
-		 		 		components:
-		 		 			[
-		 		 			 	{kind: "moon.BodyText", style:"width: 950px;", fit: true, content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."}
-		 		 			]
-		 		 	}
+		 		 		 	{name:"FoodImage", kind: "enyo.Image", style:"padding: 20px;",src: "assets/food_services/images/main_1"	},
+		 		 			 	{name:"Description", kind: "moon.BodyText", style:"width: 950px;", fit: true, content: "xy"},
 		 		]
 		 	},
+		 	{kind: "FittableColumns", style:"padding: 20px;",
+	 		 		components:
+		 			 			[
+		 			 			 	{kind: "moon.IconButton", icon: "arrowsmallup", style: "margin-left: 40px;", ontap: "extraArrowUpTapped"},
+			 			 		 	{name: "quantity", kind: "moon.BodyText", content: "1", style: "margin: 0px; display: inline;"},
+			 			 		 	{kind: "moon.IconButton", icon: "arrowsmalldown", ontap: "ArrowDownTapped"},
+	                        	{name: "acceptButton", kind: "moon.IconButton", style: "margin-left: 100px;", serviceID: null, serviceName: null, icon: "check", ontap: "onAcceptExtraTapped"},
+	                        	{kind: "moon.IconButton", icon: "closex", ontap: "onCancelExtraTapped"}
+		 			 			]
+		 			 	},
+	 		]
+	 	},
 		 	{components:
 		 			[
-		 			 	{kind: "moon.Button", content: "Order", ontap: "onFoodInfoOrderTapped", popup: "orderPopup"},
+		 			 	{kind: "moon.Button", content: "Order", ontap: "onFoodInfoOrderTapped"/*, popup: "orderPopup"*/},
 		 			 	{kind: "moon.Button", content: "Back", ontap: "onFoodInfoBackTapped"},
-		 			 	{name: "orderPopup", kind: "moon.Popup", showCloseButton: true,
+		 			 	/*{name: "orderPopup", kind: "moon.Popup", showCloseButton: true,
 		 			 		components:
 		 			 		[
                     			{kind: "moon.Divider", content: "Order to:"},
@@ -45,12 +40,22 @@ enyo.kind(
                     				]
                     			}
                 			]
-		 			 	},
+		 			 	}*/,
 		 			 	{name: "foodInfoOrderPopUp", kind: "moon.Popup", content: "Ordered!", showCloseButton: true, onHide: "onFoodInfoOrderCompleted"}
 		 			]
 		 	}
-		],
+		 	],
 		
+		rendered: function()
+		{
+		    this.inherited(arguments);
+		    console.log(this.propertyOne);
+		    this.setTitle();
+		},
+		setTitle: function()
+		{
+		    this.$.FoodInfoTitle.setContent(this.propertyOne);
+		},
 		// Food Info Back Tapped
 		onFoodInfoBackTapped: function()
 		{

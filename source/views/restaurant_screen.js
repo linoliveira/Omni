@@ -82,7 +82,7 @@ enyo.kind(
 	},
 	{components:
  		[
-		 	{kind: "moon.Button", content: "Cancel Order", style: "margin: 50px;", ontap: "onRestaurantCancelTapped"}
+		 	{kind: "moon.Button", content: "Cancel Order", style: "margin: 50px;", ontap: "onRestaurantCancelTapped"},
 		]
 	}
 ],
@@ -108,7 +108,7 @@ requestContainersTapped: function(inSender, inEvent)
 	var a = this.getContainers();
 	a.forEach(function(entry) {
 	    //console.log(this);
-		dis.createNewRequest(entry.id, entry.name);
+		dis.createNewRequest(entry.id, entry.name, entry.description, entry.price);
 	});
 },
 
@@ -130,17 +130,17 @@ getContainers: function()
 
 
 
-createNewRequest: function(id, name)
+createNewRequest: function(id, name, description, price)
 {
 	imageName = "";
 	switch(id)
 	{
 		case 1:
 			{
-			imageName = "main_2.png";
+			imageName= "main_2.png",
 			this.$.requestMCContainer.createComponent(
 					{kind: "moon.Item",  ontap: "requestTapped", popup: "requestPopup",
-						serviceID: id, serviceName: name,
+						serviceID: id, serviceName: name, description: description, price: price, imageName: imageName,
 						style: "margin-left: 10px; padding: 0px; margin-top: 20px; width: 424px; height: 100px; background-image: url(\"assets/room_services/panels/request_aditional_panel.png\"); background-repeat: no-repeat; background-size: auto;",
 						components:
 		 			 		[
@@ -158,10 +158,10 @@ createNewRequest: function(id, name)
 				};
 		case 2:
 		{
-		imageName = "starters_2.png";
+			imageName= "starters_2.png",
 		this.$.requestStartersContainer.createComponent(
 				{kind: "moon.Item", ontap: "requestTapped", popup: "requestPopup",
-					serviceID: id, serviceName: name,
+					serviceID: id, serviceName: name, description: description, price: price, imageName: imageName,
 					style: "margin-left: 10px; padding: 0px; margin-top: 20px; width: 424px; height: 100px; background-image: url(\"assets/room_services/panels/request_aditional_panel.png\"); background-repeat: no-repeat; background-size: auto;",
 					components:
 	 			 		[
@@ -179,10 +179,11 @@ createNewRequest: function(id, name)
 			};
 		case 4:
 		{
-		imageName = "dessert_2.png";
+		imageName= "dessert_2.png"
 		this.$.requestDesertContainer.createComponent(
 				{kind: "moon.Item",  ontap: "requestTapped", popup: "requestPopup",
-					serviceID: id, serviceName: name,
+					serviceID: id, serviceName: name, description: description, price: price, imageName: imageName,
+				
 					style: "margin-left: 10px; padding: 0px; margin-top: 20px; width: 424px; height: 100px; background-image: url(\"assets/room_services/panels/request_aditional_panel.png\"); background-repeat: no-repeat; background-size: auto;",
 					components:
 	 			 		[
@@ -200,10 +201,10 @@ createNewRequest: function(id, name)
 			};
 		case 3:
 		{
-		imageName = "drink_2.png";
+		imageName = "drink_2.png",
 		this.$.requestDrinkContainer.createComponent(
 				{kind: "moon.Item",  ontap: "requestTapped", popup: "requestPopup",
-					serviceID: id, serviceName: name,
+					serviceID: id, serviceName: name, description: description, price: price, imageName: imageName,
 					style: "margin-left: 10px; padding: 0px; margin-top: 20px; width: 424px; height: 100px; background-image: url(\"assets/room_services/panels/request_aditional_panel.png\"); background-repeat: no-repeat; background-size: auto;",
 					components:
 	 			 		[
@@ -229,11 +230,18 @@ createNewRequest: function(id, name)
 requestTapped: function(inSender,inEvent)
 {	
 	var popUp = this.$[inSender.popup];
-	var serviceName = inSender.components[0].components[1].content;
-	var description = inSender.components[0].components[1].content;
-	var price = inSender.components[0].components[1].content;
-	var serviceID = inSender.serviceID;
+	var fName = inSender.name;
+	var descr = inSender.description;
+	var price = inSender.price;
+	var image = inSender.imageName;
+
 	this.owner.loadFoodInfoScreen();
+	//this.$.FoodInfoScreen.set(fName, fName);
+	
+	//this.$.foodinfo_screen.propertyOne = descr;
+	this.owner.$.foodinfoscreen.propertyOne= descr;
+	//this.$.foodinfo_screen.propertyOne = descr;
+	//this.$.foodinfo_screen.set(price, price);
 	return true;
 },
 
