@@ -65,7 +65,7 @@ enyo.kind(
 			 			 	{kind: "FittableColumns", style:"background-color:rgba(0, 0, 0, 0.4); margin-bottom: 30px; margin-top: 30px; margin-left: 10px; padding-right: 10px",
 			 			 		components:
 			 			 		[
-			 			 		 	{content: "Drinks", style: "margin-left: 10px; padding-top: 60px; color: white;"}
+			 			 		 	{content: "Soups", style: "margin-left: 10px; padding-top: 60px; color: white;"}
 			 			 		]
 			 			 	},
 			 			 	{name: "requestDrinkContainer", kind: "FittableRows",
@@ -108,7 +108,7 @@ requestContainersTapped: function(inSender, inEvent)
 	var a = this.getContainers();
 	a.forEach(function(entry) {
 	    //console.log(this);
-		dis.createNewRequest(entry.id, entry.name, entry.description, entry.price);
+		dis.createNewRequest(entry.id, entry.name, entry.description, entry.price, entry.type, entry.thumbnail);
 	});
 },
 
@@ -119,6 +119,7 @@ getContainers: function()
 	try
 	{
 		obj = this.webService("foodmenu/");
+		console.log(obj);
 	}
 	catch(e)
 	{
@@ -130,14 +131,13 @@ getContainers: function()
 
 
 
-createNewRequest: function(id, name, description, price)
+createNewRequest: function(id, name, description, price, type, imageName)
 {
-	imageName = "";
-	switch(id)
+	console.log(type);
+	switch(type)
 	{
-		case 1:
+		case "main":
 			{
-			imageName= "main_2.png",
 			this.$.requestMCContainer.createComponent(
 					{kind: "moon.Item",  ontap: "requestTapped", popup: "requestPopup",
 						serviceID: id, serviceName: name, description: description, price: price, imageName: imageName,
@@ -147,7 +147,7 @@ createNewRequest: function(id, name, description, price)
 				 			 	{kind: "FittableColumns", style: "padding: 0px; margin: 0px;",
 				 			 		components:
 				 			 		[
-										{kind: "enyo.Image", src: "assets/food_services/images/" + imageName},
+										{kind: "enyo.Image", src:imageName},
 										{content: name, style: "padding-top: 35px; padding-left: 20px; color: white;"}
 				 			 		]
 				 			 	}
@@ -156,9 +156,8 @@ createNewRequest: function(id, name, description, price)
 				).render();
 				break;
 				};
-		case 2:
+		case "starter":
 		{
-			imageName= "starters_2.png",
 		this.$.requestStartersContainer.createComponent(
 				{kind: "moon.Item", ontap: "requestTapped", popup: "requestPopup",
 					serviceID: id, serviceName: name, description: description, price: price, imageName: imageName,
@@ -168,7 +167,7 @@ createNewRequest: function(id, name, description, price)
 			 			 	{kind: "FittableColumns", style: "padding: 0px; margin: 0px;",
 			 			 		components:
 			 			 		[
-									{kind: "enyo.Image", src: "assets/food_services/images/" + imageName},
+									{kind: "enyo.Image", src: imageName},
 									{content: name, style: "padding-top: 35px; padding-left: 20px; color: white;"}
 			 			 		]
 			 			 	}
@@ -177,9 +176,8 @@ createNewRequest: function(id, name, description, price)
 			).render();
 			break;
 			};
-		case 4:
+		case "dessert":
 		{
-		imageName= "dessert_2.png"
 		this.$.requestDesertContainer.createComponent(
 				{kind: "moon.Item",  ontap: "requestTapped", popup: "requestPopup",
 					serviceID: id, serviceName: name, description: description, price: price, imageName: imageName,
@@ -190,7 +188,7 @@ createNewRequest: function(id, name, description, price)
 			 			 	{kind: "FittableColumns", style: "padding: 0px; margin: 0px;",
 			 			 		components:
 			 			 		[
-									{kind: "enyo.Image", src: "assets/food_services/images/" + imageName},
+									{kind: "enyo.Image", src: imageName},
 									{content: name, style: "padding-top: 35px; padding-left: 20px; color: white;"}
 			 			 		]
 			 			 	}
@@ -199,9 +197,8 @@ createNewRequest: function(id, name, description, price)
 			).render();
 			break;
 			};
-		case 3:
+		case "sopa":
 		{
-		imageName = "drink_2.png",
 		this.$.requestDrinkContainer.createComponent(
 				{kind: "moon.Item",  ontap: "requestTapped", popup: "requestPopup",
 					serviceID: id, serviceName: name, description: description, price: price, imageName: imageName,
@@ -211,7 +208,7 @@ createNewRequest: function(id, name, description, price)
 			 			 	{kind: "FittableColumns", style: "padding: 0px; margin: 0px;",
 			 			 		components:
 			 			 		[
-									{kind: "enyo.Image", src: "assets/food_services/images/" + imageName},
+									{kind: "enyo.Image", src: imageName},
 									{content: name, style: "padding-top: 35px; padding-left: 20px; color: white;"}
 			 			 		]
 			 			 	}
@@ -229,23 +226,19 @@ createNewRequest: function(id, name, description, price)
 //Room Services Request Extra Tapped
 requestTapped: function(inSender,inEvent)
 {	
-	var popUp = this.$[inSender.popup];
-	var fName = inSender.name;
+	var name = inSender.serviceName;
 	var descr = inSender.description;
 	var price = inSender.price;
 	var image = inSender.imageName;
 
 	this.owner.loadFoodInfoScreen();
-	//this.$.FoodInfoScreen.set(fName, fName);
 	
-	//this.$.foodinfo_screen.propertyOne = descr;
-	this.owner.$.foodinfoscreen.propertyOne= descr;
+	this.owner.$.foodinfoscreen.propertyOne = name;
+	this.owner.$.foodinfoscreen.propertyTwo = descr;
+	this.owner.$.foodinfoscreen.propertyThree= image;
+	this.owner.$.foodinfoscreen.propertyFour = price;
 	
-	// SOLUTION
 	this.owner.$.foodinfoscreen.setTitle();
-	
-	//this.$.foodinfo_screen.propertyOne = descr;
-	//this.$.foodinfo_screen.set(price, price);
 	return true;
 },
 
