@@ -5,64 +5,27 @@ enyo.kind({
 	style: "padding: 20px; background-color: #44b7e2;",
 	components:
 	[
-	 	{content: "EXPLORE HOTEL", style: "font-size: 40pt; margin-bottom: 20px; color: white;"},
-	 	{kind: "FittableColumns", fit: true,
-	 		style: "margin-bottom: 30px;",
-	 		components:
-	 		[
-				{name: "image", kind: "ImageCarousel", arrangerKind: "CardArranger", style: "width: 1200px; height: 675px;"},
-				{kind: "FittableRows", fit: true,
-					style: "background-color:rgba(255, 255, 255, 0.5); padding-top: 20px; padding-bottom: 20px; padding-left: 20px; margin-top: 200px;",
-					components:
-					[
-					 	{name: "serviceName", content: "Service Name", style: "margin-bottom: 20px; color: white; font-size: 40pt;"},
-						{kind: "moon.Scroller",
-							components:
-							[
-								{name: "text", style: "color: white;", content: "TEXT !", fit: true}
-							]
-						}
-					]
-				},
-	 		]
-	 	},
-	 	{
-	 		kind: "FittableColumns",
-	 		style: "",
-	 		components:
-	 		[
-	 		 	{
-	 		 		components:
-	 		 		[
-	 		 		 	{kind: "moon.Button", content: "back", ontap: "backTapped", style: "height: 170px;"}
-	 		 		]
-	 		 	},
-		 	 	{kind: "moon.Scroller", vertical: "hidden", spotlight: "container", fit: true,
-	 		 		style:"white-space: nowrap; height: 250px; margin-left: 20px;",
-					components:
-					[
-					 	{name: "slider", kind: "enyo.Repeater", count: "7", onSetupItem: "setImageSource",
-							components:
-							[
-				  				{kind: "moon.Item", style:"display: inline-block; padding: 0px;",
-				  					onSpotlightFocused: "onOptionFocused", ontap: "onOptionMenuTapped",
-				  					components:
-				  						[
-				  						 	{kind: "enyo.Image"}
-				  						]
-				  				}
-							]
-						}
-				 	]
-				}
-	 		]
-	 	}
+	 	{name: "promotionName", content: "EXPLORE HOTEL", style: "font-size: 40pt; margin-bottom: 20px; margin-left: 160px; color: white;"},
+	 	{name: "image", kind: "ImageCarousel", arrangerKind: "CardArranger", fit: true},
+		{
+			kind: "FittableColumns", style: "height: 80px;",
+			components:
+			[
+			 	{kind: "moon.Button", content: "Back", style: "margin-left: 740px;", ontap: "backTapped"},
+			 	{
+			 		style: "margin-left: 50px;",
+			 		components:
+			 		[
+					 	{kind: "moon.IconButton", icon: "arrowlargeleft", style: "margin-top: 10px;", ontap: "previousImageTappted"},
+					 	{kind: "moon.IconButton", icon: "arrowlargeright", style: "margin-top: 10px;", ontap: "nextImageTappted"},
+			 		]
+			 	}
+			]
+		}
 	],
 	
-	serviceName: [],
-	serviceDescription: [],
-	serviceImage: [],
-	serviceThumbnail: [],
+	promotionName: [],
+	promotionImage: [],
 	
 	create: function ()
 	{
@@ -77,53 +40,41 @@ enyo.kind({
 		
 		this.loadInfo();
 		this.setImages();
-		this.$.slider.setCount(this.serviceThumbnail.length);
 		this.initialize();
 	},
 	
 	initialize: function()
 	{
-		this.$.serviceName.setContent(this.serviceName[0]);
-		this.$.text.setContent(this.serviceDescription[0]);
+		this.$.promotionName.setContent(this.promotionName[0]);
 	},
 	
 	loadInfo: function()
 	{
-		var serverRecords = this.webService("hotel/");
+		var serverRecords = this.webService("promotion/");
 		var server = "http://89.109.87.69/";
 		
 		for(var i = 0; i < serverRecords.length; ++i)
 		{
-			this.serviceName.push(serverRecords[i].name);
-			this.serviceDescription.push(serverRecords[i].description);
-			this.serviceImage.push(server + serverRecords[i].filename);
-			this.serviceThumbnail.push(server + serverRecords[i].thumbnail);
+			this.promotionName.push(serverRecords[i].name);
+			this.promotionImage.push(server + serverRecords[i].filename);
 		}
 	},
 	
 	setImages: function()
 	{
-		this.$.image.setImages(this.serviceImage);
+		this.$.image.setImages(this.promotionImage);
 	},
 	
-	setImageSource: function(inSender, inEvent)
+	previousImageTappted: function(inSender, inEvent)
 	{
-		if(this.serviceThumbnail != null)
-		{
-		    var index = inEvent.index;
-		    var item = inEvent.item;		    
-		   
-		    item.$.image.setSrc(this.serviceThumbnail[index]);
-		    return true;
-		}
-		return false;
+		this.$.image.previous();
+		this.$.promotionName.setContent(this.promotionName[this.$.image.getIndex()]);
 	},
 	
-	onOptionFocused: function(oSender, oEvent)
+	nextImageTappted: function(inSender, inEvent)
 	{
-		this.$.image.setIndex(oEvent.index);
-		this.$.serviceName.setContent(this.serviceName[oEvent.index]);
-		this.$.text.setContent(this.serviceDescription[oEvent.index]);
+		this.$.image.next();
+		this.$.promotionName.setContent(this.promotionName[this.$.image.getIndex()]);
 	},
 	
 	backTapped: function(inSender, inEvent)
