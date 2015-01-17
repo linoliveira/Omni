@@ -8,5 +8,6 @@ enyo.depends(
 	"mediabrowser_screen.js",
 	"checkin_screen.js",
 	"explore_screen.js",
-	"promotion_screen.js"
+	"promotion_screen.js",
+	"event_screen.js"
 );

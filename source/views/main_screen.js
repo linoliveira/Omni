@@ -78,6 +78,7 @@ enyo.kind(
 			case 3: // Activities
 				break;
 			case 4: // Events
+				this.owner.loadEventScreen();
 				break;
 			case 5: // Promotions
 				this.owner.loadPromotionScreen();
@@ -113,6 +114,7 @@ enyo.kind(
 			'http://placehold.it/1920x1080/e67e22/ffffff&text=Entertainment',
 			'http://placehold.it/1920x1080/16a085/ffffff&text=Activities',
 			'http://placehold.it/1920x1080/e74c3c/ffffff&text=Events',
+			'http://placehold.it/1920x1080/e74c3c/ffffff&text=Promotions',
 			'http://placehold.it/1920x1080/95a5a6/ffffff&text=Explore+Hotel',
 			'http://placehold.it/1920x1080/27ae60/ffffff&text=Checkout'
 		];

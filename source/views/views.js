@@ -23,6 +23,8 @@ enyo.kind({
 				
 				{name: "promotionscreen", kind: "promotion_screen"},
 				
+				{name: "eventscreen", kind: "event_screen"},
+				
 	 			{title: "Web Services Test",
 	 				components:
 	 				[
@@ -100,6 +102,11 @@ enyo.kind({
 	loadPromotionScreen: function()
 	{
 		this.$.panels.setIndex(8);
+	},
+	
+	loadEventScreen: function()
+	{
+		this.$.panels.setIndex(9);
 	},
 	
 	//	Web Services
