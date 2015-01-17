@@ -49,11 +49,14 @@ enyo.kind(
 		rendered: function()
 		{
 		    this.inherited(arguments);
-		    console.log(this.propertyOne);
-		    this.setTitle();
+		    //console.log(this.propertyOne);
+		    //this.setTitle();
 		},
 		setTitle: function()
 		{
+			// CONFIRM SOLUTION
+			console.log(this.propertyOne);
+			
 		    this.$.FoodInfoTitle.setContent(this.propertyOne);
 		},
 		// Food Info Back Tapped

@@ -240,6 +240,10 @@ requestTapped: function(inSender,inEvent)
 	
 	//this.$.foodinfo_screen.propertyOne = descr;
 	this.owner.$.foodinfoscreen.propertyOne= descr;
+	
+	// SOLUTION
+	this.owner.$.foodinfoscreen.setTitle();
+	
 	//this.$.foodinfo_screen.propertyOne = descr;
 	//this.$.foodinfo_screen.set(price, price);
 	return true;
