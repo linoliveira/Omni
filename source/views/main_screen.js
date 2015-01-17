@@ -9,7 +9,7 @@ enyo.kind(
 	            	 style:"white-space: nowrap; height: 160px;",
 	 				 components:
 	 					[
-	              			{kind: "enyo.Repeater", style: "margin-left: 120px", count:"7", onSetupItem: "setImageSource",
+	              			{kind: "enyo.Repeater", style: "margin-left: 0px", count:"8", onSetupItem: "setImageSource",
 	              				components:
 	              					[
 		                  				{kind: "moon.Item", style:"display: inline-block; padding-bottom: 2px; border-radius: 7px;",
@@ -48,9 +48,12 @@ enyo.kind(
 	    		src = "http://placehold.it/215x121/505050/ffffff&text=Events";
 	    		break;
 	    	case 5:
-	    		src = "http://placehold.it/215x121/505050/ffffff&text=Explore";
+	    		src = "http://placehold.it/215x121/505050/ffffff&text=Promotions";
 	    		break;
 	    	case 6:
+	    		src = "http://placehold.it/215x121/505050/ffffff&text=Explore";
+	    		break;
+	    	case 7:
 	    		src = "http://placehold.it/215x121/505050/ffffff&text=Checkout";
 	    		break;
 	    }
@@ -76,10 +79,13 @@ enyo.kind(
 				break;
 			case 4: // Events
 				break;
-			case 5: // Checkout
+			case 5: // Promotions
+				this.owner.loadPromotionScreen();
+				break;
+			case 6: // Explore
 				this.owner.loadExploreScreen();
 				break;
-			case 6: // Checkout
+			case 7: // Checkout
 				this.owner.loadCheckoutScreen();
 				break;
 			
