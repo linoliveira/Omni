@@ -5,7 +5,7 @@ enyo.kind({
 	style: "padding: 20px; background-color: #44b7e2;",
 	components:
 	[
-	 	{content: "EXPLORE HOTEL", style: "font-size: 40pt; margin-bottom: 20px; color: white;"},
+	 	{content: "Events", style: "font-size: 40pt; margin-bottom: 20px; color: white;"},
 	 	{kind: "FittableColumns", fit: true,
 	 		style: "margin-bottom: 30px;",
 	 		components:
@@ -15,7 +15,8 @@ enyo.kind({
 					style: "background-color:rgba(255, 255, 255, 0.5); padding-top: 20px; padding-bottom: 20px; padding-left: 20px; margin-top: 200px;",
 					components:
 					[
-					 	{name: "serviceName", content: "Service Name", style: "margin-bottom: 20px; color: white; font-size: 40pt;"},
+					 	{name: "eventName", content: "Event Name", style: "margin-bottom: 20px; color: white; font-size: 40pt;"},
+						{name: "eventDate", content: "Date: 2015-01-18", style: "color: white;"},
 						{kind: "moon.Scroller",
 							components:
 							[
@@ -34,7 +35,7 @@ enyo.kind({
 	 		 	{
 	 		 		components:
 	 		 		[
-	 		 		 	{kind: "moon.Button", content: "back", ontap: "backTapped", style: "height: 170px;"}
+	 		 		 	{kind: "moon.Button", content: "back", ontap: "backTapped", style: "height: 170px;"},
 	 		 		]
 	 		 	},
 		 	 	{kind: "moon.Scroller", vertical: "hidden", spotlight: "container", fit: true,
@@ -59,10 +60,11 @@ enyo.kind({
 	 	}
 	],
 	
-	serviceName: [],
-	serviceDescription: [],
-	serviceImage: [],
-	serviceThumbnail: [],
+	eventName: [],
+	eventDescription: [],
+	eventDate: [],
+	eventImage: [],
+	eventThumbnail: [],
 	
 	create: function ()
 	{
@@ -77,43 +79,45 @@ enyo.kind({
 		
 		this.loadInfo();
 		this.setImages();
-		this.$.slider.setCount(this.serviceThumbnail.length);
+		this.$.slider.setCount(this.eventThumbnail.length);
 		this.initialize();
 	},
 	
 	initialize: function()
 	{
-		this.$.serviceName.setContent(this.serviceName[0]);
-		this.$.text.setContent(this.serviceDescription[0]);
+		this.$.eventName.setContent(this.eventName[0]);
+		this.$.eventDate.setContent(this.eventDate[0]);
+		this.$.text.setContent(this.eventDescription[0]);
 	},
 	
 	loadInfo: function()
 	{
-		var serverRecords = this.webService("hotel/");
+		var serverRecords = this.webService("event/");
 		var server = "http://89.109.87.69/";
 		
 		for(var i = 0; i < serverRecords.length; ++i)
 		{
-			this.serviceName.push(serverRecords[i].name);
-			this.serviceDescription.push(serverRecords[i].description);
-			this.serviceImage.push(server + serverRecords[i].filename);
-			this.serviceThumbnail.push(server + serverRecords[i].thumbnail);
+			this.eventName.push(serverRecords[i].name);
+			this.eventDescription.push(serverRecords[i].description);
+			this.eventDate.push(serverRecords[i].date);
+			this.eventImage.push(server + serverRecords[i].filename);
+			this.eventThumbnail.push(server + serverRecords[i].thumbnail);
 		}
 	},
 	
 	setImages: function()
 	{
-		this.$.image.setImages(this.serviceImage);
+		this.$.image.setImages(this.eventImage);
 	},
 	
 	setImageSource: function(inSender, inEvent)
 	{
-		if(this.serviceThumbnail != null)
+		if(this.eventThumbnail != null)
 		{
 		    var index = inEvent.index;
 		    var item = inEvent.item;		    
 		   
-		    item.$.image.setSrc(this.serviceThumbnail[index]);
+		    item.$.image.setSrc(this.eventThumbnail[index]);
 		    return true;
 		}
 		return false;
@@ -122,8 +126,9 @@ enyo.kind({
 	onOptionFocused: function(oSender, oEvent)
 	{
 		this.$.image.setIndex(oEvent.index);
-		this.$.serviceName.setContent(this.serviceName[oEvent.index]);
-		this.$.text.setContent(this.serviceDescription[oEvent.index]);
+		this.$.eventName.setContent(this.eventName[oEvent.index]);
+		this.$.eventDate.setContent(this.eventDate[oEvent.index]);
+		this.$.text.setContent(this.eventDescription[oEvent.index]);
 	},
 	
 	backTapped: function(inSender, inEvent)
