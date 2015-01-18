@@ -6,10 +6,10 @@ enyo.kind(
 		 	{name:"FoodInfoTitle", content: "Food",  style: "font-size: 60px; margin-left: 35px; color: white;"},
 		 		 	{kind: "FittableRows", components:
 		 		 		[
-		 		 		 
+		 		 		 {name:"FoodImage", kind: "enyo.Image", src:""},
 		 		 		 {kind:"FittableColumns", components:
 		 		 			 [		 		 		 
-		 		 			  	{name:"FoodImage", kind: "enyo.Image", style:"font-size: 50px; padding: 20px;", src: "" + this.propertyThree},
+		 		 			  	
 		 		 			 	{name:"FoodDescr", kind: "moon.BodyText", style:"font-size: 35px; margin-left: 35px; color: white;", fit: true, content: "xy"}
 		 		 			 	]},		 		 			 	
 		 			 		]
@@ -96,20 +96,14 @@ enyo.kind(
 		rendered: function()
 		{
 		    this.inherited(arguments);
-		    //console.log(this.propertyOne);
-		    //this.setTitle();
 		},
 		
 		setTitle: function()
 		{
-			console.log(this.propertyOne);
-			console.log(this.propertyTwo);
-			console.log(this.propertyThree);
-			console.log(this.propertyFour);
 		    this.$.FoodInfoTitle.setContent(this.propertyOne);
 		    this.$.FoodDescr.setContent(this.propertyTwo);
 		    this.$.FoodPrc.setContent(this.propertyFour);
-		    
+		    this.$.FoodImage.src = "" + this.propertyThree;
 		},
 		
 		ArrowUpTapped: function(inSender, inEvent)
@@ -123,7 +117,6 @@ enyo.kind(
 				this.$.FoodPrc.setContent(this.propertyFour * quantity);
 			}
 			
-			console.log(quantity);
 		},
 		
 		ArrowDownTapped: function(inSender, inEvent)
@@ -158,17 +151,23 @@ enyo.kind(
 		},
 		orderToRoom: function()
 		{
-				var extra = {
-						room_id: this.getRoomID(),
-			            id: this.propertyFive,
-			            quantity: parseInt(this.$.quantity.content)
-						};
-				
-				console.log(extra);
+				var cliente = this.getRoomID();
 				
 				try
 				{
-					this.webService("/roomservice/add/", extra);
+					var client = {client_id:this.getRoomID()};
+					obj = this.webService("roomservice/add/",client);
+					//obj = this.webService("roomservice/");
+					console.log(obj);
+					var extra = {
+							restaurant_order_id: obj.id,
+				            food_menu_id: this.propertyFive,
+				            promotion_id: this.propertySix,
+				            quantity: parseInt(this.$.quantity.content)
+							};
+					console.log(extra);
+					obj = this.webService("roomservice/add/",extra);
+					
 					this.$.closePaymentConfirmationText.setContent(this.propertyOne + " ordered!");
 				}
 				catch(e)
@@ -237,6 +236,10 @@ enyo.kind(
     		this.$.paymentConfirmation.hide();
     		this.$.paymentPopUp.hide();
 			this.owner.loadRestaurantScreen();
+    	},
+    	webService: function(URL, data)
+    	{
+    		return this.owner.webService(URL, data);
     	}
 		
 }

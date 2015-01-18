@@ -108,7 +108,7 @@ requestContainersTapped: function(inSender, inEvent)
 	var a = this.getContainers();
 	a.forEach(function(entry) {
 	    //console.log(this);
-		dis.createNewRequest(entry.id, entry.name, entry.description, entry.price, entry.type, "http://89.109.87.69/"  + entry.thumbnail);
+		dis.createNewRequest(entry.id, entry.name, entry.description, entry.price, entry.type, "http://89.109.87.69/"  + entry.filename, entry.promotion_id);
 	});
 },
 
@@ -131,7 +131,7 @@ getContainers: function()
 
 
 
-createNewRequest: function(id, name, description, price, type, imageName)
+createNewRequest: function(id, name, description, price, type, imageName, promId)
 {
 	console.log(type);
 	switch(type)
@@ -160,7 +160,7 @@ createNewRequest: function(id, name, description, price, type, imageName)
 		{
 		this.$.requestStartersContainer.createComponent(
 				{kind: "moon.Item", ontap: "requestTapped", popup: "requestPopup",
-					serviceID: id, serviceName: name, description: description, price: price, imageName: imageName,
+					serviceID: id, serviceName: name, description: description, price: price, imageName: imageName, promId: promId,
 					style: "margin-left: 10px; padding: 0px; margin-top: 20px; width: 424px; height: 100px; background-image: url(\"assets/room_services/panels/request_aditional_panel.png\"); background-repeat: no-repeat; background-size: auto;",
 					components:
 	 			 		[
@@ -180,7 +180,7 @@ createNewRequest: function(id, name, description, price, type, imageName)
 		{
 		this.$.requestDesertContainer.createComponent(
 				{kind: "moon.Item",  ontap: "requestTapped", popup: "requestPopup",
-					serviceID: id, serviceName: name, description: description, price: price, imageName: imageName,
+					serviceID: id, serviceName: name, description: description, price: price, imageName: imageName,promId:promId,
 				
 					style: "margin-left: 10px; padding: 0px; margin-top: 20px; width: 424px; height: 100px; background-image: url(\"assets/room_services/panels/request_aditional_panel.png\"); background-repeat: no-repeat; background-size: auto;",
 					components:
@@ -238,6 +238,7 @@ requestTapped: function(inSender,inEvent)
 	this.owner.$.foodinfoscreen.propertyThree= image;
 	this.owner.$.foodinfoscreen.propertyFour = price;
 	this.owner.$.foodinfoscreen.propertyFive = inSender.serviceID;
+	this.owner.$.foodinfoscreen.propertySix = inSender.promId;
 	
 	this.owner.$.foodinfoscreen.setTitle();
 	return true;
