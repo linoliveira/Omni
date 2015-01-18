@@ -76,6 +76,7 @@ enyo.kind(
 				this.owner.loadMediaBrowserScreen();
 				break;
 			case 3: // Activities
+				this.owner.loadActivityScreen();
 				break;
 			case 4: // Events
 				this.owner.loadEventScreen();

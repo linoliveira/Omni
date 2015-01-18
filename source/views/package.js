@@ -9,5 +9,6 @@ enyo.depends(
 	"checkin_screen.js",
 	"explore_screen.js",
 	"promotion_screen.js",
-	"event_screen.js"
+	"event_screen.js",
+	"activity_screen.js"
 );
