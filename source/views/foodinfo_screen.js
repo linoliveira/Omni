@@ -103,7 +103,8 @@ enyo.kind(
 		    this.$.FoodInfoTitle.setContent(this.propertyOne);
 		    this.$.FoodDescr.setContent(this.propertyTwo);
 		    this.$.FoodPrc.setContent(this.propertyFour);
-		    this.$.FoodImage.src = "" + this.propertyThree;
+		    // SOLUTION
+		    this.$.FoodImage.setSrc(this.propertyThree);
 		},
 		
 		ArrowUpTapped: function(inSender, inEvent)
