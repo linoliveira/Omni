@@ -108,7 +108,7 @@ requestContainersTapped: function(inSender, inEvent)
 	var a = this.getContainers();
 	a.forEach(function(entry) {
 	    //console.log(this);
-		dis.createNewRequest(entry.id, entry.name, entry.description, entry.price, entry.type, entry.thumbnail);
+		dis.createNewRequest(entry.id, entry.name, entry.description, entry.price, entry.type, "http://89.109.87.69/"  + entry.thumbnail);
 	});
 },
 
@@ -237,6 +237,7 @@ requestTapped: function(inSender,inEvent)
 	this.owner.$.foodinfoscreen.propertyTwo = descr;
 	this.owner.$.foodinfoscreen.propertyThree= image;
 	this.owner.$.foodinfoscreen.propertyFour = price;
+	this.owner.$.foodinfoscreen.propertyFive = inSender.serviceID;
 	
 	this.owner.$.foodinfoscreen.setTitle();
 	return true;

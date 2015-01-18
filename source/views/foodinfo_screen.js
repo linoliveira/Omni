@@ -150,10 +150,37 @@ enyo.kind(
 			else if(this.$.addToBill.checked == true && this.$.payNow.checked == false)
 				{
 					this.$.confirmOrderPopup.hide();
+					this.orderToRoom();
 					this.owner.loadRestaurantScreen();
 				}
 			else
 				this.$.errorPopup.show();
+		},
+		orderToRoom: function()
+		{
+				var extra = {
+						room_id: this.getRoomID(),
+			            id: this.propertyFive,
+			            quantity: parseInt(this.$.quantity.content)
+						};
+				
+				console.log(extra);
+				
+				try
+				{
+					this.webService("/roomservice/add/", extra);
+					this.$.closePaymentConfirmationText.setContent(this.propertyOne + " ordered!");
+				}
+				catch(e)
+				{
+					console.log(e);
+					this.$.closePaymentConfirmationText.setContent("Error!");
+				}
+			
+			this.$.paymentConfirmation.show();
+			
+			
+			
 		},
 		// Food Info Back Tapped
 		onFoodInfoBackTapped: function()
@@ -169,7 +196,7 @@ enyo.kind(
 					//order to room
 				
 				this.$.confirmOrderPopup.setContent(this.propertyOne);
-				this.$.confirmOrder.setContent(this.propertyOne + "  "+ this.propertyFour);
+				this.$.confirmOrder.setContent(this.propertyOne + ", price : "+ parseInt(this.$.quantity.content)*this.propertyFour);
 				this.$.confirmOrderPopup.show();
 				}
 			else if(this.$.room.checked == false && this.$.table.checked == true)
@@ -200,6 +227,10 @@ enyo.kind(
 			}
     	
     	},
+		getRoomID: function()
+		{
+			return this.owner.roomID;
+		},
 		 //payment feedback
     	closePaymentConfirmationPopup: function(inSender)
     	{
