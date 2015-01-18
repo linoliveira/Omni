@@ -13,7 +13,7 @@ enyo.kind({
 				
 				{name: "restaurantscreen", kind: "restaurant_screen"},
 				
-				{name: "foodinfoscreen", kind: "foodinfo_screen", propertyOne: null, propertyTwo:null, propertyThree:null, propertyFour:null, propertyFive:null},
+				{name: "foodinfoscreen", kind: "foodinfo_screen", propertyOne: null, propertyTwo:null, propertyThree:null, propertyFour:null, propertyFive:null, propertySix:null},
 				
 				{name: "checkoutscreen", kind: "checkout_screen"},
 				
