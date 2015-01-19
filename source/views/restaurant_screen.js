@@ -119,7 +119,7 @@ getContainers: function()
 	try
 	{
 		obj = this.webService("foodmenu/");
-		console.log(obj);
+		//console.log(obj);
 	}
 	catch(e)
 	{
@@ -133,7 +133,7 @@ getContainers: function()
 
 createNewRequest: function(id, name, description, price, type, imageName, promId)
 {
-	console.log(type);
+	//console.log(type);
 	switch(type)
 	{
 		case "main":

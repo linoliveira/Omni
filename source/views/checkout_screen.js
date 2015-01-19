@@ -202,7 +202,6 @@ enyo.kind(
 			    this.inherited(arguments);
 			    //this.getClientId();
 			    this.requestExpenditure();
-			    console.log(this.owner.clientID);
  
 			},
 		//-------------------------------------------------------------------------
