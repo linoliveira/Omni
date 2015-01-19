@@ -1,6 +1,8 @@
+//-------------- Main Screen -------------------//
 enyo.kind(
 {name: "main_screen", kind: "FittableRows", classes: "moon enyo-unselectable enyo-fit full",
 	components: [
+//-------------- Background Image With Text -------------------//
 	             {name:'menucarousel', kind:'ImageCarousel',  arrangerKind: "CardArranger",
 	            	 classes: "enyo-fit", style: "z-index: -1;"
 	             },
@@ -9,6 +11,7 @@ enyo.kind(
 	            	 style:"white-space: nowrap; height: 160px;",
 	 				 components:
 	 					[
+//-------------- Bottom Buttons -------------------//
 	              			{kind: "enyo.Repeater", style: "margin-left: 0px", count:"8", onSetupItem: "setImageSource",
 	              				components:
 	              					[
@@ -62,6 +65,7 @@ enyo.kind(
 	    return true;
 	},
 	
+	// When An Option Is Tapped
 	onOptionMenuTapped: function(insender, inEvent)
 	{
 		switch(inEvent.index)
@@ -106,6 +110,7 @@ enyo.kind(
 		};
 	}),
 	
+	// Sets The Background Imnages With Text
 	setMainScreenImages: function()
 	{
 		this.urls =
@@ -123,7 +128,7 @@ enyo.kind(
 		this.$.menucarousel.setImages(this.urls);
 	},
 	
-	// Main Screen Bar Option Focused
+	// Main Screen Bar Option Focused - Change Background Image
 	onOptionFocused: function(oSender, oEvent)
 	{
 		this.$.menucarousel.setIndex(oEvent.index);

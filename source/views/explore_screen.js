@@ -1,15 +1,17 @@
+//-------------- Explore Hotel -------------------//
 enyo.kind({
-
 	name: "explore_screen",
 	kind: "FittableRows",
 	style: "padding: 20px; background-color: #44b7e2;",
 	components:
 	[
+//-------------- Title -------------------//
 	 	{content: "EXPLORE HOTEL", style: "font-size: 40pt; margin-bottom: 20px; color: white;"},
 	 	{kind: "FittableColumns", fit: true,
 	 		style: "margin-bottom: 30px;",
 	 		components:
 	 		[
+//-------------- Image And Description -------------------//
 				{name: "image", kind: "ImageCarousel", arrangerKind: "CardArranger", style: "width: 1200px; height: 675px;"},
 				{kind: "FittableRows", fit: true,
 					style: "background-color:rgba(255, 255, 255, 0.5); padding-top: 20px; padding-bottom: 20px; padding-left: 20px; margin-top: 200px;",
@@ -34,6 +36,7 @@ enyo.kind({
 	 		 	{
 	 		 		components:
 	 		 		[
+//-------------- Back Button -------------------//
 	 		 		 	{kind: "moon.Button", content: "back", ontap: "backTapped", style: "height: 170px;"}
 	 		 		]
 	 		 	},
@@ -41,6 +44,7 @@ enyo.kind({
 	 		 		style:"white-space: nowrap; height: 250px; margin-left: 20px;",
 					components:
 					[
+//-------------- Slider With Thumbnails -------------------//
 					 	{name: "slider", kind: "enyo.Repeater", count: "7", onSetupItem: "setImageSource",
 							components:
 							[
@@ -59,6 +63,7 @@ enyo.kind({
 	 	}
 	],
 	
+	// Required Information
 	serviceName: [],
 	serviceDescription: [],
 	serviceImage: [],
@@ -68,9 +73,11 @@ enyo.kind({
 	{
 		this.inherited(arguments);
 
+		// To Prevent Errors
 		this.$.image.setImages(["http://placehold.it/1920x1080/95a5a6/ffffff&text=Explore+Hotel"]);
 	},
 	
+	// App Initialization
 	rendered: function()
 	{
 		this.inherited(arguments);
@@ -81,12 +88,14 @@ enyo.kind({
 		this.initialize();
 	},
 	
+	// Sets The First Interfce Information
 	initialize: function()
 	{
 		this.$.serviceName.setContent(this.serviceName[0]);
 		this.$.text.setContent(this.serviceDescription[0]);
 	},
 	
+	// Loads Information From The Backend
 	loadInfo: function()
 	{
 		var serverRecords = this.webService("hotel/");
@@ -101,11 +110,13 @@ enyo.kind({
 		}
 	},
 	
+	// Sets The Carousel Images
 	setImages: function()
 	{
 		this.$.image.setImages(this.serviceImage);
 	},
 	
+	// Sets The Slider Thumbnail Images
 	setImageSource: function(inSender, inEvent)
 	{
 		if(this.serviceThumbnail != null)
@@ -119,6 +130,7 @@ enyo.kind({
 		return false;
 	},
 	
+	// When A Thumbnail Is Focused - Changes Interface Information
 	onOptionFocused: function(oSender, oEvent)
 	{
 		this.$.image.setIndex(oEvent.index);
@@ -126,11 +138,13 @@ enyo.kind({
 		this.$.text.setContent(this.serviceDescription[oEvent.index]);
 	},
 	
+	// Back Button Tapped
 	backTapped: function(inSender, inEvent)
 	{
 		this.owner.loadMainScreen();
 	},
 	
+	// Calls The Main webService Function
 	webService: function(URL, data)
 	{
 		try

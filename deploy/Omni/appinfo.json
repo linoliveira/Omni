@@ -1,11 +1,11 @@
 {
 	"id": "com.yourdomain.Omni_1",
 	"version": "0.0.1",
-	"vendor": "My Company",
+	"vendor": "MITI",
 	"type": "web",
 	"main": "index.html",
-	"title": "My App",
-	"icon": "icon.png",
+	"title": "Omni",
+	"icon": "assets/logo_16.png",
 	"largeIcon": "largeIcon.png",
 	"uiRevision": 2,
 	"enyoVersion": "2.3.0"

@@ -1,5 +1,5 @@
+//-------------- Event Screen -------------------//
 enyo.kind({
-
 	name: "event_screen",
 	kind: "FittableRows",
 	style: "padding: 20px; background-color: #44b7e2;",
@@ -10,11 +10,13 @@ enyo.kind({
 	 		style: "margin-bottom: 30px;",
 	 		components:
 	 		[
+//-------------- Large Image -------------------//
 				{name: "image", kind: "ImageCarousel", arrangerKind: "CardArranger", style: "width: 1200px; height: 675px;"},
 				{kind: "FittableRows", fit: true,
 					style: "background-color:rgba(255, 255, 255, 0.5); padding-top: 20px; padding-bottom: 20px; padding-left: 20px; margin-top: 200px;",
 					components:
 					[
+//-------------- Event Information -------------------//
 					 	{name: "eventName", content: "Event Name", style: "margin-bottom: 20px; color: white; font-size: 40pt;"},
 						{name: "eventDate", content: "Date: 2015-01-18", style: "color: white;"},
 						{kind: "moon.Scroller",
@@ -35,6 +37,7 @@ enyo.kind({
 	 		 	{
 	 		 		components:
 	 		 		[
+//-------------- Back Button -------------------//
 	 		 		 	{kind: "moon.Button", content: "back", ontap: "backTapped", style: "height: 170px;"},
 	 		 		]
 	 		 	},
@@ -42,6 +45,7 @@ enyo.kind({
 	 		 		style:"white-space: nowrap; height: 250px; margin-left: 20px;",
 					components:
 					[
+//-------------- Bottom Slider With The Thumbnails -------------------//
 					 	{name: "slider", kind: "enyo.Repeater", count: "7", onSetupItem: "setImageSource",
 							components:
 							[
@@ -60,6 +64,7 @@ enyo.kind({
 	 	}
 	],
 	
+	// Vars To Store Event Information
 	eventName: [],
 	eventDescription: [],
 	eventDate: [],
@@ -70,9 +75,11 @@ enyo.kind({
 	{
 		this.inherited(arguments);
 
+		// To Prevent Errors
 		this.$.image.setImages(["http://placehold.it/1920x1080/95a5a6/ffffff&text=Explore+Hotel"]);
 	},
 	
+	// Initialize The App
 	rendered: function()
 	{
 		this.inherited(arguments);
@@ -83,6 +90,7 @@ enyo.kind({
 		this.initialize();
 	},
 	
+	// Set Information Of The First Event On The Interface
 	initialize: function()
 	{
 		this.$.eventName.setContent(this.eventName[0]);
@@ -90,6 +98,7 @@ enyo.kind({
 		this.$.text.setContent(this.eventDescription[0]);
 	},
 	
+	// Load Information From The Backend
 	loadInfo: function()
 	{
 		var serverRecords = this.webService("event/");
@@ -105,11 +114,13 @@ enyo.kind({
 		}
 	},
 	
+	// Set The Images Of The Carousel
 	setImages: function()
 	{
 		this.$.image.setImages(this.eventImage);
 	},
 	
+	// Set The Slider Thumbnail Images
 	setImageSource: function(inSender, inEvent)
 	{
 		if(this.eventThumbnail != null)
@@ -123,6 +134,7 @@ enyo.kind({
 		return false;
 	},
 	
+	// When A Thumbnail Is Focused - Loads Associated Information To The Interface
 	onOptionFocused: function(oSender, oEvent)
 	{
 		this.$.image.setIndex(oEvent.index);
@@ -131,11 +143,13 @@ enyo.kind({
 		this.$.text.setContent(this.eventDescription[oEvent.index]);
 	},
 	
+	// Back Button Tapped
 	backTapped: function(inSender, inEvent)
 	{
 		this.owner.loadMainScreen();
 	},
 	
+	// Calls The Main webService Function
 	webService: function(URL, data)
 	{
 		try

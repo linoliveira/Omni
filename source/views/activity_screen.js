@@ -1,3 +1,4 @@
+//-------------- Activity Screen -------------------//
 enyo.kind(
 {
 	name: "activity_screen",
@@ -15,6 +16,7 @@ enyo.kind(
 }
 );
 
+//-------------- Main Activity Screen -------------------//
 enyo.kind(
 {
 	name: "activity_main_screen",
@@ -23,6 +25,7 @@ enyo.kind(
 	style: "background-image: url('assets/activities/background.png');",
 	components:
 	[
+//-------------- Header Buttons -------------------//
 	 	{
 	 		kind: "FittableColumns",
 	 		style: "margin-top: 250px;",
@@ -42,15 +45,18 @@ enyo.kind(
 		 		},
 	 		]
 	 	},
-		
+
+//-------------- Body -------------------//
+	 	
 		{kind: "FittableColumns", fit: true, style: "margin-top: 45px;",
 			components:
 			[
+//-------------- Activities -------------------//
 				{name: "activityList", kind: "enyo.Group", classes: "moon-6h",
 					style: "background-color:rgba(255, 2555, 255, 0.4); margin-right: 20px;",
 					components:
 					[
-					 	
+					 	// activities
 					],
 					onActivate: "changeListing"
 				},
@@ -59,7 +65,7 @@ enyo.kind(
 					style: "background-color:rgba(255, 255, 255, 0.8); padding: 20px;", fit: true,
 					components:
 					[
-
+//-------------- Text -------------------//
 						{kind: "moon.Scroller", fit: true,
 							components:
 							[
@@ -69,6 +75,7 @@ enyo.kind(
 					 	{kind: "FittableColumns",
 							components:
 							[
+//-------------- Scheduling Controls -------------------//
 							 	{
 							 		kind: "FittableColumns",
 							 		style: "padding-top: 50px;",
@@ -103,6 +110,7 @@ enyo.kind(
 					 	}
 					]
 				},
+//-------------- Confirmation Popups -------------------//
 				{name: "confirmPopup", kind: "moon.Popup", showCloseButton: true,
  			 		components:
  			 			[
@@ -131,6 +139,7 @@ enyo.kind(
 		this.owner.owner.loadMainScreen();
 	},
 	
+	// Header Controls Selected
 	categoryChanged: function(inSender, inEvent)
 	{
 		if (inEvent.originator.getActive())
@@ -139,6 +148,7 @@ enyo.kind(
 		}
 	},
 	
+	// List Activities Of A Selected Category
 	listActivities: function(category)
 	{
 		this.$.activityList.destroyComponents();
@@ -155,6 +165,7 @@ enyo.kind(
 		}
 	},
 	
+	// When A Category Is Selected
 	changeListing: function(inSender, inEvent)
 	{
 		if (inEvent.originator.getActive())
@@ -163,9 +174,9 @@ enyo.kind(
 		}
 	},
 	
+	// Load Activity Information From The Backend
 	loadActivityInfo: function(activity)
 	{
-		//console.log("ID", );
 		this.$.activityInfo.setContent(activity.description);
 		var serverRecords = this.webService("servicetimetable/?service_id=" + activity.serviceID);
 		
@@ -175,18 +186,21 @@ enyo.kind(
 		}
 	},
 	
+	// When A Time Slot Is Changed
 	timeSlotChanged: function(inSender, inEvent)
 	{
 		this.$.quantity.max = inEvent.originator.selected.capacity;
 		this.$.quantity.setValue(1);
 	},
 	
+	// Schedule Button Tapped - Shows Popup
 	scheduleTapped: function(inSender, inEvent)
 	{
 		this.$.confirmTitle.setContent("Schedule " + this.$.activityList.active.content + " for " + this.$.quantity.value + " people?");
 		this.$.confirmPopup.show();
 	},
 	
+	// Confirm Popup Button Tapped
 	confirmTapped: function(inSender, inEvent)
 	{
 		this.bookService();
@@ -194,11 +208,13 @@ enyo.kind(
 		this.$.ackPopup.show();
 	},
 	
+	// Cancel Popup Button Tapped
 	cancelTapped: function(inSender, inEvent)
 	{
 		this.$.confirmPopup.hide();
 	},
 	
+	// Books The Selected Service
 	bookService: function()
 	{
 		var date = new Date();
@@ -219,12 +235,6 @@ enyo.kind(
 		
 		var time_start = year + "-" + month + "-" + day + " " + this.$.timeSlot.selected.content;
 		
-		/*console.log("CLIENT:", this.getClientID());
-		console.log("SERVICE:", this.$.activityList.active.serviceID);
-		console.log("PROMOTION", this.$.activityList.active.promotionID);
-		console.log("QUANTITY:", this.$.quantity.value);
-		console.log("TIMESLOT:", this.$.timeSlot.selected.content);*/
-		
 		var service =
 		{
 			client_id:		this.getClientID(),
@@ -238,6 +248,7 @@ enyo.kind(
 		return this.webService("clientservice/add/", service);
 	},
 	
+	// Helper Function
 	sprintf: function()
 	{
 		var string			= arguments[0],
@@ -252,6 +263,7 @@ enyo.kind(
 		return string;
 	},
 	
+	// Helper Function To Transform "1" Into "02"
 	zero: function(number)
 	{
 		if(number < 10)
@@ -269,6 +281,7 @@ enyo.kind(
 		return this.owner.owner.clientID;
 	},
 	
+	// Access The Main webService Function
 	webService: function(URL, data)
 	{
 		try

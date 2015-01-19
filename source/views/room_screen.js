@@ -1,8 +1,10 @@
+//-------------- Room Screen -------------------//
 enyo.kind(
 {name: "room_screen", kind: "FittableRows", classes: "moon enyo-unselectable enyo-fit full",
 	style: "background-image: url(\"assets/room_services/background.png\");",
 	components:
 		[
+//-------------- Title -------------------//
 		 	{content: "Room Services", style: "font-size: 60px; margin-left: 35px; color: white;"},
 		 	{kind: "FittableColumns", fit: true,
 		 		style: "padding: 0px; margin: 0px;",
@@ -11,6 +13,7 @@ enyo.kind(
 		 			 	{kind: "FittableRows", style: "padding: 10px;",
 		 			 		components:
 		 			 			[
+//-------------- Sub-Title -------------------//
 		 			 			 	{kind: "FittableColumns", style:"background-color:rgba(0, 0, 0, 0.4); margin: 20px; margin-left: 10px; margin-bottom: 30px; padding-right: 15px;",
 		 			 			 		components:
 		 			 			 		[
@@ -18,12 +21,14 @@ enyo.kind(
 											{content: "Request Aditional", style: "padding-top: 60px; color: white;"}
 		 			 			 		]
 		 			 			 	},
+//-------------- Service Container -------------------//
 		 			 			 	{name: "requestExtraContainer", kind: "FittableRows",
 		 			 			 		components:
 		 			 			 			[
 		 			 			 			 	// requestExtraComponents
 		 			 			 			]
 		 			 			 	},
+//-------------- Popups -------------------//
 		 			 			 	{name: "requestExtraPopup", kind: "moon.Popup", showCloseButton: true, style: "background-color: #44B7E2; padding-top: 75px; padding-bottom: 50px;",
 		 			 			 		components:
 		 			 			 			[
@@ -46,6 +51,7 @@ enyo.kind(
 		 			 	{kind: "FittableRows", style: "padding: 10px;",
 		 			 		components:
 		 			 			[
+//-------------- Sub-Title -------------------//
 		 			 			 	{kind: "FittableColumns", style:"background-color:rgba(0, 0, 0, 0.4); margin: 20px; margin-bottom: 30px; padding-right: 50px;",
 		 			 			 		components:
 		 			 			 		[
@@ -53,6 +59,7 @@ enyo.kind(
 									 		 {content: "Cleaning", style: "padding-top: 60px; color: white;"}
 		 			 			 		]
 		 			 			 	},
+//-------------- Cleaning Container -------------------//
 		 			 			 	{name: "cleaningContainer", kind: "FittableRows",
 		 			 			 		components:
 		 			 			 			[
@@ -64,6 +71,7 @@ enyo.kind(
 		 			 	{kind: "FittableRows", style:"padding-bottom: 10px;",
 		 			 		components:
 		 			 			[
+//-------------- Sub-Title -------------------//
 		 			 			 	{kind: "FittableColumns", style:"background-color:rgba(0, 0, 0, 0.4); margin: 30px; padding-right: 10px;",
 		 			 			 		components:
 		 			 			 		[
@@ -71,6 +79,7 @@ enyo.kind(
 		 			 			 		 	{content: "Restaurant Services", style: "padding-top: 60px; color: white;"}
 		 			 			 		]
 		 			 			 	},
+//-------------- Go To Restaurant Services -------------------//
 		 			 			 	{kind: "FittableRows",
 		 			 			 		components:
 		 			 			 			[
@@ -84,6 +93,7 @@ enyo.kind(
 		 			 	{kind: "FittableRows", style:"padding-bottom: 10px; margin: 20px;",
 		 			 		components:
 		 			 			[
+//-------------- Sub-Title -------------------//
 		 			 			 	{kind: "FittableColumns", style:"background-color:rgba(0, 0, 0, 0.4); margin-bottom: 30px; margin-top: 30px; margin-left: 10px; padding-right: 10px",
 		 			 			 		components:
 		 			 			 		[
@@ -94,6 +104,7 @@ enyo.kind(
 		 			 			 	{kind: "FittableRows",
 		 			 			 		components:
 		 			 			 			[
+//-------------- Technical Assistance With Popup -------------------//
 												{kind: "moon.Item", content: "Call Me", ontap: "onRoomCallTapped", popup: "callPopUp",
 													style: "color: white; margin-left: 10px; height: 70px; width: 295px; padding-top: 18px; padding-left: 30px; background-image: url('assets/room_services/panels/tech_assistance_panel.png'); background-repeat: no-repeat; background-size: auto;"
 												},
@@ -119,6 +130,7 @@ enyo.kind(
 		 			 	}
 		 			]
 		 	},
+//-------------- Back Button -------------------//
 		 	{kind: "moon.Button", content: "back", ontap: "backTapped"}
 		],
 		
@@ -130,6 +142,7 @@ enyo.kind(
 		    this.cleaningHeaderTapped();
 		},
 		
+		// Back Button
 		backTapped: function(inSender, inEvent)
 		{
 			this.owner.loadMainScreen();
@@ -138,16 +151,15 @@ enyo.kind(
 		//Room Services Request Extra Header Tapped
 		requestExtraHeaderTapped: function(inSender, inEvent)
 		{
-			//console.log(this.owner.jQuery);
 			var dis = this;
 			
 			var a = this.getExtraServices();
 			a.forEach(function(entry) {
-			    //console.log(this);
 				dis.createNewRequestExtra(entry.id, entry.name);
 			});
 		},
 		
+		// Get Extra Services From The Backend
 		getExtraServices: function()
 		{
 			var obj = null;
@@ -164,6 +176,7 @@ enyo.kind(
 			return obj;
 		},
 		
+		// Adds A New Extra Service To The Interface
 		createNewRequestExtra: function(id, name)
 		{
 			imageName = "";
@@ -216,6 +229,7 @@ enyo.kind(
 			}
 		},
 		
+		// Popup Arrow Up Tapped - Increase Quantity
 		extraArrowUpTapped: function(inSender, inEvent)
 		{
 			var quantity = parseInt(this.$.extraQuantity.content);
@@ -229,6 +243,7 @@ enyo.kind(
 			console.log(quantity);
 		},
 		
+		// Popup Arrow Down Rapped - Decrease Quantity
 		extraArrowDownTapped: function(inSender, inEvent)
 		{
 			var quantity = parseInt(this.$.extraQuantity.content);
@@ -242,6 +257,7 @@ enyo.kind(
 			console.log(quantity);
 		},
 		
+		// Popup Accept Button Tapped - Order Extra Service
 		onAcceptExtraTapped: function(inSender, inEvent)
 		{
 			var numberOfItems = parseInt(this.$.extraQuantity.content);
@@ -282,12 +298,13 @@ enyo.kind(
 			}
 		},
 		
+		// Cancel Button Tapped
 		onCancelExtraTapped: function(inSender, inEvent)
 		{
 			inSender.parent.parent.hide();
 		},
 		
-		// Room Services Cleaning Header Tapped
+		// Add Cleaning Components
 		cleaningHeaderTapped: function()
 		{
 			this.$.cleaningContainer.createComponent(
@@ -329,11 +346,9 @@ enyo.kind(
 			this.$.cleaningPicker.children[0].controls[0].children[0].setStyle("color: white;");
 			// Color of the picker text
 			this.$.cleaningPicker.children[0].controls[1].setStyle("color: white;");
-			
-			//console.log(this.$.cleaningPicker.children[0].controls[1].setStyle("color: white;"));
 		},
 		
-		// Room Services Confirm Cleaning Tapped
+		// Room Services Confirm Cleaning Tapped - Show Popup
 		onRoomCleanTapped: function(inSender)
 		{
 			var hours = 0;
@@ -387,6 +402,7 @@ enyo.kind(
 			}
 		},
 		
+		// Accept Cleaning - Schedule Cleaning
 		onAcceptCleaningTapped: function(inSender, inEvent)
 		{
 			inSender.parent.parent.hide();
@@ -415,6 +431,7 @@ enyo.kind(
 			this.$.confirmCleaningPopup.show();
 		},
 		
+		// Cancel Cleaning
 		onCancelCleaningTapped: function(inSender, inEvent)
 		{
 			inSender.parent.parent.hide();
@@ -441,6 +458,7 @@ enyo.kind(
 			}
 		},
 		
+		// Call Technical Assistance
 		onAcceptCallTapped: function(inSender, inEvent)
 		{
 			inSender.parent.parent.hide();
@@ -467,6 +485,7 @@ enyo.kind(
 			this.$.confirmCallPopup.show();
 		},
 		
+		// Cancel Technical Assistance
 		onCancelCallTapped: function(inSender, inEvent)
 		{
 			inSender.parent.parent.hide();
@@ -477,6 +496,7 @@ enyo.kind(
 			return this.owner.roomID;
 		},
 		
+		// Call Main webService Function
 		webService: function(URL, data)
 		{
 			return this.owner.webService(URL, data);

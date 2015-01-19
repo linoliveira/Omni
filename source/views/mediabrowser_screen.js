@@ -1,3 +1,4 @@
+//-------------- Media Browser Screen -------------------//
 enyo.kind(
 {
 	name: "mediabrowser_screen",
@@ -5,6 +6,7 @@ enyo.kind(
 	arrangerKind: "CardSlideInArranger",
 	components:
 	[
+//-------------- Sub-Screen Definitions -------------------//
 	 	{kind: "mediabrowser_main_screen"},
 	 	{name: "photos", kind: "mediabrowser_photo_screen"},
 	 	{name: "movie", kind: "mediabrowser_movie_screen"}
@@ -29,6 +31,7 @@ enyo.kind(
 }		
 );
 
+//-------------- Main Screen -------------------//
 enyo.kind(
 {
 	name: "mediabrowser_main_screen",
@@ -42,6 +45,7 @@ enyo.kind(
 	 		style: "margin-top: 250px;",
 	 		components:
 	 		[
+//-------------- Header Controls -------------------//
 	 		 	{fit: true},
 	 		 	{kind: "moon.Button", content: "back", ontap: "backTapped"},
 		 	 	{name: "mediaType", kind: "enyo.Group", style: "",
@@ -55,11 +59,13 @@ enyo.kind(
 	 		]
 	 	},
 
+//-------------- Audio Control -------------------//
 		{name: "audio", kind: "enyo.Audio"},
 		
 		{kind: "FittableColumns", fit: true, style: "margin-top: 45px;",
 			components:
 			[
+//-------------- Category Listing -------------------//
 				{name: "category", kind: "enyo.Group", classes: "moon-6h",
 					style: "background-color:rgba(255, 2555, 255, 0.4); margin-right: 20px;",
 					components:
@@ -68,6 +74,7 @@ enyo.kind(
 					],
 					onActivate: "changeListing"
 				},
+//-------------- Grid To Display Items -------------------//
 				{name: "gridList", fit: true, spacing: 20, minWidth: 180, minHeight: 270, kind: "moon.DataGridList",
 					scrollerOptions: { kind: "moon.Scroller", vertical:"scroll", horizontal: "hidden", spotlightPagingControls: true },
 					ontap: "gridItemTapped",
@@ -81,6 +88,7 @@ enyo.kind(
 		},
 	],
 	
+	// Bindings To Update Changes
 	bindings:
 	[
 		{from: ".collection", to: ".$.dataList.collection"},
@@ -97,15 +105,18 @@ enyo.kind(
 	create: function ()
 	{
 		this.inherited(arguments);
-		// set the collection that will fire the binding and add it to the list
+		
+		// Set The Collection To Fire The Binding And Add To The List
 		this.set("collection", new enyo.Collection());
 	},
 	
+	// Back Button Tapped
 	backTapped: function(inSender, inEvent)
 	{
 		this.owner.owner.loadMainScreen();
 	},
 	
+	// Header Option Selected
 	changeMediaType: function(inSender, inEvent)
 	{
 		if (inEvent.originator.getActive())
@@ -114,6 +125,7 @@ enyo.kind(
 		}
 	},
 	
+	// Refreshes The Categories
 	changeCaterogy: function(mediaType)
 	{
 		this.$.category.destroyComponents();
@@ -145,6 +157,7 @@ enyo.kind(
 		}
 	},
 	
+	// Updates Grid Items
 	changeListing: function(inSender, inEvent)
 	{
 		if (inEvent.originator.getActive())
@@ -153,18 +166,17 @@ enyo.kind(
 		}
 	},
 	
+	// Delete Everything On The Grid And Re-Add The Items
 	refreshItems: function (inSender, inEvent)
 	{
-		// fetch the collection reference
 		var collection = this.get("collection");
 		collection.remove(collection.records);
-		// insert all new records that will update the list
 		collection.add(this.generateRecords(this.$.mediaType.active.getContent()));
 	},
 	
 	photoUrls: [],
 	
-	
+	// Generate The Grid Items
 	generateRecords: function (category)
 	{
 		this.photoUrls = [];
@@ -207,6 +219,7 @@ enyo.kind(
 		return records;
 	},
 	
+	// Creates a Grid Item
 	createRecord: function(title, subText, file, thumbnail)
 	{
 		return {
@@ -217,6 +230,7 @@ enyo.kind(
 		};
 	},
 	
+	// When a Grid Item Is Tapped - Reproduces Audio / Loads Photos or Movies
 	gridItemTapped: function(inSender, inEvent)
 	{
 		if(inEvent.originator.name.indexOf("gridItem") > -1)
@@ -251,6 +265,7 @@ enyo.kind(
 		}
 	},
 	
+	// Loads A Selected Audio
 	loadAudio: function(source)
 	{
 		this.unloadAudio();
@@ -258,6 +273,7 @@ enyo.kind(
 		this.$.audio.play();
 	},
 	
+	// Unloads Audio
 	unloadAudio: function()
 	{
 		this.$.audio.pause();
@@ -269,6 +285,7 @@ enyo.kind(
 		return this.owner.owner.roomID;
 	},
 	
+	// Calls The Main webService Function
 	webService: function(URL, data)
 	{
 		try
@@ -283,6 +300,7 @@ enyo.kind(
 }
 );
 
+//-------------- Grid Item Definition -------------------//
 enyo.kind({
 	name: "GridItem",
 	kind: "moon.GridListImageItem",
@@ -297,16 +315,15 @@ enyo.kind({
 	]
 });
 
-/*
- * 	PHOTO SCREEN
- */
 
+//-------------- Photo Screen -------------------//
 enyo.kind({
 	name: "mediabrowser_photo_screen",
 	kind: "FittableRows", classes: "moon enyo-unselectable enyo-fit full",
 	components:
 	[
 		{
+//-------------- Image -------------------//
 			name:'photos', kind:'ImageCarousel',  arrangerKind: "CardArranger",
 			classes: "enyo-fit", style: "z-index: -1;"
 		},
@@ -315,6 +332,7 @@ enyo.kind({
 			kind: "FittableColumns", style: "height: 80px;",
 			components:
 			[
+//-------------- Controls -------------------//
 			 	{kind: "moon.Button", content: "Back", style: "margin-left: 740px;", ontap: "backTapped"},
 			 	{
 			 		style: "margin-left: 50px;",
@@ -350,19 +368,16 @@ enyo.kind({
 	}
 });
 
-/*
- * 	MOVIE SCREEN
- */
-
+//-------------- Movie Screen -------------------//
 enyo.kind({
 	name: "mediabrowser_movie_screen",
 	classes: "moon enyo-fit enyo-unselectable moon-video-player-sample",
 	fit: true,
 	components: [
+//-------------- Video Player -------------------//
 		{
 			name: "player",
 			kind: "moon.VideoPlayer",
-			//src: "http://media.w3.org/2010/05/bunny/movie.mp4",
 			autoplay: true,
 			infoComponents:
 			[
@@ -381,6 +396,7 @@ enyo.kind({
 		{from:".$.player.showFFRewindControls", to:".$.ffrewToggleButton.value", oneWay:false}
 	],
 	
+	// Back Button Tapped
 	backTapped: function(inSender, inEvent)
 	{
 		this.unload();

@@ -1,3 +1,4 @@
+//-------------- Main View where the various screens are defined and swapped -------------------------------//
 enyo.kind({
 	name: "myapp.MainView",
 	classes: "moon enyo-fit",
@@ -5,6 +6,9 @@ enyo.kind({
 		{name: "panels", kind: "moon.Panels", arrangerKind: "CardSlideInArranger", classes: "enyo-fit",
 			components:
 			[
+
+//-------------- Screen definition -------------------------------//
+
 	            {name: "checkinscreen", kind: "checkin_screen"},
 	
 	            {name: "maincreen", kind: "main_screen"},
@@ -26,17 +30,11 @@ enyo.kind({
 				{name: "eventscreen", kind: "event_screen"},
 				
 				{name: "activityscreen", kind: "activity_screen"},
-				
-	 			{title: "Web Services Test",
-	 				components:
-	 				[
-	 				 	{kind: "moon.Button", content: "Debug:", ontap: "debugTap"},
-	 				 	{name: "debugArea", kind: "moon.BodyText", content: "Nothing yet..."}
-	 				]
-	 				
-	 			}
 			]
 		},
+		
+//-------------- Recommendation Popup -------------------------------//
+		
 	 	{name: "recommendationPopup", kind: "moon.Popup", showCloseButton: true,
 	 		components:
 	 			[
@@ -66,17 +64,21 @@ enyo.kind({
 		{
 			sup.apply(this, arguments);
 			
+			// save JQuery reference
 			this.jQuery = $.noConflict(true);
 		};
 	}),
 	
+	// After DOM is rendered
 	rendered: function ()
 	{
 		this.inherited(arguments);
 		
-		this.periodicRecommendation = setInterval(function(self) {self.recommend();}, 60000, this);
+		// set the recommendation timer
+		this.periodicRecommendation = setInterval(function(self) {self.recommend();}, 120000, this);
 	},
 	
+	// recommendation function
 	recommend: function()
 	{
 		var recommendation = this.webService("recommendation/");
@@ -147,56 +149,8 @@ enyo.kind({
 	
 	//	Web Services
 	//	Section
-	debugTap: function(inSender, inEvent)
-	{
-		var obj = null;
-		
-		try
-		{
-			obj = this.webService("client/");
-			console.log(obj);
-		}
-		catch(e)
-		{
-			console.log(e);
-		}
-		
-		console.log(obj[0].name);
-		/*
-		try
-		{
-			var client = {
-				birth_date	: "1990-01-01",
-				name		: "Moon",
-				phone		: "963825024",
-				type		: "new",
-				address		: null,
-				email		: null
-			};
-			obj = this.webService("client/add/", client);
-			console.log(obj);
-		}
-		catch(e)
-		{
-			console.log(e);
-		}*/
-	},
 	
-	/*
-	 * Example Usage
-	 * 
-	 * url	: client/ (selects all) | client/?pk=id (single select) | client/add/ | client/update/?pk=id | client/delete/?pk=id
-	 * data	: var client = {
-				birth_date	: "1990-01-01",
-				name		: "Rir",
-				phone		: "963825024",
-				type		: "new",
-				address		: null,
-				email		: null
-			};
-		Only provide data when client/add/ or client/update/
-	 */
-	
+	// Call a webservice from the backend
 	webService: function(url, data)
 	{
 		if(typeof data === "undefined")
@@ -247,18 +201,4 @@ enyo.kind({
 			throw "Bad Script: Execution Error";
 		}
 	}
-	
-	// jQuery
-	/*buttonTap: function()
-	{		
-		var jQuery = $.noConflict(true);
-		
-		jQuery.ajax({
-			url		: 'http://89.109.87.69/client/', // TODO: MUDAR
-			dataType: 'json',
-			success	: function(response) {
-				console.log(response);
-			}
-		});
-	},*/
 });
