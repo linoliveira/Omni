@@ -402,6 +402,48 @@ enyo.kind(
     	onExpenditureCancelTapped: function()
     	{
     		this.owner.loadMainScreen();
-    	}	
+    	},
+
+		//-----------------Rebuild interface---------------------
+		rebuildExpenditures: function()
+		{
+			// clear dateContainer
+			var controls1 = this.$.dateContainer.getControls();
+
+			for(var i = controls1.length - 1; i >= 0; --i)
+			{
+				this.$.dateContainer.removeControl(controls1[i]);
+			}
+			this.$.dateContainer.render();
+			
+			// clear descricaoContainer
+			var controls2 = this.$.descricaoContainer.getControls();
+
+			for(var i = controls2.length - 1; i >= 0; --i)
+			{
+				this.$.descricaoContainer.removeControl(controls2[i]);
+			}
+			this.$.descricaoContainer.render();
+			
+			// clear descricaoContainer
+			var controls3 = this.$.precoContainer.getControls();
+
+			for(var i = controls3.length - 1; i >= 0; --i)
+			{
+				this.$.precoContainer.removeControl(controls3[i]);
+			}
+			this.$.precoContainer.render();
+			
+			// clear totalPriceContainer
+			var controls4 = this.$.totalPriceContainer.getControls();
+			
+			for(var i = controls4.length - 1; i >= 0; --i)
+			{
+				this.$.totalPriceContainer.removeControl(controls4[i]);
+			}
+			this.$.totalPriceContainer.render();
+			
+			this.requestExpenditure();
+		},
 		
 		});

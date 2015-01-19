@@ -33,28 +33,28 @@ enyo.kind(
 	    switch(index)
 	    {
 	    	case 0:
-	    		src = "http://placehold.it/215x121/505050/ffffff&text=Room";
+	    		src = "assets/main_screen/room_button.png";
 	    		break;
 	    	case 1:
-	    		src = "http://placehold.it/215x121/505050/ffffff&text=Restaurant";
+	    		src = "assets/main_screen/food_button.png";
 	    		break;
 	    	case 2:
-	    		src = "http://placehold.it/215x121/505050/ffffff&text=Entertainment";
+	    		src = "assets/main_screen/entertainment_button.png";
 	    		break;
 	    	case 3:
-	    		src = "http://placehold.it/215x121/505050/ffffff&text=Activities";
+	    		src = "assets/main_screen/activities_button.png";
 	    		break;
 	    	case 4:
-	    		src = "http://placehold.it/215x121/505050/ffffff&text=Events";
+	    		src = "assets/main_screen/events_button.png";
 	    		break;
 	    	case 5:
-	    		src = "http://placehold.it/215x121/505050/ffffff&text=Promotions";
+	    		src = "assets/main_screen/promotions_button.png";
 	    		break;
 	    	case 6:
-	    		src = "http://placehold.it/215x121/505050/ffffff&text=Explore";
+	    		src = "assets/main_screen/explore_hotel.png";
 	    		break;
 	    	case 7:
-	    		src = "http://placehold.it/215x121/505050/ffffff&text=Checkout";
+	    		src = "assets/main_screen/checkout_button.png";
 	    		break;
 	    }
 
@@ -110,14 +110,14 @@ enyo.kind(
 	{
 		this.urls =
 		[
-			'http://placehold.it/1920x1080/3498db/ffffff&text=Room',
-			'http://placehold.it/1920x1080/9b59b6/ffffff&text=Restaurant',
+			'http://placehold.it/1920x1080/3498db/ffffff&text=Room+Services',
+			'http://placehold.it/1920x1080/9b59b6/ffffff&text=Restaurant+Services',
 			'http://placehold.it/1920x1080/e67e22/ffffff&text=Entertainment',
 			'http://placehold.it/1920x1080/16a085/ffffff&text=Activities',
 			'http://placehold.it/1920x1080/e74c3c/ffffff&text=Events',
-			'http://placehold.it/1920x1080/e74c3c/ffffff&text=Promotions',
-			'http://placehold.it/1920x1080/95a5a6/ffffff&text=Explore+Hotel',
-			'http://placehold.it/1920x1080/27ae60/ffffff&text=Checkout'
+			'http://placehold.it/1920x1080/e67e22/ffffff&text=Promotions',
+			'http://placehold.it/1920x1080/27ae60/ffffff&text=Explore+Hotel',
+			'http://placehold.it/1920x1080/95a5a6/ffffff&text=Checkout'
 		];
 
 		this.$.menucarousel.setImages(this.urls);

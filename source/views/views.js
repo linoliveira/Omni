@@ -117,6 +117,7 @@ enyo.kind({
 	loadCheckoutScreen: function()
 	{
 		this.$.panels.setIndex(5);
+		this.$.checkoutscreen.rebuildExpenditures();
 	},
 	
 	loadMediaBrowserScreen: function()

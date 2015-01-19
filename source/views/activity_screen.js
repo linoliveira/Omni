@@ -91,7 +91,7 @@ enyo.kind(
 									 	},
 							 		]
 							 	},
-							 	{content: "Slots:", style: "padding-top: 57px; margin-left: 30px;"},
+							 	{content: "People:", style: "padding-top: 57px; margin-left: 30px;"},
 							 	{name: "quantity", kind: "moon.IntegerPicker", value: 1, min: 1, max: 1, onChange: "changed", style: "margin-left: 20px;"},
 							 	{
 							 		components:
