@@ -1,13 +1,13 @@
 enyo.kind(
 {
-	name: "mediabrowser_screen",
+	name: "activity_screen",
 	kind: "moon.Panels",
 	arrangerKind: "CardSlideInArranger",
 	components:
 	[
-	 	{kind: "mediabrowser_main_screen"},
-	 	{name: "photos", kind: "mediabrowser_photo_screen"},
-	 	{name: "movie", kind: "mediabrowser_movie_screen"}
+	 	{kind: "activity_main_screen"},
+	 	{name: "photos", kind: "activity_photo_screen"},
+	 	{name: "movie", kind: "activity_movie_screen"}
 	],
 	
 	loadMainScreen: function()
@@ -31,7 +31,7 @@ enyo.kind(
 
 enyo.kind(
 {
-	name: "mediabrowser_main_screen",
+	name: "activity_main_screen",
 	kind: "FittableRows",
 	classes: "moon enyo-fit",
 	style: "background-image: url('assets/media_browser/background.png');",
@@ -74,7 +74,7 @@ enyo.kind(
 					style: "background-color:rgba(255, 255, 255, 0.8);",
 					components:
 					[
-					 	{ kind: "GridItem" }
+					 	{ kind: "ActivityGridItem" }
 					]
 				}
 			]
@@ -284,7 +284,7 @@ enyo.kind(
 );
 
 enyo.kind({
-	name: "GridItem",
+	name: "ActivityGridItem",
 	kind: "moon.GridListImageItem",
 	mixins: ["moon.SelectionOverlaySupport"],
 	selectionOverlayVerticalOffset: 35,
@@ -302,7 +302,7 @@ enyo.kind({
  */
 
 enyo.kind({
-	name: "mediabrowser_photo_screen",
+	name: "activity_photo_screen",
 	kind: "FittableRows", classes: "moon enyo-unselectable enyo-fit full",
 	components:
 	[
@@ -355,7 +355,7 @@ enyo.kind({
  */
 
 enyo.kind({
-	name: "mediabrowser_movie_screen",
+	name: "activity_movie_screen",
 	classes: "moon enyo-fit enyo-unselectable moon-video-player-sample",
 	fit: true,
 	components: [

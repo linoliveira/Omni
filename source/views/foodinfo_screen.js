@@ -1,56 +1,185 @@
 enyo.kind(
-{name: "foodinfo_screen", kind: "FittableRows", classes: "moon enyo-unselectable enyo-fit full",
+{name: "foodinfo_screen",  kind: "FittableRows", classes: "moon enyo-unselectable enyo-fit full", 
+	style: "background-image: url(\assets/food_services/Panels/background.png);",
 	components:
 		[
-		 	{content: "Food Title", style: "font-size: 60px;"},
-		 	{kind: "FittableColumns", fit: true,
-		 		components:
-		 		[
+		 	{name:"FoodInfoTitle", content: "Food",  style: "font-size: 60px; margin-left: 35px; color: white;"},
 		 		 	{kind: "FittableRows", components:
 		 		 		[
-		 		 		 	{kind: "enyo.Image", style:"padding: 20px;",
-		 		 		 		src: "http://placehold.it/800x450/505050/ffffff&text=Food+Image"
-		 		 		 	},
-		 		 		 	{kind: "FittableColumns", style:"padding: 20px;",
-		 		 		 		components:
-		 		 		 			[
-		 		 		 			 	{kind: "moon.Button", content:"+"},
-		 		 		 			 	{content: "1", style: "font-size: 40px; padding: 20px;"},
-		 		 		 			 	{kind: "moon.Button", content: "-"},
-		 		 		 			]
-		 		 		 	}
-		 		 		]
-		 		 	},
-		 		 	{kind: "moon.Scroller", style:"padding: 20px;", fit: true,
-		 		 		components:
-		 		 			[
-		 		 			 	{kind: "moon.BodyText", style:"width: 950px;", fit: true, content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."}
-		 		 			]
-		 		 	}
-		 		]
-		 	},
-		 	{components:
-		 			[
-		 			 	{kind: "moon.Button", content: "Order", ontap: "onFoodInfoOrderTapped", popup: "orderPopup"},
-		 			 	{kind: "moon.Button", content: "Back", ontap: "onFoodInfoBackTapped"},
-		 			 	{name: "orderPopup", kind: "moon.Popup", showCloseButton: true,
-		 			 		components:
-		 			 		[
-                    			{kind: "moon.Divider", content: "Order to:"},
-                    			{classes: "moon-hspacing",
-                    				components:
-                    				[
-                        				{kind: "moon.Button", content: "Room", ontap: "onFoodInfoRoomTapped", popup: "foodInfoOrderPopUp"},
-                        				{kind: "moon.Button", content: "Table", ontap: "onFoodInfoTableTapped", popup: "foodInfoOrderPopUp"}
-                    				]
-                    			}
-                			]
+		 		 		 {kind:"FittableColumns", components:
+		 		 			 [		
+				 		 		 {name:"FoodImage", kind: "enyo.Image", style:"max-width:600px;max-height:400px;",src:""}, 
+		 		 			 	{name:"FoodDescr", kind: "moon.BodyText", style:"font-size: 35px; margin-left: 35px; color: white;", fit: true, content: "xy"}
+		 		 			 	]},		 		 			 	
+		 			 		]
 		 			 	},
-		 			 	{name: "foodInfoOrderPopUp", kind: "moon.Popup", content: "Ordered!", showCloseButton: true, onHide: "onFoodInfoOrderCompleted"}
-		 			]
-		 	}
-		],
+ 		 			 	{kind:"FittableColumns", style:"padding: 20px;", components:
+		 		 			 [	
+		 			 	            {name:"room", kind: "moon.FormCheckbox", content: "Room", onchange: "itemChanged", style: "color: white;"},
+		 			 	            {name:"table", kind: "moon.FormCheckbox", content: "Table in Restaurant", onchange: "itemChanged",style: "color: white;"},
+		 			 	            ]},
+
+		 			 			 	{kind: "FittableColumns", components:
+		 			 			 		[
+		 			 			 	
+		 			 			 	{kind: "moon.BodyText", style: "color: white;", content: "Price:"},
+		 	 		 			 	{name:"FoodPrc", kind: "moon.BodyText", style: "color: white;",content: "xy"},
+		 	 		 			 	{kind: "moon.BodyText", style: "color: white;", content: "' \u20AC'"}
+		 	 		 			 	]},
+		 	{kind: "FittableColumns", style:"padding: 20px;",
+ 		 		components:
+	 			 			[
+	 			 			 	{kind: "moon.BodyText", content: "Quantity", style: "margin: 0px; display: inline;", style: "color: white;"},
+	 			 			 	{kind: "moon.IconButton", icon: "arrowsmallup", style: "margin-left: 40px;", ontap: "ArrowUpTapped"},
+		 			 		 	{name: "quantity", kind: "moon.BodyText", content: "1", style: "margin: 0px; display: inline;", style: "color: white;"},
+		 			 		 	{kind: "moon.IconButton", icon: "arrowsmalldown", ontap: "ArrowDownTapped"},
+                        	
+	 			 			]
+	 			 	},
+		 	 		 			 {kind: "FittableColumns", style:"padding: 20px;",
+		 	 		 		 		components:[
+		 	 		 			 {name: "acceptButton", kind: "moon.IconButton", style: "margin-left: 100px;", serviceID: null, serviceName: null, icon: "check", ontap: "onFoodInfoOrderTapped"},
+		                        	{kind: "moon.IconButton", icon: "closex", ontap: "onFoodInfoBackTapped"}]}
+		 	 		 			 ,
+		 			 	            
+		 			 	          {name: "confirmOrderPopup", content: "", kind: "moon.Popup", showCloseButton:true,style:"background-image: url(\assets/food_services/Panels/popups.png);",
+			 			 			 		components:
+			 			 			 			[{name: "confirmOrder", content: null},
+					 			 	            {name:"payNow", kind: "moon.FormCheckbox", content: "I would like to pay the order now.", onchange: "itemChanged", style: "color: white;"},
+					 			 	            {name:"addToBill", kind: "moon.FormCheckbox", content: "I would like to add the order to the room bill.", onchange: "itemChanged",style: "color: white;"},
+					 	
+			 			 			 			{kind: "moon.Button", content: "Confirm", ontap: "onConfirmTapped"}
+			 			 			 			]},
+
+			 			 		{name: "errorPopup", kind: "moon.Popup", showCloseButton:true,style:"background-image: url(\assets/expenditures/background_popup.png);",
+			 			 			 				content:"Please select 1 option."},
+			 			 			 				
+			 			 			 				{kind:"moon.Popup", showCloseButton:true, name:"paymentPopUp", title:"",style:"background-image: url(\assets/expenditures/background_popup.png);" , 
+			 			 			 					components:[
+			 			 			 					            {kind:"FittableRows",components:[
+			 			 			 		         		     	  		{content:"Please Select you preferable payment method:"},
+			 			 			 		         		     	  		
+			 			 			 			         		     	  	{kind:"FittableColumns",
+			 			 			 		         		     	  			components:[
+			 			 			 														{kind: "moon.Item", style:"display: inline-block; padding-bottom: 2px; border-radius: 7px;", ontap:"onPaymentTapped", popup:"paymentConfirmation", 
+			 			 			 																components:
+			 			 			 																[
+			 			 			 																 	{kind: "enyo.Image", src: "assets/expenditures/apple_pay.png", },
+			 			 			 																]
+			 			 			 														},
+			 			 			 														{kind: "moon.Item", style:"display: inline-block; padding-bottom: 2px; border-radius: 7px;",ontap:"onPaymentTapped", popup:"paymentConfirmation",
+			 			 			 															components:
+			 			 			 															[
+			 			 			 															 	{kind: "enyo.Image", src: "assets/expenditures/google_wallet.png"},
+			 			 			 															]
+			 			 			 														},
+			 			 			 														{kind: "moon.Item", style:"display: inline-block; padding-bottom: 2px; border-radius: 7px;",ontap:"onPaymentTapped", popup:"paymentConfirmation",
+			 			 			 															components:
+			 			 			 															[
+			 			 			 															 	{kind: "enyo.Image", src: "assets/expenditures/paypal.png"},
+			 			 			 															]
+			 			 			 														}
+			 			 			 														]
+			 			 			 			         		     	  	}
+			 			 			 		         		     	  		]
+			 			 			 					            }
+			 			 			 					            ]
+			 			 			 				},
+			 			 			 				{name:"paymentConfirmation", kind:"moon.Popup", style:"background-image: url(\assets/food_services/Panels/popups.png);", 
+			 			 			 				  components:[
+{name:"closePaymentConfirmationText", kind:"moon.BodyText",content:"Payment was successfull!"},
+{kind:"moon.Button", content:"Close", ontap:"closePaymentConfirmationPopup"}]},
+			 			 			 														
+			 			 		
+		 			 	            ],
 		
+		rendered: function()
+		{
+		    this.inherited(arguments);
+		},
+		
+		setTitle: function()
+		{
+		    this.$.FoodInfoTitle.setContent(this.propertyOne);
+		    this.$.FoodDescr.setContent(this.propertyTwo);
+		    this.$.FoodPrc.setContent(this.propertyFour);
+		    // SOLUTION
+		    this.$.FoodImage.setSrc(this.propertyThree);
+		},
+		
+		ArrowUpTapped: function(inSender, inEvent)
+		{
+			var quantity = parseInt(this.$.quantity.content);
+
+			console.log(quantity);
+			if(quantity < 10)
+			{
+				this.$.quantity.setContent(++quantity);
+				this.$.FoodPrc.setContent(this.propertyFour * quantity);
+			}
+			
+		},
+		
+		ArrowDownTapped: function(inSender, inEvent)
+		{
+			var quantity = parseInt(this.$.quantity.content);
+
+			console.log(quantity);
+			if(quantity > 1)
+			{
+				this.$.quantity.setContent(--quantity);
+				this.$.FoodPrc.setContent(this.propertyFour * quantity);
+			}
+			
+			console.log(quantity);
+		},
+		
+		onConfirmTapped: function()
+		{
+			var id = this.orderToRoom();
+			if(this.$.payNow.checked == true && this.$.addToBill.checked == false)
+				{
+					this.$.paymentPopUp.title = id;
+					this.$.paymentPopUp.show();
+				}
+			else if(this.$.addToBill.checked == true && this.$.payNow.checked == false)
+				{
+					this.$.confirmOrderPopup.hide();
+					this.owner.loadRestaurantScreen();
+				}
+			else
+				this.$.errorPopup.show();
+		},
+		
+		orderToRoom: function()
+		{
+				try
+				{
+					var client = {client_id:this.getRoomID()};
+					obj = this.webService("roomservice/add/",client);
+					console.log(obj);
+					var extra = {
+							restaurant_order_id: obj.id,
+				            food_menu_id: this.propertyFive,
+				            promotion_id: this.propertySix,
+				            quantity: parseInt(this.$.quantity.content)
+							};
+					console.log(extra);
+					var x = this.webService("roomservice/add/",extra);
+					console.log(x);
+					return obj.id;
+				}
+				catch(e)
+				{
+					console.log(e);
+					this.$.closePaymentConfirmationText.setContent("Error!");
+					this.$.paymentConfirmation.show();
+				}
+			
+			
+			
+			
+		},
 		// Food Info Back Tapped
 		onFoodInfoBackTapped: function()
 		{
@@ -60,51 +189,60 @@ enyo.kind(
 		// Food Info Order Tapped
 		onFoodInfoOrderTapped: function(inSender, inEvent)
 		{
-			var popUp = this.$[inSender.popup];
-			if(popUp.showing)
+			if(this.$.room.checked == true && this.$.table.checked == false)  
 				{
-					popUp.hide();
+					//order to room
+				
+				this.$.confirmOrderPopup.setContent(this.propertyOne);
+				this.$.confirmOrder.setContent(this.propertyOne + ", price : "+ parseInt(this.$.quantity.content)*this.propertyFour) + "' \u20AC'";
+				this.$.confirmOrderPopup.show();
 				}
+			else if(this.$.room.checked == false && this.$.table.checked == true)
+				{
+				this.$.closePaymentConfirmationText.setContent("A Table is ordered.");
+				this.$.paymentConfirmation.show();
+				}
+			
 			else
-				{
-					popUp.show();
-				}
+			{
+			this.$.errorPopup.show();
+			}
+			
 		},
-		
-		// Food Info Order to Room
-		onFoodInfoRoomTapped: function(inSender, inEvent)
-		{
-			this.$.orderPopup.hide();
-			var popUp = this.$[inSender.popup];
-			if(popUp.showing)
-				{
-					popUp.hide();
-				}
+		//payment tapped
+    	onPaymentTapped: function(inSender)
+    	{
+    		console.log(this.$.paymentPopUp.title);
+    		payRestaurant = this.webService("payday/restaurant/?id=" +parseInt(this.$.paymentPopUp.title));
+    		console.log(payRestaurant);
+    		this.$.confirmOrderPopup.hide();
+    		
+    		var popUp = this.$[inSender.popup];
+    		if(popUp.showing)
+			{
+				popUp.hide();
+			}
 			else
-				{
-					popUp.show();
-				}
-		},
-		
-		// Food Info Order to Table
-		onFoodInfoTableTapped: function(inSender, inEvent)
+			{
+				popUp.show();
+			}
+    	
+    	},
+		getRoomID: function()
 		{
-			this.$.orderPopup.hide();
-			var popUp = this.$[inSender.popup];
-			if(popUp.showing)
-				{
-					popUp.hide();
-				}
-			else
-				{
-					popUp.show();
-				}
+			return this.owner.roomID;
 		},
-		
-		// Food Info Order Completed
-		onFoodInfoOrderCompleted: function()
-		{
+		 //payment feedback
+    	closePaymentConfirmationPopup: function(inSender)
+    	{
+    		this.$.paymentConfirmation.hide();
+    		this.$.paymentPopUp.hide();
 			this.owner.loadRestaurantScreen();
-		},
+    	},
+    	webService: function(URL, data)
+    	{
+    		return this.owner.webService(URL, data);
+    	}
+		
 }
 );

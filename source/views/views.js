@@ -13,13 +13,19 @@ enyo.kind({
 				
 				{name: "restaurantscreen", kind: "restaurant_screen"},
 				
-				{name: "foodinfoscreen", kind: "foodinfo_screen"},
+				{name: "foodinfoscreen", kind: "foodinfo_screen", propertyOne: null, propertyTwo:null, propertyThree:null, propertyFour:null, propertyFive:null, propertySix:null},
 				
 				{name: "checkoutscreen", kind: "checkout_screen"},
 				
 				{name: "mediabrowserscreen", kind: "mediabrowser_screen"},
 				
 				{name: "explorescreen", kind: "explore_screen"},
+				
+				{name: "promotionscreen", kind: "promotion_screen"},
+				
+				{name: "eventscreen", kind: "event_screen"},
+				
+				{name: "activityscreen", kind: "activity_screen"},
 				
 	 			{title: "Web Services Test",
 	 				components:
@@ -93,6 +99,21 @@ enyo.kind({
 	loadExploreScreen: function()
 	{
 		this.$.panels.setIndex(7);
+	},
+	
+	loadPromotionScreen: function()
+	{
+		this.$.panels.setIndex(8);
+	},
+	
+	loadEventScreen: function()
+	{
+		this.$.panels.setIndex(9);
+	},
+	
+	loadActivityScreen: function()
+	{
+		this.$.panels.setIndex(10);
 	},
 	
 	//	Web Services
