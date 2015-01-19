@@ -20,7 +20,7 @@ enyo.kind(
 	name: "activity_main_screen",
 	kind: "FittableRows",
 	classes: "moon enyo-fit",
-	style: "background-image: url('assets/media_browser/background.png');",
+	style: "background-image: url('assets/activities/background.png');",
 	components:
 	[
 	 	{

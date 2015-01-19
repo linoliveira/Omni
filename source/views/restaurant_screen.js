@@ -11,7 +11,7 @@ enyo.kind(
 			 	{kind: "FittableRows", style: "padding: 10px;",
 			 		components:
 			 			[
-			 			 	{kind: "FittableColumns", style:"background-color:rgba(0, 0, 0, 0.4); margin: 20px; margin-left: 10px; margin-bottom: 30px; padding-right: 15px;",
+			 			 	{kind: "FittableColumns", style:"background-color:rgba(0, 0, 0, 0.4); margin: 20px; margin-left: 10px; margin-bottom: 30px;",
 			 			 		components:
 			 			 		[
 								{content: "Starter", style: " color: white;"}
@@ -28,7 +28,7 @@ enyo.kind(
 			 	{kind: "FittableRows", style: "padding: 10px;",
 			 		components:
 			 			[
-			 			 	{kind: "FittableColumns", style:"background-color:rgba(0, 0, 0, 0.4); margin: 20px; margin-bottom: 30px; padding-right: 50px;",
+			 			 	{kind: "FittableColumns", style:"background-color:rgba(0, 0, 0, 0.4); margin-bottom: 30px; margin-top: 20px; margin-left: 10px;",
 			 			 		components:
 			 			 		[
 						 		 {content: "Main Course", style: " color: white;"}
@@ -42,10 +42,10 @@ enyo.kind(
 			 			 	}
 			 			]
 			 	},
-			 	{kind: "FittableRows", style:"padding-bottom: 10px;",
+			 	{kind: "FittableRows", style:"padding: 10px;",
 			 		components:
 			 			[
-			 			 	{kind: "FittableColumns", style:"background-color:rgba(0, 0, 0, 0.4); margin: 30px; padding-right: 10px;",
+			 			 	{kind: "FittableColumns", style:"background-color:rgba(0, 0, 0, 0.4); margin-bottom: 30px; margin-top: 20px; margin-left: 10px;",
 			 			 		components:
 			 			 		[
 			 			 		 	{content: "Dessert", style: "color: white;"}
@@ -59,10 +59,10 @@ enyo.kind(
 			 			 	}
 			 			]
 			 	},
-			 	{kind: "FittableRows", style:"padding-bottom: 10px;",
+			 	{kind: "FittableRows", style:"padding: 10px;",
 			 		components:
 			 			[
-			 			 	{kind: "FittableColumns", style:"background-color:rgba(0, 0, 0, 0.4); margin: 30px; padding-right: 10px",
+			 			 	{kind: "FittableColumns", style:"background-color:rgba(0, 0, 0, 0.4); margin-bottom: 30px; margin-top: 20px; margin-left: 10px;",
 			 			 		components:
 			 			 		[
 			 			 		 	{content: "Other", style: "color: white;"}

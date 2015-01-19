@@ -36,7 +36,15 @@ enyo.kind({
 	 				
 	 			}
 			]
-		}
+		},
+	 	{name: "recommendationPopup", kind: "moon.Popup", showCloseButton: true,
+	 		components:
+	 			[
+	 			 	{name: "recommendationName", content: null},
+	 			 	{kind: "moon.Divider", content:"Description", style: "margin-top: 20px;"},
+	 			 	{name: "recommendationDescription", content: null, style: "font-size: 16pt; margin-left: 10px;"}
+	 			]
+	 	}
 	],
 	handlers: {
 		ontap: "closeModal" ,
@@ -47,8 +55,9 @@ enyo.kind({
 	// PROPERTIES
 	jQuery: null,
 	jQuerySuccess: false,
-	roomID: 1, 				// TODO: Fazer com código do cliente (ask undead)
+	roomID: 1,
 	clientID: null,
+	periodicRecommendation: null,
 	
 	// App Initialization
 	create: enyo.inherit(function(sup)
@@ -60,6 +69,25 @@ enyo.kind({
 			this.jQuery = $.noConflict(true);
 		};
 	}),
+	
+	rendered: function ()
+	{
+		this.inherited(arguments);
+		
+		this.periodicRecommendation = setInterval(function(self) {self.recommend();}, 60000, this);
+	},
+	
+	recommend: function()
+	{
+		var recommendation = this.webService("recommendation/");
+		var message = "Hey! you might want to check " + recommendation.name;
+		var description = recommendation.description;
+		
+		this.$.recommendationName.setContent(message);
+		this.$.recommendationDescription.setContent(description);
+		
+		this.$.recommendationPopup.show();
+	},
 	
 	loadCheckinScreen: function()
 	{

@@ -3,33 +3,39 @@ enyo.kind(
 	style: "background-image: url(\assets/food_services/Panels/background.png);",
 	components:
 		[
-		 	{name:"FoodInfoTitle", content: "Food",  style: "font-size: 60px; margin-left: 35px; color: white;"},
-		 		 	{kind: "FittableRows", components:
+		 	{name:"FoodInfoTitle", content: "Food",  style: "font-size: 60px; margin-left: 35px; color: white; margin-bottom: 20px;"},
+		 		 	{kind: "FittableRows", style: "margin-left: 35px;",components:
 		 		 		[
 		 		 		 {kind:"FittableColumns", components:
 		 		 			 [		
 				 		 		 {name:"FoodImage", kind: "enyo.Image", style:"max-width:600px;max-height:400px;",src:""}, 
-		 		 			 	{name:"FoodDescr", kind: "moon.BodyText", style:"font-size: 35px; margin-left: 35px; color: white;", fit: true, content: "xy"}
+				 		 		{kind: "moon.Scroller", fit: true, style: "max-width: 1200px;",
+									components:
+									[
+										{name:"FoodDescr", kind: "moon.BodyText", style:"font-size: 35px; margin-left: 35px; color: white;", content: "xy"}
+									]
+								},
 		 		 			 	]},		 		 			 	
 		 			 		]
 		 			 	},
  		 			 	{kind:"FittableColumns", style:"padding: 20px;", components:
 		 		 			 [	
-		 			 	            {name:"room", kind: "moon.FormCheckbox", content: "Room", onchange: "itemChanged", style: "color: white;"},
-		 			 	            {name:"table", kind: "moon.FormCheckbox", content: "Table in Restaurant", onchange: "itemChanged",style: "color: white;"},
+		 		 			  		{content: "Order to:", style: "color: white; margin-left: 15px;"},
+		 			 	            {name:"room", kind: "moon.FormCheckbox", content: "Room", onchange: "itemChanged", style: "color: white; margin-left: 20px;"},
+		 			 	            {name:"table", kind: "moon.FormCheckbox", content: "Table in Restaurant", onchange: "itemChanged",style: "color: white; margin-left: 20px;"},
 		 			 	            ]},
 
 		 			 			 	{kind: "FittableColumns", components:
 		 			 			 		[
 		 			 			 	
-		 			 			 	{kind: "moon.BodyText", style: "color: white;", content: "Price:"},
+		 			 			 	{kind: "moon.BodyText", style: "color: white; margin-left: 30px;", content: "Price:"},
 		 	 		 			 	{name:"FoodPrc", kind: "moon.BodyText", style: "color: white;",content: "xy"},
-		 	 		 			 	{kind: "moon.BodyText", style: "color: white;", content: "' \u20AC'"}
+		 	 		 			 	{kind: "moon.BodyText", style: "color: white; margin:0px;", content: "\u20AC"}
 		 	 		 			 	]},
 		 	{kind: "FittableColumns", style:"padding: 20px;",
  		 		components:
 	 			 			[
-	 			 			 	{kind: "moon.BodyText", content: "Quantity", style: "margin: 0px; display: inline;", style: "color: white;"},
+	 			 			 	{kind: "moon.BodyText", content: "Quantity", style: "margin: 0px;display: inline;", style: "color: white;"},
 	 			 			 	{kind: "moon.IconButton", icon: "arrowsmallup", style: "margin-left: 40px;", ontap: "ArrowUpTapped"},
 		 			 		 	{name: "quantity", kind: "moon.BodyText", content: "1", style: "margin: 0px; display: inline;", style: "color: white;"},
 		 			 		 	{kind: "moon.IconButton", icon: "arrowsmalldown", ontap: "ArrowDownTapped"},
@@ -38,7 +44,7 @@ enyo.kind(
 	 			 	},
 		 	 		 			 {kind: "FittableColumns", style:"padding: 20px;",
 		 	 		 		 		components:[
-		 	 		 			 {name: "acceptButton", kind: "moon.IconButton", style: "margin-left: 100px;", serviceID: null, serviceName: null, icon: "check", ontap: "onFoodInfoOrderTapped"},
+		 	 		 			 {name: "acceptButton", kind: "moon.IconButton", style: "margin-left: 15px;", serviceID: null, serviceName: null, icon: "check", ontap: "onFoodInfoOrderTapped"},
 		                        	{kind: "moon.IconButton", icon: "closex", ontap: "onFoodInfoBackTapped"}]}
 		 	 		 			 ,
 		 			 	            
