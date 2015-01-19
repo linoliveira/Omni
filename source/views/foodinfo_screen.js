@@ -6,10 +6,9 @@ enyo.kind(
 		 	{name:"FoodInfoTitle", content: "Food",  style: "font-size: 60px; margin-left: 35px; color: white;"},
 		 		 	{kind: "FittableRows", components:
 		 		 		[
-		 		 		 {name:"FoodImage", kind: "enyo.Image", src:""},
 		 		 		 {kind:"FittableColumns", components:
-		 		 			 [		 		 		 
-		 		 			  	
+		 		 			 [		
+				 		 		 {name:"FoodImage", kind: "enyo.Image", style:"max-width:600px;max-height:400px;",src:""}, 
 		 		 			 	{name:"FoodDescr", kind: "moon.BodyText", style:"font-size: 35px; margin-left: 35px; color: white;", fit: true, content: "xy"}
 		 		 			 	]},		 		 			 	
 		 			 		]
@@ -25,8 +24,9 @@ enyo.kind(
 		 			 			 	
 		 			 			 	{kind: "moon.BodyText", style: "color: white;", content: "Price:"},
 		 	 		 			 	{name:"FoodPrc", kind: "moon.BodyText", style: "color: white;",content: "xy"},
+		 	 		 			 	{kind: "moon.BodyText", style: "color: white;", content: "' \u20AC'"}
 		 	 		 			 	]},
-		 	{kind: "FittableColumns", fit:true, style:"padding: 20px;",
+		 	{kind: "FittableColumns", style:"padding: 20px;",
  		 		components:
 	 			 			[
 	 			 			 	{kind: "moon.BodyText", content: "Quantity", style: "margin: 0px; display: inline;", style: "color: white;"},
@@ -54,7 +54,7 @@ enyo.kind(
 			 			 		{name: "errorPopup", kind: "moon.Popup", showCloseButton:true,style:"background-image: url(\assets/expenditures/background_popup.png);",
 			 			 			 				content:"Please select 1 option."},
 			 			 			 				
-			 			 			 				{kind:"moon.Popup", showCloseButton:true, name:"paymentPopUp", style:"background-image: url(\assets/expenditures/background_popup.png);" , 
+			 			 			 				{kind:"moon.Popup", showCloseButton:true, name:"paymentPopUp", title:"",style:"background-image: url(\assets/expenditures/background_popup.png);" , 
 			 			 			 					components:[
 			 			 			 					            {kind:"FittableRows",components:[
 			 			 			 		         		     	  		{content:"Please Select you preferable payment method:"},
@@ -136,29 +136,27 @@ enyo.kind(
 		
 		onConfirmTapped: function()
 		{
-			
+			var id = this.orderToRoom();
 			if(this.$.payNow.checked == true && this.$.addToBill.checked == false)
 				{
+					this.$.paymentPopUp.title = id;
 					this.$.paymentPopUp.show();
 				}
 			else if(this.$.addToBill.checked == true && this.$.payNow.checked == false)
 				{
 					this.$.confirmOrderPopup.hide();
-					this.orderToRoom();
 					this.owner.loadRestaurantScreen();
 				}
 			else
 				this.$.errorPopup.show();
 		},
+		
 		orderToRoom: function()
 		{
-				var cliente = this.getRoomID();
-				
 				try
 				{
 					var client = {client_id:this.getRoomID()};
 					obj = this.webService("roomservice/add/",client);
-					//obj = this.webService("roomservice/");
 					console.log(obj);
 					var extra = {
 							restaurant_order_id: obj.id,
@@ -167,17 +165,17 @@ enyo.kind(
 				            quantity: parseInt(this.$.quantity.content)
 							};
 					console.log(extra);
-					obj = this.webService("roomservice/add/",extra);
-					
-					this.$.closePaymentConfirmationText.setContent(this.propertyOne + " ordered!");
+					var x = this.webService("roomservice/add/",extra);
+					console.log(x);
+					return obj.id;
 				}
 				catch(e)
 				{
 					console.log(e);
 					this.$.closePaymentConfirmationText.setContent("Error!");
+					this.$.paymentConfirmation.show();
 				}
 			
-			this.$.paymentConfirmation.show();
 			
 			
 			
@@ -196,7 +194,7 @@ enyo.kind(
 					//order to room
 				
 				this.$.confirmOrderPopup.setContent(this.propertyOne);
-				this.$.confirmOrder.setContent(this.propertyOne + ", price : "+ parseInt(this.$.quantity.content)*this.propertyFour);
+				this.$.confirmOrder.setContent(this.propertyOne + ", price : "+ parseInt(this.$.quantity.content)*this.propertyFour) + "' \u20AC'";
 				this.$.confirmOrderPopup.show();
 				}
 			else if(this.$.room.checked == false && this.$.table.checked == true)
@@ -214,6 +212,9 @@ enyo.kind(
 		//payment tapped
     	onPaymentTapped: function(inSender)
     	{
+    		console.log(this.$.paymentPopUp.title);
+    		payRestaurant = this.webService("payday/restaurant/?id=" +parseInt(this.$.paymentPopUp.title));
+    		console.log(payRestaurant);
     		this.$.confirmOrderPopup.hide();
     		
     		var popUp = this.$[inSender.popup];

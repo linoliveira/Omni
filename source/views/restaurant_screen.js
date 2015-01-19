@@ -14,7 +14,7 @@ enyo.kind(
 			 			 	{kind: "FittableColumns", style:"background-color:rgba(0, 0, 0, 0.4); margin: 20px; margin-left: 10px; margin-bottom: 30px; padding-right: 15px;",
 			 			 		components:
 			 			 		[
-								{content: "Starters", style: "padding-top: 60px; color: white;"}
+								{content: "Starter", style: " color: white;"}
 			 			 		]
 			 			 	},
 			 			 	{name: "requestStartersContainer", kind: "FittableRows",
@@ -31,7 +31,7 @@ enyo.kind(
 			 			 	{kind: "FittableColumns", style:"background-color:rgba(0, 0, 0, 0.4); margin: 20px; margin-bottom: 30px; padding-right: 50px;",
 			 			 		components:
 			 			 		[
-						 		 {content: "Main Courses", style: "padding-top: 60px; color: white;"}
+						 		 {content: "Main Course", style: " color: white;"}
 			 			 		]
 			 			 	},
 			 			 	{name: "requestMCContainer", kind: "FittableRows",
@@ -48,7 +48,7 @@ enyo.kind(
 			 			 	{kind: "FittableColumns", style:"background-color:rgba(0, 0, 0, 0.4); margin: 30px; padding-right: 10px;",
 			 			 		components:
 			 			 		[
-			 			 		 	{content: "Deserts", style: "padding-top: 60px; color: white;"}
+			 			 		 	{content: "Dessert", style: "color: white;"}
 			 			 		]
 			 			 	},
 			 			 	{name: "requestDesertContainer", kind: "FittableRows",
@@ -59,13 +59,13 @@ enyo.kind(
 			 			 	}
 			 			]
 			 	},
-			 	{kind: "FittableRows", style:"padding-bottom: 10px; margin: 20px;",
+			 	{kind: "FittableRows", style:"padding-bottom: 10px;",
 			 		components:
 			 			[
-			 			 	{kind: "FittableColumns", style:"background-color:rgba(0, 0, 0, 0.4); margin-bottom: 30px; margin-top: 30px; margin-left: 10px; padding-right: 10px",
+			 			 	{kind: "FittableColumns", style:"background-color:rgba(0, 0, 0, 0.4); margin: 30px; padding-right: 10px",
 			 			 		components:
 			 			 		[
-			 			 		 	{content: "Soups", style: "margin-left: 10px; padding-top: 60px; color: white;"}
+			 			 		 	{content: "Other", style: "color: white;"}
 			 			 		]
 			 			 	},
 			 			 	{name: "requestDrinkContainer", kind: "FittableRows",
@@ -140,15 +140,15 @@ createNewRequest: function(id, name, description, price, type, imageName, promId
 			{
 			this.$.requestMCContainer.createComponent(
 					{kind: "moon.Item",  ontap: "requestTapped", popup: "requestPopup",
-						serviceID: id, serviceName: name, description: description, price: price, imageName: imageName,
+						serviceID: id, serviceName: name, description: description, price: price, imageName: imageName,promId: promId,
 						style: "margin-left: 10px; padding: 0px; margin-top: 20px; width: 424px; height: 100px; background-image: url(\"assets/room_services/panels/request_aditional_panel.png\"); background-repeat: no-repeat; background-size: auto;",
 						components:
 		 			 		[
-				 			 	{kind: "FittableColumns", style: "padding: 0px; margin: 0px;",
+				 			 	{kind: "FittableColumns", style: "width:125px; padding: 0px; margin: 0px;",
 				 			 		components:
 				 			 		[
-										{kind: "enyo.Image", src:imageName},
-										{content: name, style: "padding-top: 35px; padding-left: 20px; color: white;"}
+										{kind: "enyo.Image", style:"max-width:150px;max-height:100px;",src:imageName},
+										{content: name, style: "padding-top: 5px; padding-left: 10px; color: white;"}
 				 			 		]
 				 			 	}
 		 			 		]
@@ -156,7 +156,7 @@ createNewRequest: function(id, name, description, price, type, imageName, promId
 				).render();
 				break;
 				};
-		case "starter":
+		case "starters":
 		{
 		this.$.requestStartersContainer.createComponent(
 				{kind: "moon.Item", ontap: "requestTapped", popup: "requestPopup",
@@ -164,11 +164,31 @@ createNewRequest: function(id, name, description, price, type, imageName, promId
 					style: "margin-left: 10px; padding: 0px; margin-top: 20px; width: 424px; height: 100px; background-image: url(\"assets/room_services/panels/request_aditional_panel.png\"); background-repeat: no-repeat; background-size: auto;",
 					components:
 	 			 		[
-			 			 	{kind: "FittableColumns", style: "padding: 0px; margin: 0px;",
+			 			 	{kind: "FittableColumns", style: "width:125px; padding: 0px; margin: 0px;",
 			 			 		components:
 			 			 		[
-									{kind: "enyo.Image", src: imageName},
-									{content: name, style: "padding-top: 35px; padding-left: 20px; color: white;"}
+									{kind: "enyo.Image", style:"max-width:150px;max-height:100px;",src: imageName},
+									{content: name, style: "padding-top: 5px; padding-left: 10px; color: white;"}
+			 			 		]
+			 			 	}
+	 			 		]
+		 		}, {owner: this}
+			).render();
+			break;
+			};
+		case "soup":
+		{
+		this.$.requestStartersContainer.createComponent(
+				{kind: "moon.Item", ontap: "requestTapped", popup: "requestPopup",
+					serviceID: id, serviceName: name, description: description, price: price, imageName: imageName, promId: promId,
+					style: "margin-left: 10px; padding: 0px; margin-top: 20px; width: 424px; height: 100px; background-image: url(\"assets/room_services/panels/request_aditional_panel.png\"); background-repeat: no-repeat; background-size: auto;",
+					components:
+	 			 		[
+			 			 	{kind: "FittableColumns", style: "width:125px; padding: 0px; margin: 0px;",
+			 			 		components:
+			 			 		[
+									{kind: "enyo.Image", style:"max-width:150px;max-height:100px;",src: imageName},
+									{content: name, style: "padding-top: 5px; padding-left: 10px; color: white;"}
 			 			 		]
 			 			 	}
 	 			 		]
@@ -185,11 +205,11 @@ createNewRequest: function(id, name, description, price, type, imageName, promId
 					style: "margin-left: 10px; padding: 0px; margin-top: 20px; width: 424px; height: 100px; background-image: url(\"assets/room_services/panels/request_aditional_panel.png\"); background-repeat: no-repeat; background-size: auto;",
 					components:
 	 			 		[
-			 			 	{kind: "FittableColumns", style: "padding: 0px; margin: 0px;",
+			 			 	{kind: "FittableColumns", style: "width:125px; padding: 0px; margin: 0px;",
 			 			 		components:
 			 			 		[
-									{kind: "enyo.Image", src: imageName},
-									{content: name, style: "padding-top: 35px; padding-left: 20px; color: white;"}
+									{kind: "enyo.Image", style:"max-width:150px;max-height:100px;",src: imageName},
+									{content: name, style: "padding-top: 5px; padding-left: 10px; color: white;"}
 			 			 		]
 			 			 	}
 	 			 		]
@@ -197,19 +217,19 @@ createNewRequest: function(id, name, description, price, type, imageName, promId
 			).render();
 			break;
 			};
-		case "sopa":
+		case "other":
 		{
 		this.$.requestDrinkContainer.createComponent(
 				{kind: "moon.Item",  ontap: "requestTapped", popup: "requestPopup",
-					serviceID: id, serviceName: name, description: description, price: price, imageName: imageName,
+					serviceID: id, serviceName: name, description: description, price: price, imageName: imageName,promId: promId,
 					style: "margin-left: 10px; padding: 0px; margin-top: 20px; width: 424px; height: 100px; background-image: url(\"assets/room_services/panels/request_aditional_panel.png\"); background-repeat: no-repeat; background-size: auto;",
 					components:
 	 			 		[
-			 			 	{kind: "FittableColumns", style: "padding: 0px; margin: 0px;",
+			 			 	{kind: "FittableColumns", style: "width:125px; padding: 0px; margin: 0px;",
 			 			 		components:
 			 			 		[
-									{kind: "enyo.Image", src: imageName},
-									{content: name, style: "padding-top: 35px; padding-left: 20px; color: white;"}
+									{kind: "enyo.Image", style:"max-width:150px;max-height:100px;",src: imageName},
+									{content: name, style: "padding-top: 5px; padding-left: 10px; color: white;"}
 			 			 		]
 			 			 	}
 	 			 		]
@@ -217,7 +237,7 @@ createNewRequest: function(id, name, description, price, type, imageName, promId
 			).render();
 			break;
 			};
-			
+						
 	}
 	
 	
